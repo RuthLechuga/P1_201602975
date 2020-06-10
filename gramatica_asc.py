@@ -9,7 +9,8 @@ reservadas = {
     'char': 'CHAR',
     'abs': 'ABS',
     'array': 'ARRAY',
-    'unset': 'UNSET'
+    'unset': 'UNSET',
+    'xor': 'XOR'
 }
 
 tokens  = [
@@ -35,7 +36,6 @@ tokens  = [
     'NOT',
     'AND',
     'OR',
-    'XOR',
     'BBNOT',
     'BBAND',
     'BBOR',
@@ -76,7 +76,6 @@ t_IGUAL_QUE         = r'=='
 t_NOT               = r'!'
 t_AND               = r'&&'
 t_OR                = r'\|\|'
-t_XOR               = r'xor'
 t_BBNOT             = r'~'
 t_BBAND             = r'&'
 t_BBOR              = r'\|'
@@ -150,8 +149,9 @@ def t_error(t):
 import ply.lex as lex
 from Arbol.Aritmetica import *
 from Arbol.Asignacion import *
-from Arbol.Instruccion import *
 from Arbol.Etiqueta import *
+from Arbol.Instruccion import *
+from Arbol.Logica import *
 from Arbol.Print import *
 from Arbol.Relacional import *
 from Arbol.Unaria import *
@@ -281,6 +281,9 @@ def p_expresion(t):
     if t[2] == '<=': t[0] = Relacional(t[1],t[3],TIPO_RELACIONAL.MENOR_IGUAL_QUE,t.lineno(2),find_column(entrada, t.slice[2]))
     if t[2] == '>': t[0] = Relacional(t[1],t[3],TIPO_RELACIONAL.MAYOR_QUE,t.lineno(2),find_column(entrada, t.slice[2]))
     if t[2] == '<': t[0] = Relacional(t[1],t[3],TIPO_RELACIONAL.MENOR_QUE,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '&&': t[0] = Logica(t[1],t[3],TIPO_LOGICA.AND,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '||': t[0] = Logica(t[1],t[3],TIPO_LOGICA.OR,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == 'xor': t[0] = Logica(t[1],t[3],TIPO_LOGICA.XOR,t.lineno(2),find_column(entrada, t.slice[2]))
 
 def p_der_expresion(t):
     ' expresion     : expresion_simple '
@@ -296,8 +299,8 @@ def p_abs(t):
 
 def p_not(t):
     ' expresion     : NOT expresion_simple'
-    print('not')
-
+    t[0] = Logica(t[2],None,TIPO_LOGICA.NOT,t.lineno(1),find_column(entrada, t.slice[1]))
+    
 def p_bit_not(t):
     ' expresion     : BBNOT expresion_simple'
     print('bit not')

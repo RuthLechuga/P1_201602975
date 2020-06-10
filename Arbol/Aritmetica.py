@@ -1,5 +1,5 @@
 from .Instruccion import Instruccion
-from .Mensaje import Mensaje
+from .Mensaje import *
 from enum import Enum
 
 class TIPO_ARITMETICA(Enum) :
