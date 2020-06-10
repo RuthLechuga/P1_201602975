@@ -1,0 +1,2505 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> init
+Rule 1     init -> labels
+Rule 2     labels -> labels label
+Rule 3     labels -> label
+Rule 4     label -> LABEL DPUNTOS instrucciones
+Rule 5     instrucciones -> instrucciones instruccion
+Rule 6     instrucciones -> instruccion
+Rule 7     instruccion -> print_inst
+Rule 8     instruccion -> goto_inst
+Rule 9     instruccion -> exit_inst
+Rule 10    instruccion -> unset_inst
+Rule 11    instruccion -> if_inst
+Rule 12    instruccion -> asig_inst
+Rule 13    print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA
+Rule 14    goto_inst -> GOTO LABEL PTCOMA
+Rule 15    exit_inst -> EXIT PTCOMA
+Rule 16    unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA
+Rule 17    if_inst -> IF PIZQ expresion_simple PDER instruccion
+Rule 18    asig_inst -> asignable ASIG expresion PTCOMA
+Rule 19    asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA
+Rule 20    asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA
+Rule 21    asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA
+Rule 22    asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA
+Rule 23    asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA
+Rule 24    asignable -> TEMPORAL
+Rule 25    asignable -> PARAMETRO
+Rule 26    asignable -> RETORNO
+Rule 27    asignable -> PILA
+Rule 28    asignable -> RA
+Rule 29    asignable -> SP
+Rule 30    asignable -> TEMPORAL CIZQ expresion_simple CDER
+Rule 31    asignable -> PARAMETRO CIZQ expresion_simple CDER
+Rule 32    asignable -> RETORNO CIZQ expresion_simple CDER
+Rule 33    asignable -> PILA CIZQ expresion_simple CDER
+Rule 34    expresion -> expresion_simple MAS expresion_simple
+Rule 35    expresion -> expresion_simple MENOS expresion_simple
+Rule 36    expresion -> expresion_simple POR expresion_simple
+Rule 37    expresion -> expresion_simple DIVIDIDO expresion_simple
+Rule 38    expresion -> expresion_simple MODULO expresion_simple
+Rule 39    expresion -> expresion_simple AND expresion_simple
+Rule 40    expresion -> expresion_simple OR expresion_simple
+Rule 41    expresion -> expresion_simple XOR expresion_simple
+Rule 42    expresion -> expresion_simple BBAND expresion_simple
+Rule 43    expresion -> expresion_simple BBOR expresion_simple
+Rule 44    expresion -> expresion_simple BBXOR expresion_simple
+Rule 45    expresion -> expresion_simple BBIZQ expresion_simple
+Rule 46    expresion -> expresion_simple BBDER expresion_simple
+Rule 47    expresion -> expresion_simple IGUAL_QUE expresion_simple
+Rule 48    expresion -> expresion_simple DESIGUAL_QUE expresion_simple
+Rule 49    expresion -> expresion_simple MAYOR_QUE expresion_simple
+Rule 50    expresion -> expresion_simple MENOR_QUE expresion_simple
+Rule 51    expresion -> expresion_simple MAYOR_IGUAL_QUE expresion_simple
+Rule 52    expresion -> expresion_simple MENOR_IGUAL_QUE expresion_simple
+Rule 53    expresion -> expresion_simple
+Rule 54    expresion -> ABS PIZQ expresion_simple PDER
+Rule 55    expresion -> NOT expresion_simple
+Rule 56    expresion -> BBNOT expresion_simple
+Rule 57    expresion -> TEMPORAL CIZQ expresion_simple CDER
+Rule 58    expresion -> PARAMETRO CIZQ expresion_simple CDER
+Rule 59    expresion -> RETORNO CIZQ expresion_simple CDER
+Rule 60    expresion -> PILA CIZQ expresion_simple CDER
+Rule 61    expresion_simple -> TEMPORAL
+Rule 62    expresion_simple -> PARAMETRO
+Rule 63    expresion_simple -> RETORNO
+Rule 64    expresion_simple -> PILA
+Rule 65    expresion_simple -> RA
+Rule 66    expresion_simple -> SP
+Rule 67    expresion_simple -> ENTERO
+Rule 68    expresion_simple -> DECIMAL
+Rule 69    expresion_simple -> CADENA
+
+Terminals, with rules where they appear
+
+ABS                  : 54
+AND                  : 39
+ARRAY                : 23
+ASIG                 : 18 19 20 21 22 23
+BBAND                : 42
+BBDER                : 46
+BBIZQ                : 45
+BBNOT                : 56
+BBOR                 : 43
+BBXOR                : 44
+CADENA               : 69
+CDER                 : 30 31 32 33 57 58 59 60
+CHAR                 : 21
+CIZQ                 : 30 31 32 33 57 58 59 60
+DECIMAL              : 68
+DESIGUAL_QUE         : 48
+DIVIDIDO             : 37
+DPUNTOS              : 4
+ENTERO               : 67
+EXIT                 : 15
+FLOAT                : 20
+GOTO                 : 14
+IF                   : 17
+IGUAL_QUE            : 47
+INT                  : 19
+LABEL                : 4 14
+MAS                  : 34
+MAYOR_IGUAL_QUE      : 51
+MAYOR_QUE            : 49
+MENOR_IGUAL_QUE      : 52
+MENOR_QUE            : 50
+MENOS                : 35
+MODULO               : 38
+NOT                  : 55
+OR                   : 40
+PARAMETRO            : 25 31 58 62
+PDER                 : 13 16 17 19 20 21 22 23 54
+PILA                 : 27 33 60 64
+PIZQ                 : 13 16 17 19 20 21 22 23 54
+POR                  : 36
+PRINT                : 13
+PTCOMA               : 13 14 15 16 18 19 20 21 22 23
+RA                   : 28 65
+READ                 : 22
+RETORNO              : 26 32 59 63
+SP                   : 29 66
+TEMPORAL             : 13 16 24 30 57 61
+UNSET                : 16
+XOR                  : 41
+error                : 
+
+Nonterminals, with rules where they appear
+
+asig_inst            : 12
+asignable            : 18 19 20 21 22 23
+exit_inst            : 9
+expresion            : 18
+expresion_simple     : 17 19 20 21 30 31 32 33 34 34 35 35 36 36 37 37 38 38 39 39 40 40 41 41 42 42 43 43 44 44 45 45 46 46 47 47 48 48 49 49 50 50 51 51 52 52 53 54 55 56 57 58 59 60
+goto_inst            : 8
+if_inst              : 11
+init                 : 0
+instruccion          : 5 6 17
+instrucciones        : 4 5
+label                : 2 3
+labels               : 1 2
+print_inst           : 7
+unset_inst           : 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . init
+    (1) init -> . labels
+    (2) labels -> . labels label
+    (3) labels -> . label
+    (4) label -> . LABEL DPUNTOS instrucciones
+
+    LABEL           shift and go to state 4
+
+    init                           shift and go to state 1
+    labels                         shift and go to state 2
+    label                          shift and go to state 3
+
+state 1
+
+    (0) S' -> init .
+
+
+
+state 2
+
+    (1) init -> labels .
+    (2) labels -> labels . label
+    (4) label -> . LABEL DPUNTOS instrucciones
+
+    $end            reduce using rule 1 (init -> labels .)
+    LABEL           shift and go to state 4
+
+    label                          shift and go to state 5
+
+state 3
+
+    (3) labels -> label .
+
+    LABEL           reduce using rule 3 (labels -> label .)
+    $end            reduce using rule 3 (labels -> label .)
+
+
+state 4
+
+    (4) label -> LABEL . DPUNTOS instrucciones
+
+    DPUNTOS         shift and go to state 6
+
+
+state 5
+
+    (2) labels -> labels label .
+
+    LABEL           reduce using rule 2 (labels -> labels label .)
+    $end            reduce using rule 2 (labels -> labels label .)
+
+
+state 6
+
+    (4) label -> LABEL DPUNTOS . instrucciones
+    (5) instrucciones -> . instrucciones instruccion
+    (6) instrucciones -> . instruccion
+    (7) instruccion -> . print_inst
+    (8) instruccion -> . goto_inst
+    (9) instruccion -> . exit_inst
+    (10) instruccion -> . unset_inst
+    (11) instruccion -> . if_inst
+    (12) instruccion -> . asig_inst
+    (13) print_inst -> . PRINT PIZQ TEMPORAL PDER PTCOMA
+    (14) goto_inst -> . GOTO LABEL PTCOMA
+    (15) exit_inst -> . EXIT PTCOMA
+    (16) unset_inst -> . UNSET PIZQ TEMPORAL PDER PTCOMA
+    (17) if_inst -> . IF PIZQ expresion_simple PDER instruccion
+    (18) asig_inst -> . asignable ASIG expresion PTCOMA
+    (19) asig_inst -> . asignable ASIG PIZQ INT PDER expresion_simple PTCOMA
+    (20) asig_inst -> . asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA
+    (21) asig_inst -> . asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA
+    (22) asig_inst -> . asignable ASIG READ PIZQ PDER PTCOMA
+    (23) asig_inst -> . asignable ASIG ARRAY PIZQ PDER PTCOMA
+    (24) asignable -> . TEMPORAL
+    (25) asignable -> . PARAMETRO
+    (26) asignable -> . RETORNO
+    (27) asignable -> . PILA
+    (28) asignable -> . RA
+    (29) asignable -> . SP
+    (30) asignable -> . TEMPORAL CIZQ expresion_simple CDER
+    (31) asignable -> . PARAMETRO CIZQ expresion_simple CDER
+    (32) asignable -> . RETORNO CIZQ expresion_simple CDER
+    (33) asignable -> . PILA CIZQ expresion_simple CDER
+
+    PRINT           shift and go to state 15
+    GOTO            shift and go to state 17
+    EXIT            shift and go to state 18
+    UNSET           shift and go to state 19
+    IF              shift and go to state 20
+    TEMPORAL        shift and go to state 16
+    PARAMETRO       shift and go to state 22
+    RETORNO         shift and go to state 23
+    PILA            shift and go to state 24
+    RA              shift and go to state 25
+    SP              shift and go to state 26
+
+    instrucciones                  shift and go to state 7
+    instruccion                    shift and go to state 8
+    print_inst                     shift and go to state 9
+    goto_inst                      shift and go to state 10
+    exit_inst                      shift and go to state 11
+    unset_inst                     shift and go to state 12
+    if_inst                        shift and go to state 13
+    asig_inst                      shift and go to state 14
+    asignable                      shift and go to state 21
+
+state 7
+
+    (4) label -> LABEL DPUNTOS instrucciones .
+    (5) instrucciones -> instrucciones . instruccion
+    (7) instruccion -> . print_inst
+    (8) instruccion -> . goto_inst
+    (9) instruccion -> . exit_inst
+    (10) instruccion -> . unset_inst
+    (11) instruccion -> . if_inst
+    (12) instruccion -> . asig_inst
+    (13) print_inst -> . PRINT PIZQ TEMPORAL PDER PTCOMA
+    (14) goto_inst -> . GOTO LABEL PTCOMA
+    (15) exit_inst -> . EXIT PTCOMA
+    (16) unset_inst -> . UNSET PIZQ TEMPORAL PDER PTCOMA
+    (17) if_inst -> . IF PIZQ expresion_simple PDER instruccion
+    (18) asig_inst -> . asignable ASIG expresion PTCOMA
+    (19) asig_inst -> . asignable ASIG PIZQ INT PDER expresion_simple PTCOMA
+    (20) asig_inst -> . asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA
+    (21) asig_inst -> . asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA
+    (22) asig_inst -> . asignable ASIG READ PIZQ PDER PTCOMA
+    (23) asig_inst -> . asignable ASIG ARRAY PIZQ PDER PTCOMA
+    (24) asignable -> . TEMPORAL
+    (25) asignable -> . PARAMETRO
+    (26) asignable -> . RETORNO
+    (27) asignable -> . PILA
+    (28) asignable -> . RA
+    (29) asignable -> . SP
+    (30) asignable -> . TEMPORAL CIZQ expresion_simple CDER
+    (31) asignable -> . PARAMETRO CIZQ expresion_simple CDER
+    (32) asignable -> . RETORNO CIZQ expresion_simple CDER
+    (33) asignable -> . PILA CIZQ expresion_simple CDER
+
+    LABEL           reduce using rule 4 (label -> LABEL DPUNTOS instrucciones .)
+    $end            reduce using rule 4 (label -> LABEL DPUNTOS instrucciones .)
+    PRINT           shift and go to state 15
+    GOTO            shift and go to state 17
+    EXIT            shift and go to state 18
+    UNSET           shift and go to state 19
+    IF              shift and go to state 20
+    TEMPORAL        shift and go to state 16
+    PARAMETRO       shift and go to state 22
+    RETORNO         shift and go to state 23
+    PILA            shift and go to state 24
+    RA              shift and go to state 25
+    SP              shift and go to state 26
+
+    instruccion                    shift and go to state 27
+    print_inst                     shift and go to state 9
+    goto_inst                      shift and go to state 10
+    exit_inst                      shift and go to state 11
+    unset_inst                     shift and go to state 12
+    if_inst                        shift and go to state 13
+    asig_inst                      shift and go to state 14
+    asignable                      shift and go to state 21
+
+state 8
+
+    (6) instrucciones -> instruccion .
+
+    PRINT           reduce using rule 6 (instrucciones -> instruccion .)
+    GOTO            reduce using rule 6 (instrucciones -> instruccion .)
+    EXIT            reduce using rule 6 (instrucciones -> instruccion .)
+    UNSET           reduce using rule 6 (instrucciones -> instruccion .)
+    IF              reduce using rule 6 (instrucciones -> instruccion .)
+    TEMPORAL        reduce using rule 6 (instrucciones -> instruccion .)
+    PARAMETRO       reduce using rule 6 (instrucciones -> instruccion .)
+    RETORNO         reduce using rule 6 (instrucciones -> instruccion .)
+    PILA            reduce using rule 6 (instrucciones -> instruccion .)
+    RA              reduce using rule 6 (instrucciones -> instruccion .)
+    SP              reduce using rule 6 (instrucciones -> instruccion .)
+    LABEL           reduce using rule 6 (instrucciones -> instruccion .)
+    $end            reduce using rule 6 (instrucciones -> instruccion .)
+
+
+state 9
+
+    (7) instruccion -> print_inst .
+
+    PRINT           reduce using rule 7 (instruccion -> print_inst .)
+    GOTO            reduce using rule 7 (instruccion -> print_inst .)
+    EXIT            reduce using rule 7 (instruccion -> print_inst .)
+    UNSET           reduce using rule 7 (instruccion -> print_inst .)
+    IF              reduce using rule 7 (instruccion -> print_inst .)
+    TEMPORAL        reduce using rule 7 (instruccion -> print_inst .)
+    PARAMETRO       reduce using rule 7 (instruccion -> print_inst .)
+    RETORNO         reduce using rule 7 (instruccion -> print_inst .)
+    PILA            reduce using rule 7 (instruccion -> print_inst .)
+    RA              reduce using rule 7 (instruccion -> print_inst .)
+    SP              reduce using rule 7 (instruccion -> print_inst .)
+    LABEL           reduce using rule 7 (instruccion -> print_inst .)
+    $end            reduce using rule 7 (instruccion -> print_inst .)
+
+
+state 10
+
+    (8) instruccion -> goto_inst .
+
+    PRINT           reduce using rule 8 (instruccion -> goto_inst .)
+    GOTO            reduce using rule 8 (instruccion -> goto_inst .)
+    EXIT            reduce using rule 8 (instruccion -> goto_inst .)
+    UNSET           reduce using rule 8 (instruccion -> goto_inst .)
+    IF              reduce using rule 8 (instruccion -> goto_inst .)
+    TEMPORAL        reduce using rule 8 (instruccion -> goto_inst .)
+    PARAMETRO       reduce using rule 8 (instruccion -> goto_inst .)
+    RETORNO         reduce using rule 8 (instruccion -> goto_inst .)
+    PILA            reduce using rule 8 (instruccion -> goto_inst .)
+    RA              reduce using rule 8 (instruccion -> goto_inst .)
+    SP              reduce using rule 8 (instruccion -> goto_inst .)
+    LABEL           reduce using rule 8 (instruccion -> goto_inst .)
+    $end            reduce using rule 8 (instruccion -> goto_inst .)
+
+
+state 11
+
+    (9) instruccion -> exit_inst .
+
+    PRINT           reduce using rule 9 (instruccion -> exit_inst .)
+    GOTO            reduce using rule 9 (instruccion -> exit_inst .)
+    EXIT            reduce using rule 9 (instruccion -> exit_inst .)
+    UNSET           reduce using rule 9 (instruccion -> exit_inst .)
+    IF              reduce using rule 9 (instruccion -> exit_inst .)
+    TEMPORAL        reduce using rule 9 (instruccion -> exit_inst .)
+    PARAMETRO       reduce using rule 9 (instruccion -> exit_inst .)
+    RETORNO         reduce using rule 9 (instruccion -> exit_inst .)
+    PILA            reduce using rule 9 (instruccion -> exit_inst .)
+    RA              reduce using rule 9 (instruccion -> exit_inst .)
+    SP              reduce using rule 9 (instruccion -> exit_inst .)
+    LABEL           reduce using rule 9 (instruccion -> exit_inst .)
+    $end            reduce using rule 9 (instruccion -> exit_inst .)
+
+
+state 12
+
+    (10) instruccion -> unset_inst .
+
+    PRINT           reduce using rule 10 (instruccion -> unset_inst .)
+    GOTO            reduce using rule 10 (instruccion -> unset_inst .)
+    EXIT            reduce using rule 10 (instruccion -> unset_inst .)
+    UNSET           reduce using rule 10 (instruccion -> unset_inst .)
+    IF              reduce using rule 10 (instruccion -> unset_inst .)
+    TEMPORAL        reduce using rule 10 (instruccion -> unset_inst .)
+    PARAMETRO       reduce using rule 10 (instruccion -> unset_inst .)
+    RETORNO         reduce using rule 10 (instruccion -> unset_inst .)
+    PILA            reduce using rule 10 (instruccion -> unset_inst .)
+    RA              reduce using rule 10 (instruccion -> unset_inst .)
+    SP              reduce using rule 10 (instruccion -> unset_inst .)
+    LABEL           reduce using rule 10 (instruccion -> unset_inst .)
+    $end            reduce using rule 10 (instruccion -> unset_inst .)
+
+
+state 13
+
+    (11) instruccion -> if_inst .
+
+    PRINT           reduce using rule 11 (instruccion -> if_inst .)
+    GOTO            reduce using rule 11 (instruccion -> if_inst .)
+    EXIT            reduce using rule 11 (instruccion -> if_inst .)
+    UNSET           reduce using rule 11 (instruccion -> if_inst .)
+    IF              reduce using rule 11 (instruccion -> if_inst .)
+    TEMPORAL        reduce using rule 11 (instruccion -> if_inst .)
+    PARAMETRO       reduce using rule 11 (instruccion -> if_inst .)
+    RETORNO         reduce using rule 11 (instruccion -> if_inst .)
+    PILA            reduce using rule 11 (instruccion -> if_inst .)
+    RA              reduce using rule 11 (instruccion -> if_inst .)
+    SP              reduce using rule 11 (instruccion -> if_inst .)
+    LABEL           reduce using rule 11 (instruccion -> if_inst .)
+    $end            reduce using rule 11 (instruccion -> if_inst .)
+
+
+state 14
+
+    (12) instruccion -> asig_inst .
+
+    PRINT           reduce using rule 12 (instruccion -> asig_inst .)
+    GOTO            reduce using rule 12 (instruccion -> asig_inst .)
+    EXIT            reduce using rule 12 (instruccion -> asig_inst .)
+    UNSET           reduce using rule 12 (instruccion -> asig_inst .)
+    IF              reduce using rule 12 (instruccion -> asig_inst .)
+    TEMPORAL        reduce using rule 12 (instruccion -> asig_inst .)
+    PARAMETRO       reduce using rule 12 (instruccion -> asig_inst .)
+    RETORNO         reduce using rule 12 (instruccion -> asig_inst .)
+    PILA            reduce using rule 12 (instruccion -> asig_inst .)
+    RA              reduce using rule 12 (instruccion -> asig_inst .)
+    SP              reduce using rule 12 (instruccion -> asig_inst .)
+    LABEL           reduce using rule 12 (instruccion -> asig_inst .)
+    $end            reduce using rule 12 (instruccion -> asig_inst .)
+
+
+state 15
+
+    (13) print_inst -> PRINT . PIZQ TEMPORAL PDER PTCOMA
+
+    PIZQ            shift and go to state 28
+
+
+state 16
+
+    (24) asignable -> TEMPORAL .
+    (30) asignable -> TEMPORAL . CIZQ expresion_simple CDER
+
+    ASIG            reduce using rule 24 (asignable -> TEMPORAL .)
+    CIZQ            shift and go to state 29
+
+
+state 17
+
+    (14) goto_inst -> GOTO . LABEL PTCOMA
+
+    LABEL           shift and go to state 30
+
+
+state 18
+
+    (15) exit_inst -> EXIT . PTCOMA
+
+    PTCOMA          shift and go to state 31
+
+
+state 19
+
+    (16) unset_inst -> UNSET . PIZQ TEMPORAL PDER PTCOMA
+
+    PIZQ            shift and go to state 32
+
+
+state 20
+
+    (17) if_inst -> IF . PIZQ expresion_simple PDER instruccion
+
+    PIZQ            shift and go to state 33
+
+
+state 21
+
+    (18) asig_inst -> asignable . ASIG expresion PTCOMA
+    (19) asig_inst -> asignable . ASIG PIZQ INT PDER expresion_simple PTCOMA
+    (20) asig_inst -> asignable . ASIG PIZQ FLOAT PDER expresion_simple PTCOMA
+    (21) asig_inst -> asignable . ASIG PIZQ CHAR PDER expresion_simple PTCOMA
+    (22) asig_inst -> asignable . ASIG READ PIZQ PDER PTCOMA
+    (23) asig_inst -> asignable . ASIG ARRAY PIZQ PDER PTCOMA
+
+    ASIG            shift and go to state 34
+
+
+state 22
+
+    (25) asignable -> PARAMETRO .
+    (31) asignable -> PARAMETRO . CIZQ expresion_simple CDER
+
+    ASIG            reduce using rule 25 (asignable -> PARAMETRO .)
+    CIZQ            shift and go to state 35
+
+
+state 23
+
+    (26) asignable -> RETORNO .
+    (32) asignable -> RETORNO . CIZQ expresion_simple CDER
+
+    ASIG            reduce using rule 26 (asignable -> RETORNO .)
+    CIZQ            shift and go to state 36
+
+
+state 24
+
+    (27) asignable -> PILA .
+    (33) asignable -> PILA . CIZQ expresion_simple CDER
+
+    ASIG            reduce using rule 27 (asignable -> PILA .)
+    CIZQ            shift and go to state 37
+
+
+state 25
+
+    (28) asignable -> RA .
+
+    ASIG            reduce using rule 28 (asignable -> RA .)
+
+
+state 26
+
+    (29) asignable -> SP .
+
+    ASIG            reduce using rule 29 (asignable -> SP .)
+
+
+state 27
+
+    (5) instrucciones -> instrucciones instruccion .
+
+    PRINT           reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    GOTO            reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    EXIT            reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    UNSET           reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    IF              reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    TEMPORAL        reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    PARAMETRO       reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    RETORNO         reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    PILA            reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    RA              reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    SP              reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    LABEL           reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    $end            reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+
+
+state 28
+
+    (13) print_inst -> PRINT PIZQ . TEMPORAL PDER PTCOMA
+
+    TEMPORAL        shift and go to state 38
+
+
+state 29
+
+    (30) asignable -> TEMPORAL CIZQ . expresion_simple CDER
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 40
+
+state 30
+
+    (14) goto_inst -> GOTO LABEL . PTCOMA
+
+    PTCOMA          shift and go to state 49
+
+
+state 31
+
+    (15) exit_inst -> EXIT PTCOMA .
+
+    PRINT           reduce using rule 15 (exit_inst -> EXIT PTCOMA .)
+    GOTO            reduce using rule 15 (exit_inst -> EXIT PTCOMA .)
+    EXIT            reduce using rule 15 (exit_inst -> EXIT PTCOMA .)
+    UNSET           reduce using rule 15 (exit_inst -> EXIT PTCOMA .)
+    IF              reduce using rule 15 (exit_inst -> EXIT PTCOMA .)
+    TEMPORAL        reduce using rule 15 (exit_inst -> EXIT PTCOMA .)
+    PARAMETRO       reduce using rule 15 (exit_inst -> EXIT PTCOMA .)
+    RETORNO         reduce using rule 15 (exit_inst -> EXIT PTCOMA .)
+    PILA            reduce using rule 15 (exit_inst -> EXIT PTCOMA .)
+    RA              reduce using rule 15 (exit_inst -> EXIT PTCOMA .)
+    SP              reduce using rule 15 (exit_inst -> EXIT PTCOMA .)
+    LABEL           reduce using rule 15 (exit_inst -> EXIT PTCOMA .)
+    $end            reduce using rule 15 (exit_inst -> EXIT PTCOMA .)
+
+
+state 32
+
+    (16) unset_inst -> UNSET PIZQ . TEMPORAL PDER PTCOMA
+
+    TEMPORAL        shift and go to state 50
+
+
+state 33
+
+    (17) if_inst -> IF PIZQ . expresion_simple PDER instruccion
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 51
+
+state 34
+
+    (18) asig_inst -> asignable ASIG . expresion PTCOMA
+    (19) asig_inst -> asignable ASIG . PIZQ INT PDER expresion_simple PTCOMA
+    (20) asig_inst -> asignable ASIG . PIZQ FLOAT PDER expresion_simple PTCOMA
+    (21) asig_inst -> asignable ASIG . PIZQ CHAR PDER expresion_simple PTCOMA
+    (22) asig_inst -> asignable ASIG . READ PIZQ PDER PTCOMA
+    (23) asig_inst -> asignable ASIG . ARRAY PIZQ PDER PTCOMA
+    (34) expresion -> . expresion_simple MAS expresion_simple
+    (35) expresion -> . expresion_simple MENOS expresion_simple
+    (36) expresion -> . expresion_simple POR expresion_simple
+    (37) expresion -> . expresion_simple DIVIDIDO expresion_simple
+    (38) expresion -> . expresion_simple MODULO expresion_simple
+    (39) expresion -> . expresion_simple AND expresion_simple
+    (40) expresion -> . expresion_simple OR expresion_simple
+    (41) expresion -> . expresion_simple XOR expresion_simple
+    (42) expresion -> . expresion_simple BBAND expresion_simple
+    (43) expresion -> . expresion_simple BBOR expresion_simple
+    (44) expresion -> . expresion_simple BBXOR expresion_simple
+    (45) expresion -> . expresion_simple BBIZQ expresion_simple
+    (46) expresion -> . expresion_simple BBDER expresion_simple
+    (47) expresion -> . expresion_simple IGUAL_QUE expresion_simple
+    (48) expresion -> . expresion_simple DESIGUAL_QUE expresion_simple
+    (49) expresion -> . expresion_simple MAYOR_QUE expresion_simple
+    (50) expresion -> . expresion_simple MENOR_QUE expresion_simple
+    (51) expresion -> . expresion_simple MAYOR_IGUAL_QUE expresion_simple
+    (52) expresion -> . expresion_simple MENOR_IGUAL_QUE expresion_simple
+    (53) expresion -> . expresion_simple
+    (54) expresion -> . ABS PIZQ expresion_simple PDER
+    (55) expresion -> . NOT expresion_simple
+    (56) expresion -> . BBNOT expresion_simple
+    (57) expresion -> . TEMPORAL CIZQ expresion_simple CDER
+    (58) expresion -> . PARAMETRO CIZQ expresion_simple CDER
+    (59) expresion -> . RETORNO CIZQ expresion_simple CDER
+    (60) expresion -> . PILA CIZQ expresion_simple CDER
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    PIZQ            shift and go to state 53
+    READ            shift and go to state 55
+    ARRAY           shift and go to state 56
+    ABS             shift and go to state 57
+    NOT             shift and go to state 58
+    BBNOT           shift and go to state 59
+    TEMPORAL        shift and go to state 60
+    PARAMETRO       shift and go to state 61
+    RETORNO         shift and go to state 62
+    PILA            shift and go to state 63
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion                      shift and go to state 52
+    expresion_simple               shift and go to state 54
+
+state 35
+
+    (31) asignable -> PARAMETRO CIZQ . expresion_simple CDER
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 64
+
+state 36
+
+    (32) asignable -> RETORNO CIZQ . expresion_simple CDER
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 65
+
+state 37
+
+    (33) asignable -> PILA CIZQ . expresion_simple CDER
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 66
+
+state 38
+
+    (13) print_inst -> PRINT PIZQ TEMPORAL . PDER PTCOMA
+
+    PDER            shift and go to state 67
+
+
+state 39
+
+    (61) expresion_simple -> TEMPORAL .
+
+    CDER            reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    PDER            reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    PTCOMA          reduce using rule 61 (expresion_simple -> TEMPORAL .)
+
+
+state 40
+
+    (30) asignable -> TEMPORAL CIZQ expresion_simple . CDER
+
+    CDER            shift and go to state 68
+
+
+state 41
+
+    (62) expresion_simple -> PARAMETRO .
+
+    CDER            reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    PDER            reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    PTCOMA          reduce using rule 62 (expresion_simple -> PARAMETRO .)
+
+
+state 42
+
+    (63) expresion_simple -> RETORNO .
+
+    CDER            reduce using rule 63 (expresion_simple -> RETORNO .)
+    PDER            reduce using rule 63 (expresion_simple -> RETORNO .)
+    PTCOMA          reduce using rule 63 (expresion_simple -> RETORNO .)
+
+
+state 43
+
+    (64) expresion_simple -> PILA .
+
+    CDER            reduce using rule 64 (expresion_simple -> PILA .)
+    PDER            reduce using rule 64 (expresion_simple -> PILA .)
+    PTCOMA          reduce using rule 64 (expresion_simple -> PILA .)
+
+
+state 44
+
+    (65) expresion_simple -> RA .
+
+    CDER            reduce using rule 65 (expresion_simple -> RA .)
+    PDER            reduce using rule 65 (expresion_simple -> RA .)
+    MAS             reduce using rule 65 (expresion_simple -> RA .)
+    MENOS           reduce using rule 65 (expresion_simple -> RA .)
+    POR             reduce using rule 65 (expresion_simple -> RA .)
+    DIVIDIDO        reduce using rule 65 (expresion_simple -> RA .)
+    MODULO          reduce using rule 65 (expresion_simple -> RA .)
+    AND             reduce using rule 65 (expresion_simple -> RA .)
+    OR              reduce using rule 65 (expresion_simple -> RA .)
+    XOR             reduce using rule 65 (expresion_simple -> RA .)
+    BBAND           reduce using rule 65 (expresion_simple -> RA .)
+    BBOR            reduce using rule 65 (expresion_simple -> RA .)
+    BBXOR           reduce using rule 65 (expresion_simple -> RA .)
+    BBIZQ           reduce using rule 65 (expresion_simple -> RA .)
+    BBDER           reduce using rule 65 (expresion_simple -> RA .)
+    IGUAL_QUE       reduce using rule 65 (expresion_simple -> RA .)
+    DESIGUAL_QUE    reduce using rule 65 (expresion_simple -> RA .)
+    MAYOR_QUE       reduce using rule 65 (expresion_simple -> RA .)
+    MENOR_QUE       reduce using rule 65 (expresion_simple -> RA .)
+    MAYOR_IGUAL_QUE reduce using rule 65 (expresion_simple -> RA .)
+    MENOR_IGUAL_QUE reduce using rule 65 (expresion_simple -> RA .)
+    PTCOMA          reduce using rule 65 (expresion_simple -> RA .)
+
+
+state 45
+
+    (66) expresion_simple -> SP .
+
+    CDER            reduce using rule 66 (expresion_simple -> SP .)
+    PDER            reduce using rule 66 (expresion_simple -> SP .)
+    MAS             reduce using rule 66 (expresion_simple -> SP .)
+    MENOS           reduce using rule 66 (expresion_simple -> SP .)
+    POR             reduce using rule 66 (expresion_simple -> SP .)
+    DIVIDIDO        reduce using rule 66 (expresion_simple -> SP .)
+    MODULO          reduce using rule 66 (expresion_simple -> SP .)
+    AND             reduce using rule 66 (expresion_simple -> SP .)
+    OR              reduce using rule 66 (expresion_simple -> SP .)
+    XOR             reduce using rule 66 (expresion_simple -> SP .)
+    BBAND           reduce using rule 66 (expresion_simple -> SP .)
+    BBOR            reduce using rule 66 (expresion_simple -> SP .)
+    BBXOR           reduce using rule 66 (expresion_simple -> SP .)
+    BBIZQ           reduce using rule 66 (expresion_simple -> SP .)
+    BBDER           reduce using rule 66 (expresion_simple -> SP .)
+    IGUAL_QUE       reduce using rule 66 (expresion_simple -> SP .)
+    DESIGUAL_QUE    reduce using rule 66 (expresion_simple -> SP .)
+    MAYOR_QUE       reduce using rule 66 (expresion_simple -> SP .)
+    MENOR_QUE       reduce using rule 66 (expresion_simple -> SP .)
+    MAYOR_IGUAL_QUE reduce using rule 66 (expresion_simple -> SP .)
+    MENOR_IGUAL_QUE reduce using rule 66 (expresion_simple -> SP .)
+    PTCOMA          reduce using rule 66 (expresion_simple -> SP .)
+
+
+state 46
+
+    (67) expresion_simple -> ENTERO .
+
+    CDER            reduce using rule 67 (expresion_simple -> ENTERO .)
+    PDER            reduce using rule 67 (expresion_simple -> ENTERO .)
+    MAS             reduce using rule 67 (expresion_simple -> ENTERO .)
+    MENOS           reduce using rule 67 (expresion_simple -> ENTERO .)
+    POR             reduce using rule 67 (expresion_simple -> ENTERO .)
+    DIVIDIDO        reduce using rule 67 (expresion_simple -> ENTERO .)
+    MODULO          reduce using rule 67 (expresion_simple -> ENTERO .)
+    AND             reduce using rule 67 (expresion_simple -> ENTERO .)
+    OR              reduce using rule 67 (expresion_simple -> ENTERO .)
+    XOR             reduce using rule 67 (expresion_simple -> ENTERO .)
+    BBAND           reduce using rule 67 (expresion_simple -> ENTERO .)
+    BBOR            reduce using rule 67 (expresion_simple -> ENTERO .)
+    BBXOR           reduce using rule 67 (expresion_simple -> ENTERO .)
+    BBIZQ           reduce using rule 67 (expresion_simple -> ENTERO .)
+    BBDER           reduce using rule 67 (expresion_simple -> ENTERO .)
+    IGUAL_QUE       reduce using rule 67 (expresion_simple -> ENTERO .)
+    DESIGUAL_QUE    reduce using rule 67 (expresion_simple -> ENTERO .)
+    MAYOR_QUE       reduce using rule 67 (expresion_simple -> ENTERO .)
+    MENOR_QUE       reduce using rule 67 (expresion_simple -> ENTERO .)
+    MAYOR_IGUAL_QUE reduce using rule 67 (expresion_simple -> ENTERO .)
+    MENOR_IGUAL_QUE reduce using rule 67 (expresion_simple -> ENTERO .)
+    PTCOMA          reduce using rule 67 (expresion_simple -> ENTERO .)
+
+
+state 47
+
+    (68) expresion_simple -> DECIMAL .
+
+    CDER            reduce using rule 68 (expresion_simple -> DECIMAL .)
+    PDER            reduce using rule 68 (expresion_simple -> DECIMAL .)
+    MAS             reduce using rule 68 (expresion_simple -> DECIMAL .)
+    MENOS           reduce using rule 68 (expresion_simple -> DECIMAL .)
+    POR             reduce using rule 68 (expresion_simple -> DECIMAL .)
+    DIVIDIDO        reduce using rule 68 (expresion_simple -> DECIMAL .)
+    MODULO          reduce using rule 68 (expresion_simple -> DECIMAL .)
+    AND             reduce using rule 68 (expresion_simple -> DECIMAL .)
+    OR              reduce using rule 68 (expresion_simple -> DECIMAL .)
+    XOR             reduce using rule 68 (expresion_simple -> DECIMAL .)
+    BBAND           reduce using rule 68 (expresion_simple -> DECIMAL .)
+    BBOR            reduce using rule 68 (expresion_simple -> DECIMAL .)
+    BBXOR           reduce using rule 68 (expresion_simple -> DECIMAL .)
+    BBIZQ           reduce using rule 68 (expresion_simple -> DECIMAL .)
+    BBDER           reduce using rule 68 (expresion_simple -> DECIMAL .)
+    IGUAL_QUE       reduce using rule 68 (expresion_simple -> DECIMAL .)
+    DESIGUAL_QUE    reduce using rule 68 (expresion_simple -> DECIMAL .)
+    MAYOR_QUE       reduce using rule 68 (expresion_simple -> DECIMAL .)
+    MENOR_QUE       reduce using rule 68 (expresion_simple -> DECIMAL .)
+    MAYOR_IGUAL_QUE reduce using rule 68 (expresion_simple -> DECIMAL .)
+    MENOR_IGUAL_QUE reduce using rule 68 (expresion_simple -> DECIMAL .)
+    PTCOMA          reduce using rule 68 (expresion_simple -> DECIMAL .)
+
+
+state 48
+
+    (69) expresion_simple -> CADENA .
+
+    CDER            reduce using rule 69 (expresion_simple -> CADENA .)
+    PDER            reduce using rule 69 (expresion_simple -> CADENA .)
+    MAS             reduce using rule 69 (expresion_simple -> CADENA .)
+    MENOS           reduce using rule 69 (expresion_simple -> CADENA .)
+    POR             reduce using rule 69 (expresion_simple -> CADENA .)
+    DIVIDIDO        reduce using rule 69 (expresion_simple -> CADENA .)
+    MODULO          reduce using rule 69 (expresion_simple -> CADENA .)
+    AND             reduce using rule 69 (expresion_simple -> CADENA .)
+    OR              reduce using rule 69 (expresion_simple -> CADENA .)
+    XOR             reduce using rule 69 (expresion_simple -> CADENA .)
+    BBAND           reduce using rule 69 (expresion_simple -> CADENA .)
+    BBOR            reduce using rule 69 (expresion_simple -> CADENA .)
+    BBXOR           reduce using rule 69 (expresion_simple -> CADENA .)
+    BBIZQ           reduce using rule 69 (expresion_simple -> CADENA .)
+    BBDER           reduce using rule 69 (expresion_simple -> CADENA .)
+    IGUAL_QUE       reduce using rule 69 (expresion_simple -> CADENA .)
+    DESIGUAL_QUE    reduce using rule 69 (expresion_simple -> CADENA .)
+    MAYOR_QUE       reduce using rule 69 (expresion_simple -> CADENA .)
+    MENOR_QUE       reduce using rule 69 (expresion_simple -> CADENA .)
+    MAYOR_IGUAL_QUE reduce using rule 69 (expresion_simple -> CADENA .)
+    MENOR_IGUAL_QUE reduce using rule 69 (expresion_simple -> CADENA .)
+    PTCOMA          reduce using rule 69 (expresion_simple -> CADENA .)
+
+
+state 49
+
+    (14) goto_inst -> GOTO LABEL PTCOMA .
+
+    PRINT           reduce using rule 14 (goto_inst -> GOTO LABEL PTCOMA .)
+    GOTO            reduce using rule 14 (goto_inst -> GOTO LABEL PTCOMA .)
+    EXIT            reduce using rule 14 (goto_inst -> GOTO LABEL PTCOMA .)
+    UNSET           reduce using rule 14 (goto_inst -> GOTO LABEL PTCOMA .)
+    IF              reduce using rule 14 (goto_inst -> GOTO LABEL PTCOMA .)
+    TEMPORAL        reduce using rule 14 (goto_inst -> GOTO LABEL PTCOMA .)
+    PARAMETRO       reduce using rule 14 (goto_inst -> GOTO LABEL PTCOMA .)
+    RETORNO         reduce using rule 14 (goto_inst -> GOTO LABEL PTCOMA .)
+    PILA            reduce using rule 14 (goto_inst -> GOTO LABEL PTCOMA .)
+    RA              reduce using rule 14 (goto_inst -> GOTO LABEL PTCOMA .)
+    SP              reduce using rule 14 (goto_inst -> GOTO LABEL PTCOMA .)
+    LABEL           reduce using rule 14 (goto_inst -> GOTO LABEL PTCOMA .)
+    $end            reduce using rule 14 (goto_inst -> GOTO LABEL PTCOMA .)
+
+
+state 50
+
+    (16) unset_inst -> UNSET PIZQ TEMPORAL . PDER PTCOMA
+
+    PDER            shift and go to state 69
+
+
+state 51
+
+    (17) if_inst -> IF PIZQ expresion_simple . PDER instruccion
+
+    PDER            shift and go to state 70
+
+
+state 52
+
+    (18) asig_inst -> asignable ASIG expresion . PTCOMA
+
+    PTCOMA          shift and go to state 71
+
+
+state 53
+
+    (19) asig_inst -> asignable ASIG PIZQ . INT PDER expresion_simple PTCOMA
+    (20) asig_inst -> asignable ASIG PIZQ . FLOAT PDER expresion_simple PTCOMA
+    (21) asig_inst -> asignable ASIG PIZQ . CHAR PDER expresion_simple PTCOMA
+
+    INT             shift and go to state 72
+    FLOAT           shift and go to state 73
+    CHAR            shift and go to state 74
+
+
+state 54
+
+    (34) expresion -> expresion_simple . MAS expresion_simple
+    (35) expresion -> expresion_simple . MENOS expresion_simple
+    (36) expresion -> expresion_simple . POR expresion_simple
+    (37) expresion -> expresion_simple . DIVIDIDO expresion_simple
+    (38) expresion -> expresion_simple . MODULO expresion_simple
+    (39) expresion -> expresion_simple . AND expresion_simple
+    (40) expresion -> expresion_simple . OR expresion_simple
+    (41) expresion -> expresion_simple . XOR expresion_simple
+    (42) expresion -> expresion_simple . BBAND expresion_simple
+    (43) expresion -> expresion_simple . BBOR expresion_simple
+    (44) expresion -> expresion_simple . BBXOR expresion_simple
+    (45) expresion -> expresion_simple . BBIZQ expresion_simple
+    (46) expresion -> expresion_simple . BBDER expresion_simple
+    (47) expresion -> expresion_simple . IGUAL_QUE expresion_simple
+    (48) expresion -> expresion_simple . DESIGUAL_QUE expresion_simple
+    (49) expresion -> expresion_simple . MAYOR_QUE expresion_simple
+    (50) expresion -> expresion_simple . MENOR_QUE expresion_simple
+    (51) expresion -> expresion_simple . MAYOR_IGUAL_QUE expresion_simple
+    (52) expresion -> expresion_simple . MENOR_IGUAL_QUE expresion_simple
+    (53) expresion -> expresion_simple .
+
+    MAS             shift and go to state 75
+    MENOS           shift and go to state 76
+    POR             shift and go to state 77
+    DIVIDIDO        shift and go to state 78
+    MODULO          shift and go to state 79
+    AND             shift and go to state 80
+    OR              shift and go to state 81
+    XOR             shift and go to state 82
+    BBAND           shift and go to state 83
+    BBOR            shift and go to state 84
+    BBXOR           shift and go to state 85
+    BBIZQ           shift and go to state 86
+    BBDER           shift and go to state 87
+    IGUAL_QUE       shift and go to state 88
+    DESIGUAL_QUE    shift and go to state 89
+    MAYOR_QUE       shift and go to state 90
+    MENOR_QUE       shift and go to state 91
+    MAYOR_IGUAL_QUE shift and go to state 92
+    MENOR_IGUAL_QUE shift and go to state 93
+    PTCOMA          reduce using rule 53 (expresion -> expresion_simple .)
+
+
+state 55
+
+    (22) asig_inst -> asignable ASIG READ . PIZQ PDER PTCOMA
+
+    PIZQ            shift and go to state 94
+
+
+state 56
+
+    (23) asig_inst -> asignable ASIG ARRAY . PIZQ PDER PTCOMA
+
+    PIZQ            shift and go to state 95
+
+
+state 57
+
+    (54) expresion -> ABS . PIZQ expresion_simple PDER
+
+    PIZQ            shift and go to state 96
+
+
+state 58
+
+    (55) expresion -> NOT . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 97
+
+state 59
+
+    (56) expresion -> BBNOT . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 98
+
+state 60
+
+    (57) expresion -> TEMPORAL . CIZQ expresion_simple CDER
+    (61) expresion_simple -> TEMPORAL .
+
+    CIZQ            shift and go to state 99
+    MAS             reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    MENOS           reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    POR             reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    DIVIDIDO        reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    MODULO          reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    AND             reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    OR              reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    XOR             reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    BBAND           reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    BBOR            reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    BBXOR           reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    BBIZQ           reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    BBDER           reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    IGUAL_QUE       reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    DESIGUAL_QUE    reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    MAYOR_QUE       reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    MENOR_QUE       reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    MAYOR_IGUAL_QUE reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    MENOR_IGUAL_QUE reduce using rule 61 (expresion_simple -> TEMPORAL .)
+    PTCOMA          reduce using rule 61 (expresion_simple -> TEMPORAL .)
+
+
+state 61
+
+    (58) expresion -> PARAMETRO . CIZQ expresion_simple CDER
+    (62) expresion_simple -> PARAMETRO .
+
+    CIZQ            shift and go to state 100
+    MAS             reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    MENOS           reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    POR             reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    DIVIDIDO        reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    MODULO          reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    AND             reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    OR              reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    XOR             reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    BBAND           reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    BBOR            reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    BBXOR           reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    BBIZQ           reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    BBDER           reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    IGUAL_QUE       reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    DESIGUAL_QUE    reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    MAYOR_QUE       reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    MENOR_QUE       reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    MAYOR_IGUAL_QUE reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    MENOR_IGUAL_QUE reduce using rule 62 (expresion_simple -> PARAMETRO .)
+    PTCOMA          reduce using rule 62 (expresion_simple -> PARAMETRO .)
+
+
+state 62
+
+    (59) expresion -> RETORNO . CIZQ expresion_simple CDER
+    (63) expresion_simple -> RETORNO .
+
+    CIZQ            shift and go to state 101
+    MAS             reduce using rule 63 (expresion_simple -> RETORNO .)
+    MENOS           reduce using rule 63 (expresion_simple -> RETORNO .)
+    POR             reduce using rule 63 (expresion_simple -> RETORNO .)
+    DIVIDIDO        reduce using rule 63 (expresion_simple -> RETORNO .)
+    MODULO          reduce using rule 63 (expresion_simple -> RETORNO .)
+    AND             reduce using rule 63 (expresion_simple -> RETORNO .)
+    OR              reduce using rule 63 (expresion_simple -> RETORNO .)
+    XOR             reduce using rule 63 (expresion_simple -> RETORNO .)
+    BBAND           reduce using rule 63 (expresion_simple -> RETORNO .)
+    BBOR            reduce using rule 63 (expresion_simple -> RETORNO .)
+    BBXOR           reduce using rule 63 (expresion_simple -> RETORNO .)
+    BBIZQ           reduce using rule 63 (expresion_simple -> RETORNO .)
+    BBDER           reduce using rule 63 (expresion_simple -> RETORNO .)
+    IGUAL_QUE       reduce using rule 63 (expresion_simple -> RETORNO .)
+    DESIGUAL_QUE    reduce using rule 63 (expresion_simple -> RETORNO .)
+    MAYOR_QUE       reduce using rule 63 (expresion_simple -> RETORNO .)
+    MENOR_QUE       reduce using rule 63 (expresion_simple -> RETORNO .)
+    MAYOR_IGUAL_QUE reduce using rule 63 (expresion_simple -> RETORNO .)
+    MENOR_IGUAL_QUE reduce using rule 63 (expresion_simple -> RETORNO .)
+    PTCOMA          reduce using rule 63 (expresion_simple -> RETORNO .)
+
+
+state 63
+
+    (60) expresion -> PILA . CIZQ expresion_simple CDER
+    (64) expresion_simple -> PILA .
+
+    CIZQ            shift and go to state 102
+    MAS             reduce using rule 64 (expresion_simple -> PILA .)
+    MENOS           reduce using rule 64 (expresion_simple -> PILA .)
+    POR             reduce using rule 64 (expresion_simple -> PILA .)
+    DIVIDIDO        reduce using rule 64 (expresion_simple -> PILA .)
+    MODULO          reduce using rule 64 (expresion_simple -> PILA .)
+    AND             reduce using rule 64 (expresion_simple -> PILA .)
+    OR              reduce using rule 64 (expresion_simple -> PILA .)
+    XOR             reduce using rule 64 (expresion_simple -> PILA .)
+    BBAND           reduce using rule 64 (expresion_simple -> PILA .)
+    BBOR            reduce using rule 64 (expresion_simple -> PILA .)
+    BBXOR           reduce using rule 64 (expresion_simple -> PILA .)
+    BBIZQ           reduce using rule 64 (expresion_simple -> PILA .)
+    BBDER           reduce using rule 64 (expresion_simple -> PILA .)
+    IGUAL_QUE       reduce using rule 64 (expresion_simple -> PILA .)
+    DESIGUAL_QUE    reduce using rule 64 (expresion_simple -> PILA .)
+    MAYOR_QUE       reduce using rule 64 (expresion_simple -> PILA .)
+    MENOR_QUE       reduce using rule 64 (expresion_simple -> PILA .)
+    MAYOR_IGUAL_QUE reduce using rule 64 (expresion_simple -> PILA .)
+    MENOR_IGUAL_QUE reduce using rule 64 (expresion_simple -> PILA .)
+    PTCOMA          reduce using rule 64 (expresion_simple -> PILA .)
+
+
+state 64
+
+    (31) asignable -> PARAMETRO CIZQ expresion_simple . CDER
+
+    CDER            shift and go to state 103
+
+
+state 65
+
+    (32) asignable -> RETORNO CIZQ expresion_simple . CDER
+
+    CDER            shift and go to state 104
+
+
+state 66
+
+    (33) asignable -> PILA CIZQ expresion_simple . CDER
+
+    CDER            shift and go to state 105
+
+
+state 67
+
+    (13) print_inst -> PRINT PIZQ TEMPORAL PDER . PTCOMA
+
+    PTCOMA          shift and go to state 106
+
+
+state 68
+
+    (30) asignable -> TEMPORAL CIZQ expresion_simple CDER .
+
+    ASIG            reduce using rule 30 (asignable -> TEMPORAL CIZQ expresion_simple CDER .)
+
+
+state 69
+
+    (16) unset_inst -> UNSET PIZQ TEMPORAL PDER . PTCOMA
+
+    PTCOMA          shift and go to state 107
+
+
+state 70
+
+    (17) if_inst -> IF PIZQ expresion_simple PDER . instruccion
+    (7) instruccion -> . print_inst
+    (8) instruccion -> . goto_inst
+    (9) instruccion -> . exit_inst
+    (10) instruccion -> . unset_inst
+    (11) instruccion -> . if_inst
+    (12) instruccion -> . asig_inst
+    (13) print_inst -> . PRINT PIZQ TEMPORAL PDER PTCOMA
+    (14) goto_inst -> . GOTO LABEL PTCOMA
+    (15) exit_inst -> . EXIT PTCOMA
+    (16) unset_inst -> . UNSET PIZQ TEMPORAL PDER PTCOMA
+    (17) if_inst -> . IF PIZQ expresion_simple PDER instruccion
+    (18) asig_inst -> . asignable ASIG expresion PTCOMA
+    (19) asig_inst -> . asignable ASIG PIZQ INT PDER expresion_simple PTCOMA
+    (20) asig_inst -> . asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA
+    (21) asig_inst -> . asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA
+    (22) asig_inst -> . asignable ASIG READ PIZQ PDER PTCOMA
+    (23) asig_inst -> . asignable ASIG ARRAY PIZQ PDER PTCOMA
+    (24) asignable -> . TEMPORAL
+    (25) asignable -> . PARAMETRO
+    (26) asignable -> . RETORNO
+    (27) asignable -> . PILA
+    (28) asignable -> . RA
+    (29) asignable -> . SP
+    (30) asignable -> . TEMPORAL CIZQ expresion_simple CDER
+    (31) asignable -> . PARAMETRO CIZQ expresion_simple CDER
+    (32) asignable -> . RETORNO CIZQ expresion_simple CDER
+    (33) asignable -> . PILA CIZQ expresion_simple CDER
+
+    PRINT           shift and go to state 15
+    GOTO            shift and go to state 17
+    EXIT            shift and go to state 18
+    UNSET           shift and go to state 19
+    IF              shift and go to state 20
+    TEMPORAL        shift and go to state 16
+    PARAMETRO       shift and go to state 22
+    RETORNO         shift and go to state 23
+    PILA            shift and go to state 24
+    RA              shift and go to state 25
+    SP              shift and go to state 26
+
+    instruccion                    shift and go to state 108
+    print_inst                     shift and go to state 9
+    goto_inst                      shift and go to state 10
+    exit_inst                      shift and go to state 11
+    unset_inst                     shift and go to state 12
+    if_inst                        shift and go to state 13
+    asig_inst                      shift and go to state 14
+    asignable                      shift and go to state 21
+
+state 71
+
+    (18) asig_inst -> asignable ASIG expresion PTCOMA .
+
+    PRINT           reduce using rule 18 (asig_inst -> asignable ASIG expresion PTCOMA .)
+    GOTO            reduce using rule 18 (asig_inst -> asignable ASIG expresion PTCOMA .)
+    EXIT            reduce using rule 18 (asig_inst -> asignable ASIG expresion PTCOMA .)
+    UNSET           reduce using rule 18 (asig_inst -> asignable ASIG expresion PTCOMA .)
+    IF              reduce using rule 18 (asig_inst -> asignable ASIG expresion PTCOMA .)
+    TEMPORAL        reduce using rule 18 (asig_inst -> asignable ASIG expresion PTCOMA .)
+    PARAMETRO       reduce using rule 18 (asig_inst -> asignable ASIG expresion PTCOMA .)
+    RETORNO         reduce using rule 18 (asig_inst -> asignable ASIG expresion PTCOMA .)
+    PILA            reduce using rule 18 (asig_inst -> asignable ASIG expresion PTCOMA .)
+    RA              reduce using rule 18 (asig_inst -> asignable ASIG expresion PTCOMA .)
+    SP              reduce using rule 18 (asig_inst -> asignable ASIG expresion PTCOMA .)
+    LABEL           reduce using rule 18 (asig_inst -> asignable ASIG expresion PTCOMA .)
+    $end            reduce using rule 18 (asig_inst -> asignable ASIG expresion PTCOMA .)
+
+
+state 72
+
+    (19) asig_inst -> asignable ASIG PIZQ INT . PDER expresion_simple PTCOMA
+
+    PDER            shift and go to state 109
+
+
+state 73
+
+    (20) asig_inst -> asignable ASIG PIZQ FLOAT . PDER expresion_simple PTCOMA
+
+    PDER            shift and go to state 110
+
+
+state 74
+
+    (21) asig_inst -> asignable ASIG PIZQ CHAR . PDER expresion_simple PTCOMA
+
+    PDER            shift and go to state 111
+
+
+state 75
+
+    (34) expresion -> expresion_simple MAS . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 112
+
+state 76
+
+    (35) expresion -> expresion_simple MENOS . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 113
+
+state 77
+
+    (36) expresion -> expresion_simple POR . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 114
+
+state 78
+
+    (37) expresion -> expresion_simple DIVIDIDO . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 115
+
+state 79
+
+    (38) expresion -> expresion_simple MODULO . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 116
+
+state 80
+
+    (39) expresion -> expresion_simple AND . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 117
+
+state 81
+
+    (40) expresion -> expresion_simple OR . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 118
+
+state 82
+
+    (41) expresion -> expresion_simple XOR . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 119
+
+state 83
+
+    (42) expresion -> expresion_simple BBAND . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 120
+
+state 84
+
+    (43) expresion -> expresion_simple BBOR . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 121
+
+state 85
+
+    (44) expresion -> expresion_simple BBXOR . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 122
+
+state 86
+
+    (45) expresion -> expresion_simple BBIZQ . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 123
+
+state 87
+
+    (46) expresion -> expresion_simple BBDER . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 124
+
+state 88
+
+    (47) expresion -> expresion_simple IGUAL_QUE . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 125
+
+state 89
+
+    (48) expresion -> expresion_simple DESIGUAL_QUE . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 126
+
+state 90
+
+    (49) expresion -> expresion_simple MAYOR_QUE . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 127
+
+state 91
+
+    (50) expresion -> expresion_simple MENOR_QUE . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 128
+
+state 92
+
+    (51) expresion -> expresion_simple MAYOR_IGUAL_QUE . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 129
+
+state 93
+
+    (52) expresion -> expresion_simple MENOR_IGUAL_QUE . expresion_simple
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 130
+
+state 94
+
+    (22) asig_inst -> asignable ASIG READ PIZQ . PDER PTCOMA
+
+    PDER            shift and go to state 131
+
+
+state 95
+
+    (23) asig_inst -> asignable ASIG ARRAY PIZQ . PDER PTCOMA
+
+    PDER            shift and go to state 132
+
+
+state 96
+
+    (54) expresion -> ABS PIZQ . expresion_simple PDER
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 133
+
+state 97
+
+    (55) expresion -> NOT expresion_simple .
+
+    PTCOMA          reduce using rule 55 (expresion -> NOT expresion_simple .)
+
+
+state 98
+
+    (56) expresion -> BBNOT expresion_simple .
+
+    PTCOMA          reduce using rule 56 (expresion -> BBNOT expresion_simple .)
+
+
+state 99
+
+    (57) expresion -> TEMPORAL CIZQ . expresion_simple CDER
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 134
+
+state 100
+
+    (58) expresion -> PARAMETRO CIZQ . expresion_simple CDER
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 135
+
+state 101
+
+    (59) expresion -> RETORNO CIZQ . expresion_simple CDER
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 136
+
+state 102
+
+    (60) expresion -> PILA CIZQ . expresion_simple CDER
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 137
+
+state 103
+
+    (31) asignable -> PARAMETRO CIZQ expresion_simple CDER .
+
+    ASIG            reduce using rule 31 (asignable -> PARAMETRO CIZQ expresion_simple CDER .)
+
+
+state 104
+
+    (32) asignable -> RETORNO CIZQ expresion_simple CDER .
+
+    ASIG            reduce using rule 32 (asignable -> RETORNO CIZQ expresion_simple CDER .)
+
+
+state 105
+
+    (33) asignable -> PILA CIZQ expresion_simple CDER .
+
+    ASIG            reduce using rule 33 (asignable -> PILA CIZQ expresion_simple CDER .)
+
+
+state 106
+
+    (13) print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .
+
+    PRINT           reduce using rule 13 (print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .)
+    GOTO            reduce using rule 13 (print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .)
+    EXIT            reduce using rule 13 (print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .)
+    UNSET           reduce using rule 13 (print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .)
+    IF              reduce using rule 13 (print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .)
+    TEMPORAL        reduce using rule 13 (print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .)
+    PARAMETRO       reduce using rule 13 (print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .)
+    RETORNO         reduce using rule 13 (print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .)
+    PILA            reduce using rule 13 (print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .)
+    RA              reduce using rule 13 (print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .)
+    SP              reduce using rule 13 (print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .)
+    LABEL           reduce using rule 13 (print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .)
+    $end            reduce using rule 13 (print_inst -> PRINT PIZQ TEMPORAL PDER PTCOMA .)
+
+
+state 107
+
+    (16) unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .
+
+    PRINT           reduce using rule 16 (unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .)
+    GOTO            reduce using rule 16 (unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .)
+    EXIT            reduce using rule 16 (unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .)
+    UNSET           reduce using rule 16 (unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .)
+    IF              reduce using rule 16 (unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .)
+    TEMPORAL        reduce using rule 16 (unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .)
+    PARAMETRO       reduce using rule 16 (unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .)
+    RETORNO         reduce using rule 16 (unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .)
+    PILA            reduce using rule 16 (unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .)
+    RA              reduce using rule 16 (unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .)
+    SP              reduce using rule 16 (unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .)
+    LABEL           reduce using rule 16 (unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .)
+    $end            reduce using rule 16 (unset_inst -> UNSET PIZQ TEMPORAL PDER PTCOMA .)
+
+
+state 108
+
+    (17) if_inst -> IF PIZQ expresion_simple PDER instruccion .
+
+    PRINT           reduce using rule 17 (if_inst -> IF PIZQ expresion_simple PDER instruccion .)
+    GOTO            reduce using rule 17 (if_inst -> IF PIZQ expresion_simple PDER instruccion .)
+    EXIT            reduce using rule 17 (if_inst -> IF PIZQ expresion_simple PDER instruccion .)
+    UNSET           reduce using rule 17 (if_inst -> IF PIZQ expresion_simple PDER instruccion .)
+    IF              reduce using rule 17 (if_inst -> IF PIZQ expresion_simple PDER instruccion .)
+    TEMPORAL        reduce using rule 17 (if_inst -> IF PIZQ expresion_simple PDER instruccion .)
+    PARAMETRO       reduce using rule 17 (if_inst -> IF PIZQ expresion_simple PDER instruccion .)
+    RETORNO         reduce using rule 17 (if_inst -> IF PIZQ expresion_simple PDER instruccion .)
+    PILA            reduce using rule 17 (if_inst -> IF PIZQ expresion_simple PDER instruccion .)
+    RA              reduce using rule 17 (if_inst -> IF PIZQ expresion_simple PDER instruccion .)
+    SP              reduce using rule 17 (if_inst -> IF PIZQ expresion_simple PDER instruccion .)
+    LABEL           reduce using rule 17 (if_inst -> IF PIZQ expresion_simple PDER instruccion .)
+    $end            reduce using rule 17 (if_inst -> IF PIZQ expresion_simple PDER instruccion .)
+
+
+state 109
+
+    (19) asig_inst -> asignable ASIG PIZQ INT PDER . expresion_simple PTCOMA
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 138
+
+state 110
+
+    (20) asig_inst -> asignable ASIG PIZQ FLOAT PDER . expresion_simple PTCOMA
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 139
+
+state 111
+
+    (21) asig_inst -> asignable ASIG PIZQ CHAR PDER . expresion_simple PTCOMA
+    (61) expresion_simple -> . TEMPORAL
+    (62) expresion_simple -> . PARAMETRO
+    (63) expresion_simple -> . RETORNO
+    (64) expresion_simple -> . PILA
+    (65) expresion_simple -> . RA
+    (66) expresion_simple -> . SP
+    (67) expresion_simple -> . ENTERO
+    (68) expresion_simple -> . DECIMAL
+    (69) expresion_simple -> . CADENA
+
+    TEMPORAL        shift and go to state 39
+    PARAMETRO       shift and go to state 41
+    RETORNO         shift and go to state 42
+    PILA            shift and go to state 43
+    RA              shift and go to state 44
+    SP              shift and go to state 45
+    ENTERO          shift and go to state 46
+    DECIMAL         shift and go to state 47
+    CADENA          shift and go to state 48
+
+    expresion_simple               shift and go to state 140
+
+state 112
+
+    (34) expresion -> expresion_simple MAS expresion_simple .
+
+    PTCOMA          reduce using rule 34 (expresion -> expresion_simple MAS expresion_simple .)
+
+
+state 113
+
+    (35) expresion -> expresion_simple MENOS expresion_simple .
+
+    PTCOMA          reduce using rule 35 (expresion -> expresion_simple MENOS expresion_simple .)
+
+
+state 114
+
+    (36) expresion -> expresion_simple POR expresion_simple .
+
+    PTCOMA          reduce using rule 36 (expresion -> expresion_simple POR expresion_simple .)
+
+
+state 115
+
+    (37) expresion -> expresion_simple DIVIDIDO expresion_simple .
+
+    PTCOMA          reduce using rule 37 (expresion -> expresion_simple DIVIDIDO expresion_simple .)
+
+
+state 116
+
+    (38) expresion -> expresion_simple MODULO expresion_simple .
+
+    PTCOMA          reduce using rule 38 (expresion -> expresion_simple MODULO expresion_simple .)
+
+
+state 117
+
+    (39) expresion -> expresion_simple AND expresion_simple .
+
+    PTCOMA          reduce using rule 39 (expresion -> expresion_simple AND expresion_simple .)
+
+
+state 118
+
+    (40) expresion -> expresion_simple OR expresion_simple .
+
+    PTCOMA          reduce using rule 40 (expresion -> expresion_simple OR expresion_simple .)
+
+
+state 119
+
+    (41) expresion -> expresion_simple XOR expresion_simple .
+
+    PTCOMA          reduce using rule 41 (expresion -> expresion_simple XOR expresion_simple .)
+
+
+state 120
+
+    (42) expresion -> expresion_simple BBAND expresion_simple .
+
+    PTCOMA          reduce using rule 42 (expresion -> expresion_simple BBAND expresion_simple .)
+
+
+state 121
+
+    (43) expresion -> expresion_simple BBOR expresion_simple .
+
+    PTCOMA          reduce using rule 43 (expresion -> expresion_simple BBOR expresion_simple .)
+
+
+state 122
+
+    (44) expresion -> expresion_simple BBXOR expresion_simple .
+
+    PTCOMA          reduce using rule 44 (expresion -> expresion_simple BBXOR expresion_simple .)
+
+
+state 123
+
+    (45) expresion -> expresion_simple BBIZQ expresion_simple .
+
+    PTCOMA          reduce using rule 45 (expresion -> expresion_simple BBIZQ expresion_simple .)
+
+
+state 124
+
+    (46) expresion -> expresion_simple BBDER expresion_simple .
+
+    PTCOMA          reduce using rule 46 (expresion -> expresion_simple BBDER expresion_simple .)
+
+
+state 125
+
+    (47) expresion -> expresion_simple IGUAL_QUE expresion_simple .
+
+    PTCOMA          reduce using rule 47 (expresion -> expresion_simple IGUAL_QUE expresion_simple .)
+
+
+state 126
+
+    (48) expresion -> expresion_simple DESIGUAL_QUE expresion_simple .
+
+    PTCOMA          reduce using rule 48 (expresion -> expresion_simple DESIGUAL_QUE expresion_simple .)
+
+
+state 127
+
+    (49) expresion -> expresion_simple MAYOR_QUE expresion_simple .
+
+    PTCOMA          reduce using rule 49 (expresion -> expresion_simple MAYOR_QUE expresion_simple .)
+
+
+state 128
+
+    (50) expresion -> expresion_simple MENOR_QUE expresion_simple .
+
+    PTCOMA          reduce using rule 50 (expresion -> expresion_simple MENOR_QUE expresion_simple .)
+
+
+state 129
+
+    (51) expresion -> expresion_simple MAYOR_IGUAL_QUE expresion_simple .
+
+    PTCOMA          reduce using rule 51 (expresion -> expresion_simple MAYOR_IGUAL_QUE expresion_simple .)
+
+
+state 130
+
+    (52) expresion -> expresion_simple MENOR_IGUAL_QUE expresion_simple .
+
+    PTCOMA          reduce using rule 52 (expresion -> expresion_simple MENOR_IGUAL_QUE expresion_simple .)
+
+
+state 131
+
+    (22) asig_inst -> asignable ASIG READ PIZQ PDER . PTCOMA
+
+    PTCOMA          shift and go to state 141
+
+
+state 132
+
+    (23) asig_inst -> asignable ASIG ARRAY PIZQ PDER . PTCOMA
+
+    PTCOMA          shift and go to state 142
+
+
+state 133
+
+    (54) expresion -> ABS PIZQ expresion_simple . PDER
+
+    PDER            shift and go to state 143
+
+
+state 134
+
+    (57) expresion -> TEMPORAL CIZQ expresion_simple . CDER
+
+    CDER            shift and go to state 144
+
+
+state 135
+
+    (58) expresion -> PARAMETRO CIZQ expresion_simple . CDER
+
+    CDER            shift and go to state 145
+
+
+state 136
+
+    (59) expresion -> RETORNO CIZQ expresion_simple . CDER
+
+    CDER            shift and go to state 146
+
+
+state 137
+
+    (60) expresion -> PILA CIZQ expresion_simple . CDER
+
+    CDER            shift and go to state 147
+
+
+state 138
+
+    (19) asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple . PTCOMA
+
+    PTCOMA          shift and go to state 148
+
+
+state 139
+
+    (20) asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple . PTCOMA
+
+    PTCOMA          shift and go to state 149
+
+
+state 140
+
+    (21) asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple . PTCOMA
+
+    PTCOMA          shift and go to state 150
+
+
+state 141
+
+    (22) asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .
+
+    PRINT           reduce using rule 22 (asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .)
+    GOTO            reduce using rule 22 (asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .)
+    EXIT            reduce using rule 22 (asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .)
+    UNSET           reduce using rule 22 (asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .)
+    IF              reduce using rule 22 (asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .)
+    TEMPORAL        reduce using rule 22 (asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .)
+    PARAMETRO       reduce using rule 22 (asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .)
+    RETORNO         reduce using rule 22 (asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .)
+    PILA            reduce using rule 22 (asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .)
+    RA              reduce using rule 22 (asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .)
+    SP              reduce using rule 22 (asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .)
+    LABEL           reduce using rule 22 (asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .)
+    $end            reduce using rule 22 (asig_inst -> asignable ASIG READ PIZQ PDER PTCOMA .)
+
+
+state 142
+
+    (23) asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .
+
+    PRINT           reduce using rule 23 (asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .)
+    GOTO            reduce using rule 23 (asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .)
+    EXIT            reduce using rule 23 (asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .)
+    UNSET           reduce using rule 23 (asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .)
+    IF              reduce using rule 23 (asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .)
+    TEMPORAL        reduce using rule 23 (asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .)
+    PARAMETRO       reduce using rule 23 (asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .)
+    RETORNO         reduce using rule 23 (asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .)
+    PILA            reduce using rule 23 (asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .)
+    RA              reduce using rule 23 (asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .)
+    SP              reduce using rule 23 (asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .)
+    LABEL           reduce using rule 23 (asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .)
+    $end            reduce using rule 23 (asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA .)
+
+
+state 143
+
+    (54) expresion -> ABS PIZQ expresion_simple PDER .
+
+    PTCOMA          reduce using rule 54 (expresion -> ABS PIZQ expresion_simple PDER .)
+
+
+state 144
+
+    (57) expresion -> TEMPORAL CIZQ expresion_simple CDER .
+
+    PTCOMA          reduce using rule 57 (expresion -> TEMPORAL CIZQ expresion_simple CDER .)
+
+
+state 145
+
+    (58) expresion -> PARAMETRO CIZQ expresion_simple CDER .
+
+    PTCOMA          reduce using rule 58 (expresion -> PARAMETRO CIZQ expresion_simple CDER .)
+
+
+state 146
+
+    (59) expresion -> RETORNO CIZQ expresion_simple CDER .
+
+    PTCOMA          reduce using rule 59 (expresion -> RETORNO CIZQ expresion_simple CDER .)
+
+
+state 147
+
+    (60) expresion -> PILA CIZQ expresion_simple CDER .
+
+    PTCOMA          reduce using rule 60 (expresion -> PILA CIZQ expresion_simple CDER .)
+
+
+state 148
+
+    (19) asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .
+
+    PRINT           reduce using rule 19 (asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .)
+    GOTO            reduce using rule 19 (asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .)
+    EXIT            reduce using rule 19 (asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .)
+    UNSET           reduce using rule 19 (asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .)
+    IF              reduce using rule 19 (asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .)
+    TEMPORAL        reduce using rule 19 (asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .)
+    PARAMETRO       reduce using rule 19 (asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .)
+    RETORNO         reduce using rule 19 (asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .)
+    PILA            reduce using rule 19 (asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .)
+    RA              reduce using rule 19 (asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .)
+    SP              reduce using rule 19 (asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .)
+    LABEL           reduce using rule 19 (asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .)
+    $end            reduce using rule 19 (asig_inst -> asignable ASIG PIZQ INT PDER expresion_simple PTCOMA .)
+
+
+state 149
+
+    (20) asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .
+
+    PRINT           reduce using rule 20 (asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .)
+    GOTO            reduce using rule 20 (asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .)
+    EXIT            reduce using rule 20 (asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .)
+    UNSET           reduce using rule 20 (asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .)
+    IF              reduce using rule 20 (asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .)
+    TEMPORAL        reduce using rule 20 (asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .)
+    PARAMETRO       reduce using rule 20 (asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .)
+    RETORNO         reduce using rule 20 (asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .)
+    PILA            reduce using rule 20 (asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .)
+    RA              reduce using rule 20 (asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .)
+    SP              reduce using rule 20 (asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .)
+    LABEL           reduce using rule 20 (asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .)
+    $end            reduce using rule 20 (asig_inst -> asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA .)
+
+
+state 150
+
+    (21) asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .
+
+    PRINT           reduce using rule 21 (asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .)
+    GOTO            reduce using rule 21 (asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .)
+    EXIT            reduce using rule 21 (asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .)
+    UNSET           reduce using rule 21 (asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .)
+    IF              reduce using rule 21 (asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .)
+    TEMPORAL        reduce using rule 21 (asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .)
+    PARAMETRO       reduce using rule 21 (asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .)
+    RETORNO         reduce using rule 21 (asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .)
+    PILA            reduce using rule 21 (asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .)
+    RA              reduce using rule 21 (asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .)
+    SP              reduce using rule 21 (asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .)
+    LABEL           reduce using rule 21 (asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .)
+    $end            reduce using rule 21 (asig_inst -> asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA .)
+
