@@ -1,9 +1,9 @@
 from enum import Enum
 
 class TIPO_MENSAJE(Enum) :
-    LEXICO = 1
-    SINTACTICO = 2
-    SEMANTICO = 3
+    LEXICO = 1,
+    SINTACTICO = 2,
+    SEMANTICO = 3,
     LOG = 4
 
 class Mensaje() :

@@ -11,12 +11,11 @@ class Print(Instruccion) :
     def ejecutar(self,ts,mensajes) :
         simbolo = ts.getSimbolo(self.temporal)
 
-        if not simbolo:
+        if simbolo is None:
             mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'No se ha encontrado el identificador '+self.temporal+'.',self.linea,self.columna))           
             return
         
         mensajes.append(Mensaje(TIPO_MENSAJE.LOG,simbolo.valor,self.linea,self.columna))
-        print("",simbolo.valor)
          
     def getAST_Ascendente(self) :
         print('ast')

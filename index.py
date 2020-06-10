@@ -122,7 +122,9 @@ class EditorTexto:
         print('descendente')
 
     def reporte_errores(self):
-        print('reporte errores')
+        global mensajes
+        for mensaje in mensajes:
+            print(mensaje.mensaje,"en:",mensaje.linea,",",mensaje.columna)
     
     def reporte_ts(self):
         print('reporte tabla')

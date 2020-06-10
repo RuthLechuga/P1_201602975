@@ -153,6 +153,7 @@ from Arbol.Asignacion import *
 from Arbol.Instruccion import *
 from Arbol.Etiqueta import *
 from Arbol.Print import *
+from Arbol.Relacional import *
 from Arbol.Unaria import *
 lexer = lex.lex()
 
@@ -274,6 +275,12 @@ def p_expresion(t):
     if t[2] == '*': t[0] = Aritmetica(t[1],t[3],TIPO_ARITMETICA.MULTIPLICACION,t.lineno(2),find_column(entrada, t.slice[2]))
     if t[2] == '/': t[0] = Aritmetica(t[1],t[3],TIPO_ARITMETICA.DIVISION,t.lineno(2),find_column(entrada, t.slice[2]))
     if t[2] == '%': t[0] = Aritmetica(t[1],t[3],TIPO_ARITMETICA.RESIDUO,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '==': t[0] = Relacional(t[1],t[3],TIPO_RELACIONAL.IGUAL_QUE,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '!=': t[0] = Relacional(t[1],t[3],TIPO_RELACIONAL.DISTINTO_QUE,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '>=': t[0] = Relacional(t[1],t[3],TIPO_RELACIONAL.MAYOR_IGUAL_QUE,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '<=': t[0] = Relacional(t[1],t[3],TIPO_RELACIONAL.MENOR_IGUAL_QUE,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '>': t[0] = Relacional(t[1],t[3],TIPO_RELACIONAL.MAYOR_QUE,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '<': t[0] = Relacional(t[1],t[3],TIPO_RELACIONAL.MENOR_QUE,t.lineno(2),find_column(entrada, t.slice[2]))
 
 def p_der_expresion(t):
     ' expresion     : expresion_simple '

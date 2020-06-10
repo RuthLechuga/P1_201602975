@@ -1,5 +1,5 @@
 from .Instruccion import Instruccion
-from .Mensaje import Mensaje
+from .Mensaje import *
 from .Simbolo import *
 
 class Asignacion(Instruccion) :
@@ -13,7 +13,7 @@ class Asignacion(Instruccion) :
     def ejecutar(self,ts,mensajes) :
         temporal = self.expresion.ejecutar(ts,mensajes)
 
-        if not temporal:
+        if temporal is None:
             mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'La expresión para el identificador '+self.identificador+' es inválida.',self.linea,self.columna))
             return
         

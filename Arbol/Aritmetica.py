@@ -23,10 +23,10 @@ class Aritmetica(Instruccion) :
         izq = None if not self.izquierda else self.izquierda.ejecutar(ts,mensajes)
         der = None if not self.derecha else self.derecha.ejecutar(ts,mensajes)
 
-        if not izq and not der:
+        if izq is None and der is None:
             return None
         
-        if not der:
+        if der is None:
             if self.tipo == TIPO_ARITMETICA.ABSOLUTO:
                 if isinstance(izq,int) or isinstance(izq,float):
                     return abs(izq)
