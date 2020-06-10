@@ -106,7 +106,6 @@ def t_ENTERO(t):
 def t_LABEL(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = reservadas.get(t.value.lower(),'LABEL')
-    print(t.type)    
     return t
 
 def t_CADENA(t):
@@ -148,14 +147,14 @@ def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
-# Construyendo el analizador léxico
 import ply.lex as lex
+from Arbol.Aritmetica import *
+from Arbol.Asignacion import *
 from Arbol.Instruccion import *
 from Arbol.Etiqueta import *
 from Arbol.Print import *
+from Arbol.Unaria import *
 lexer = lex.lex()
-
-# Definición de la gramática
 
 def p_init(t) :
     'init            : labels'
@@ -191,13 +190,11 @@ def p_instruccion(t):
                         | if_inst
                         | asig_inst
     '''
-    print('instruccion>>')
     t[0] = t[1]
 
 def p_instruccion_print(t):
-    'print_inst     : PRINT PIZQ TEMPORAL PDER PTCOMA'
-    print('instruccion print')
-    t[0] = Print('Prueba :DDDDDDDDDDDDDDDDDDDDDDDDDDDDDD')
+    'print_inst     : PRINT PIZQ asignable PDER PTCOMA'
+    t[0] = Print(t[3],t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_instruccion_goto(t):
     'goto_inst     : GOTO LABEL PTCOMA'
@@ -208,7 +205,7 @@ def p_instruccion_exit(t):
     print('instruccion exit')
 
 def p_instruccion_unset(t):
-    'unset_inst     : UNSET PIZQ TEMPORAL PDER PTCOMA'
+    'unset_inst     : UNSET PIZQ asignable PDER PTCOMA'
     print('instruccion unset')
 
 def p_instruccion_if(t):
@@ -217,7 +214,7 @@ def p_instruccion_if(t):
 
 def p_instruccion_asignacion_expresion(t):
     'asig_inst      : asignable ASIG expresion PTCOMA'
-    print('asignacion expresion')
+    t[0] = Asignacion(t[1],t[3],t.lineno(2),find_column(entrada, t.slice[2]))
 
 def p_instruccion_asignacion_conversion(t):
     '''asig_inst      : asignable ASIG PIZQ INT PDER expresion_simple PTCOMA
@@ -241,7 +238,11 @@ def p_registros_asignables(t):
                      | PILA
                      | RA
                      | SP
-                     | TEMPORAL CIZQ expresion_simple CDER
+    '''
+    t[0] = t[1]
+
+def p_registros_asignables_array(t):
+    '''asignable     : TEMPORAL CIZQ expresion_simple CDER
                      | PARAMETRO CIZQ expresion_simple CDER
                      | RETORNO CIZQ expresion_simple CDER
                      | PILA CIZQ expresion_simple CDER
@@ -268,14 +269,23 @@ def p_expresion(t):
                       | expresion_simple MAYOR_IGUAL_QUE expresion_simple
                       | expresion_simple MENOR_IGUAL_QUE expresion_simple                     
     '''
-    print('expresion')
+    if t[2] == '+': t[0] = Aritmetica(t[1],t[3],TIPO_ARITMETICA.SUMA,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '-': t[0] = Aritmetica(t[1],t[3],TIPO_ARITMETICA.RESTA,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '*': t[0] = Aritmetica(t[1],t[3],TIPO_ARITMETICA.MULTIPLICACION,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '/': t[0] = Aritmetica(t[1],t[3],TIPO_ARITMETICA.DIVISION,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '%': t[0] = Aritmetica(t[1],t[3],TIPO_ARITMETICA.RESIDUO,t.lineno(2),find_column(entrada, t.slice[2]))
 
 def p_der_expresion(t):
     ' expresion     : expresion_simple '
+    t[0] = t[1]
+
+def p_negativo(t):
+    ' expresion_simple     : MENOS expresion_simple'
+    t[0] = Unaria(t[2],TIPO_UNARIO.NEGATIVO,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_abs(t):
     ' expresion     : ABS PIZQ expresion_simple PDER '
-    print('valor absoluto')
+    t[0] = Aritmetica(t[3],None,TIPO_ARITMETICA.ABSOLUTO,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_not(t):
     ' expresion     : NOT expresion_simple'
@@ -293,25 +303,44 @@ def p_acceso_arreglo(t):
     '''
     print('acceso arreglo');
 
-def p_expresion_simple(t):
+def p_expresion_simple_identificador(t):
     '''expresion_simple     : TEMPORAL
                             | PARAMETRO
                             | RETORNO
                             | PILA
                             | RA
                             | SP
-                            | ENTERO
-                            | DECIMAL
-                            | CADENA
     '''
-    print('expresion simple')
+    t[0] = Unaria(t[1],TIPO_UNARIO.IDENTIFICADOR,t.lineno(1),find_column(entrada, t.slice[1]))
+
+def p_expresion_simple_entero(t):
+    '''expresion_simple     : ENTERO
+    '''
+    t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))
+
+def p_expresion_simple_decimal(t):
+    '''expresion_simple     : DECIMAL
+    '''
+    t[0] = Unaria(t[1],TIPO_UNARIO.DECIMAL,t.lineno(1),find_column(entrada, t.slice[1]))
+
+def p_expresion_simple_cadena(t):
+    '''expresion_simple     : CADENA
+    '''
+    t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_error(t):
-    print(t)
     print("Error sintáctico en '%s'" % t.value)
+
+def find_column(input, token):
+    line_start = input.rfind('\n', 0, token.lexpos) + 1
+    return ((token.lexpos - line_start) + 1)
 
 import ply.yacc as yacc
 parser = yacc.yacc()
 
+entrada = ''
+
 def parse(input) :
+    global entrada
+    entrada = input
     return parser.parse(input)

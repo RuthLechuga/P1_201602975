@@ -6,7 +6,11 @@ class Instruccion(metaclass=abc.ABCMeta):
         pass
     
     @abc.abstractmethod
-    def getAST(self) :
+    def getAST_Ascendente(self) :
+        pass
+    
+    @abc.abstractmethod
+    def getAST_Descendente(self) :
         pass
     
     @abc.abstractmethod

@@ -3,8 +3,11 @@ from tkinter import filedialog
 from tkinter import *
 from Arbol.Mensaje import *
 
-import gramatica as g
+import gramatica_asc as g_asc
 import Arbol.TablaDeSimbolos as TS
+
+mensajes = []
+ts_global = None
 
 class EditorTexto:
     def __init__(self):
@@ -98,10 +101,11 @@ class EditorTexto:
         print('reemplazar')
     
     def ej_ascendente(self):
-        print('ascendente')
+        global mensajes
         mensajes = []
-        etiquetas = g.parse(self.text.get(0.0, END))
+        etiquetas = g_asc.parse(self.text.get(0.0, END))
 
+        global ts_global
         ts_global = TS.TablaDeSimbolos()
 
         for etiqueta in etiquetas:
@@ -109,6 +113,7 @@ class EditorTexto:
                 mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'La etiqueta: '+etiqueta.identificador+' ya existe.',0,0))
         
         main = ts_global.getEtiqueta('main')
+        print('-----------------------------------------------')
 
         for instruccion in main.instrucciones:
             instruccion.ejecutar(ts_global,mensajes)

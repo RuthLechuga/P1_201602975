@@ -13,5 +13,5 @@ class Etiqueta() :
         self.linea = linea
         self.columna = columna
     
-    def getInstrucciones(self):
-        return self.instrucciones
+    def updateTipoEstructura(tipo) :
+        self.tipo_estructura = tipo
