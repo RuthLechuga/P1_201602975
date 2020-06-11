@@ -27,6 +27,9 @@ class TablaDeSimbolos() :
 
         return self.etiquetas[identificador]
     
+    def getEtiquetas(self):
+        return self.etiquetas
+    
     def setEtActual(self, etiqueta):
         self.et_actual = etiqueta
     

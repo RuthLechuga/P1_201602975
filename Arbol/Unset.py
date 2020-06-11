@@ -1,7 +1,7 @@
 from .Instruccion import Instruccion
 from .Mensaje import *
 
-class Print(Instruccion) :
+class Unset(Instruccion) :
 
     def __init__(self, temporal, linea, columna) :
         self.temporal = temporal
@@ -9,14 +9,8 @@ class Print(Instruccion) :
         self.columna = columna
     
     def ejecutar(self,ts,mensajes) :
-        simbolo = ts.getSimbolo(self.temporal)
+        return True
 
-        if simbolo is None:
-            mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'No se ha encontrado el identificador '+self.temporal+'.',self.linea,self.columna))           
-            return
-        
-        mensajes.append(Mensaje(TIPO_MENSAJE.LOG,simbolo.valor,self.linea,self.columna))
-        
     def getAST_Ascendente(self) :
         print('ast')
     

@@ -115,9 +115,15 @@ class EditorTexto:
         main = ts_global.getEtiqueta('main')
         print('-----------------------------------------------')
 
-        for instruccion in main.instrucciones:
-            res = instruccion.ejecutar(ts_global,mensajes)
-            if res:
+        goto=0
+        for etiqueta in etiquetas:
+            for instruccion in etiqueta.instrucciones:
+                res = instruccion.ejecutar(ts_global,mensajes)
+                if res:
+                    goto = 1;
+                    break
+            
+            if goto==1:
                 break
     
     def ej_descendente(self):

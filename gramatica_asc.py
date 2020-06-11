@@ -153,11 +153,13 @@ from Arbol.BitToBit import *
 from Arbol.Convertir import *
 from Arbol.Etiqueta import *
 from Arbol.Goto import *
+from Arbol.If import *
 from Arbol.Instruccion import *
 from Arbol.Logica import *
 from Arbol.Print import *
 from Arbol.Relacional import *
 from Arbol.Unaria import *
+from Arbol.Unset import *
 lexer = lex.lex()
 
 def p_init(t) :
@@ -210,11 +212,11 @@ def p_instruccion_exit(t):
 
 def p_instruccion_unset(t):
     'unset_inst     : UNSET PIZQ asignable PDER PTCOMA'
-    print('instruccion unset')
+    t[0] = Unset(t[3],t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_instruccion_if(t):
-    'if_inst     : IF PIZQ expresion_simple PDER instruccion'
-    print('instruccion if')
+    'if_inst     : IF PIZQ expresion PDER instruccion'
+    t[0] = If(t[3],t[5],t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_instruccion_asignacion_expresion(t):
     'asig_inst      : asignable ASIG expresion PTCOMA'
