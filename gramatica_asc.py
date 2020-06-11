@@ -149,6 +149,7 @@ def t_error(t):
 import ply.lex as lex
 from Arbol.Aritmetica import *
 from Arbol.Asignacion import *
+from Arbol.BitToBit import *
 from Arbol.Convertir import *
 from Arbol.Etiqueta import *
 from Arbol.Instruccion import *
@@ -285,6 +286,11 @@ def p_expresion(t):
     if t[2] == '&&': t[0] = Logica(t[1],t[3],TIPO_LOGICA.AND,t.lineno(2),find_column(entrada, t.slice[2]))
     if t[2] == '||': t[0] = Logica(t[1],t[3],TIPO_LOGICA.OR,t.lineno(2),find_column(entrada, t.slice[2]))
     if t[2] == 'xor': t[0] = Logica(t[1],t[3],TIPO_LOGICA.XOR,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '&': t[0] = BitToBit(t[1],t[3],TIPO_BIT_BIT.AND,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '|': t[0] = BitToBit(t[1],t[3],TIPO_BIT_BIT.OR,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '^': t[0] = BitToBit(t[1],t[3],TIPO_BIT_BIT.XOR,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '<<': t[0] = BitToBit(t[1],t[3],TIPO_BIT_BIT.IZQUIERDA,t.lineno(2),find_column(entrada, t.slice[2]))
+    if t[2] == '>>': t[0] = BitToBit(t[1],t[3],TIPO_BIT_BIT.DERECHA,t.lineno(2),find_column(entrada, t.slice[2]))
 
 def p_der_expresion(t):
     ' expresion     : expresion_simple '
@@ -304,7 +310,7 @@ def p_not(t):
     
 def p_bit_not(t):
     ' expresion     : BBNOT expresion_simple'
-    print('bit not')
+    t[0] = BitToBit(t[2],None,TIPO_BIT_BIT.NOT,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_acceso_arreglo(t):
     ''' expresion     : TEMPORAL CIZQ expresion_simple CDER
