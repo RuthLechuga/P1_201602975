@@ -17,6 +17,7 @@ class Asignacion(Instruccion) :
             mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'La expresión para el identificador '+self.identificador+' es inválida.',self.linea,self.columna))
             return
         
+        #validar arreglo, tipos de datos y ambitos
         ts.addSimbolo(Simbolo(self.identificador,TIPO_DATO.ENTERO,0,temporal,self.linea,self.columna,'Global'))
     
     def getAST_Ascendente(self) :

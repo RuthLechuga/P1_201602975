@@ -1,8 +1,9 @@
 class TablaDeSimbolos() :
 
-    def __init__(self, etiquetas= {}, simbolos = {}) :
+    def __init__(self, etiquetas= {}, simbolos = {}, et_actual = 'main') :
         self.simbolos = simbolos
         self.etiquetas = etiquetas
+        self.et_actual = et_actual
 
     def addSimbolo(self, simbolo):
         self.simbolos[simbolo.identificador] = simbolo
@@ -25,6 +26,12 @@ class TablaDeSimbolos() :
             return None
 
         return self.etiquetas[identificador]
+    
+    def setEtActual(self, etiqueta):
+        self.et_actual = etiqueta
+    
+    def getEtActual(self):
+        return self.et_actual
     
 
     

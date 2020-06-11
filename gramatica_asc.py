@@ -149,6 +149,7 @@ def t_error(t):
 import ply.lex as lex
 from Arbol.Aritmetica import *
 from Arbol.Asignacion import *
+from Arbol.Convertir import *
 from Arbol.Etiqueta import *
 from Arbol.Instruccion import *
 from Arbol.Logica import *
@@ -222,7 +223,7 @@ def p_instruccion_asignacion_conversion(t):
                     | asignable ASIG PIZQ FLOAT PDER expresion_simple PTCOMA
                     | asignable ASIG PIZQ CHAR PDER expresion_simple PTCOMA
     '''
-    print('asignacion conversion')
+    t[0] = Convertir(t[1],t[6],t[4],t.lineno(2),find_column(entrada, t.slice[2]))
 
 def p_instruccion_asignacion_read(t):
     ' asig_inst     : asignable ASIG READ PIZQ PDER PTCOMA '
