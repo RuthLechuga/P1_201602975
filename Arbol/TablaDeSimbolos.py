@@ -14,6 +14,13 @@ class TablaDeSimbolos() :
 
         return self.simbolos[identificador]
     
+    def deleteSimbolo(self, identificador):
+        if not identificador in self.simbolos:
+            return False
+
+        del self.simbolos[identificador]
+        return True
+    
     def addEtiqueta(self, etiqueta):
         if not etiqueta.identificador in self.etiquetas:
             self.etiquetas[etiqueta.identificador] = etiqueta

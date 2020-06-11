@@ -9,8 +9,11 @@ class Unset(Instruccion) :
         self.columna = columna
     
     def ejecutar(self,ts,mensajes) :
-        return True
+        band = ts.deleteSimbolo(self.temporal)
 
+        if not band:
+            mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'No se puede eliminar la temporal porque no existe.',self.linea,self.columna))
+            
     def getAST_Ascendente(self) :
         print('ast')
     
