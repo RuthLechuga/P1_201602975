@@ -135,8 +135,91 @@ class EditorTexto:
             print(mensaje.mensaje,"en:",mensaje.linea,",",mensaje.columna)
     
     def reporte_ts(self):
-        print('reporte tabla')
-    
+        global ts_global
+        html = ''' 
+        <html>
+            <head>
+                <style>
+                    table {
+                        width:100%;
+                    }
+                    table, th, td {
+                        border: 1px solid black;
+                        border-collapse: collapse;
+                    }
+                    th, td {
+                        padding: 15px;
+                        text-align: left;
+                    }
+                    table#t01 th {
+                        background-color: black;
+                        color: white;
+                    }
+                    table#t02 th {
+                        background-color: blue;
+                        color: white;
+                    }
+                </style>
+            </head>
+            <body>
+            <h1>Simbolos</h1>
+            <table id="t01">
+                <tr>
+                    <th>Identificador</th>
+                    <th>Tipo</th> 
+                    <th>Dimension</th>
+                    <th>Valor</th>
+                    <th>Linea</th>
+                    <th>Columna</th>
+                    <th>Ambito</th>
+                </tr>
+        '''
+
+        for simbolo in ts_global.simbolos.values():
+            html += '''
+                <tr>
+                    <td>'''+simbolo.identificador+'''</td>
+                    <td>'''+simbolo.tipo.name+'''</td>
+                    <td>'''+str(simbolo.dimension)+'''</td>
+                    <td>'''+str(simbolo.valor)+'''</td>
+                    <td>'''+str(simbolo.linea)+'''</td>
+                    <td>'''+str(simbolo.columna)+'''</td>
+                    <td>'''+simbolo.ambito+'''</td>
+                </tr>
+            '''
+        html += '''</table> <br> <br> <br>'''
+        
+        html += '''<h1>Etiquetas</h1>
+                <table id="t02">
+                <tr>
+                    <th>Identificador</th>
+                    <th>Tipo</th> 
+                    <th>Linea</th>
+                    <th>Columna</th>
+                </tr>
+        '''
+        for etiqueta in ts_global.etiquetas.values():
+            html += '''
+                <tr>
+                    <td>'''+etiqueta.identificador+'''</td>
+                    <td>'''+etiqueta.tipo_estructura.name+'''</td>
+                    <td>'''+str(etiqueta.linea)+'''</td>
+                    <td>'''+str(etiqueta.columna)+'''</td>
+                </tr>
+            '''
+        html += '''</table>'''
+        
+        html += '''</body>
+            </html>
+        '''
+        try:
+            file = open('TS.html', 'w')
+            file.write(html)
+        except:
+            pass
+        finally:
+            file.close()
+
     def reporte_ast(self):
         print('reporte ast')
 

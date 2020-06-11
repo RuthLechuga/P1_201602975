@@ -177,7 +177,7 @@ def p_labels_label(t):
 
 def p_label(t):
     'label    : LABEL DPUNTOS instrucciones'
-    t[0] = Etiqueta(t[1],TIPO_ESTRUCTURA.CONTROL,0,0,t[3])
+    t[0] = Etiqueta(t[1],TIPO_ESTRUCTURA.CONTROL,t.lineno(2),find_column(entrada, t.slice[2]),t[3])
 
 def p_instrucciones_lista(t):
     'instrucciones     : instrucciones instruccion'
