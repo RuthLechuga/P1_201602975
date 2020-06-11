@@ -152,6 +152,7 @@ from Arbol.Asignacion import *
 from Arbol.BitToBit import *
 from Arbol.Convertir import *
 from Arbol.Etiqueta import *
+from Arbol.Goto import *
 from Arbol.Instruccion import *
 from Arbol.Logica import *
 from Arbol.Print import *
@@ -201,7 +202,7 @@ def p_instruccion_print(t):
 
 def p_instruccion_goto(t):
     'goto_inst     : GOTO LABEL PTCOMA'
-    print('instruccion goto')
+    t[0] = Goto(t[2],t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_instruccion_exit(t):
     'exit_inst     : EXIT PTCOMA'

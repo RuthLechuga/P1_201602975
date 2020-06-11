@@ -116,7 +116,9 @@ class EditorTexto:
         print('-----------------------------------------------')
 
         for instruccion in main.instrucciones:
-            instruccion.ejecutar(ts_global,mensajes)
+            res = instruccion.ejecutar(ts_global,mensajes)
+            if res:
+                break
     
     def ej_descendente(self):
         print('descendente')

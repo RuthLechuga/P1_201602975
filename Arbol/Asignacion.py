@@ -18,7 +18,7 @@ class Asignacion(Instruccion) :
             return
         
         #validar arreglo, tipos de datos y ambitos
-        ts.addSimbolo(Simbolo(self.identificador,TIPO_DATO.ENTERO,0,temporal,self.linea,self.columna,'Global'))
+        ts.addSimbolo(Simbolo(self.identificador,TIPO_DATO.ENTERO,0,temporal,self.linea,self.columna,ts.getEtActual()))
     
     def getAST_Ascendente(self) :
         print('ast')
