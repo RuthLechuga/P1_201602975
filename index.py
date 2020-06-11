@@ -104,6 +104,11 @@ class EditorTexto:
         global mensajes
         mensajes = []
         etiquetas = g_asc.parse(self.text.get(0.0, END))
+        mensajes = g_asc.mensajes
+
+        if len(mensajes) > 0:
+            print('>>>>>Errores<<<<<')
+            return
 
         global ts_global
         ts_global = TS.TablaDeSimbolos()
@@ -112,9 +117,7 @@ class EditorTexto:
             if not ts_global.addEtiqueta(etiqueta):
                 mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'La etiqueta: '+etiqueta.identificador+' ya existe.',0,0))
         
-        main = ts_global.getEtiqueta('main')
         print('-----------------------------------------------')
-
         goto=0
         for etiqueta in etiquetas:
             for instruccion in etiqueta.instrucciones:
@@ -131,8 +134,58 @@ class EditorTexto:
 
     def reporte_errores(self):
         global mensajes
+        html = ''' 
+        <html>
+            <head>
+                <style>
+                    table {
+                        width:100%;
+                    }
+                    table, th, td {
+                        border: 1px solid black;
+                        border-collapse: collapse;
+                    }
+                    th, td {
+                        padding: 15px;
+                        text-align: left;
+                    }
+                    table#t01 th {
+                        background-color: blue;
+                        color: white;
+                    }
+                </style>
+            </head>
+            <body>
+            <h1>Errores</h1>
+            <table id="t01">
+                <tr>
+                    <th>Tipo</th> 
+                    <th>Mensaje</th>
+                    <th>Linea</th>
+                    <th>Columna</th>
+                </tr>
+        '''
+
         for mensaje in mensajes:
-            print(mensaje.mensaje,"en:",mensaje.linea,",",mensaje.columna)
+            html += '''
+                <tr>
+                    <td>'''+mensaje.tipo_mensaje.name+'''</td>
+                    <td>'''+mensaje.mensaje+'''</td>
+                    <td>'''+str(mensaje.linea)+'''</td>
+                    <td>'''+str(mensaje.columna)+'''</td>
+                </tr>
+            '''
+        html += '''</table>
+            </body>
+            </html>
+        '''
+        try:
+            file = open('Errores.html', 'w')
+            file.write(html)
+        except:
+            pass
+        finally:
+            file.close()
     
     def reporte_ts(self):
         global ts_global

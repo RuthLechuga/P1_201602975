@@ -89,7 +89,8 @@ def t_DECIMAL(t):
     try:
         t.value = float(t.value)
     except ValueError:
-        print("Float value too large %d", t.value)
+        global mensajes
+        mensajes.append(Mensaje(TIPO_MENSAJE.LEXICO,'Valor decimal muy largo para almacenar en: '+t.value+'.',t.lexer.lineno,0))
         t.value = 0
     return t
 
@@ -98,7 +99,8 @@ def t_ENTERO(t):
     try:
         t.value = int(t.value)
     except ValueError:
-        print("Integer value too large %d", t.value)
+        global mensajes
+        mensajes.append(Mensaje(TIPO_MENSAJE.LEXICO,'Valor entero muy largo para almacenar en: '+t.value+'.',t.lexer.lineno,0))
         t.value = 0
     return t
 
@@ -143,7 +145,8 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
     
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
+    global mensajes
+    mensajes.append(Mensaje(TIPO_MENSAJE.LEXICO,'Caracter no válido: '+t.value[0]+'.',t.lexer.lineno,0))
     t.lexer.skip(1)
 
 import ply.lex as lex
@@ -156,6 +159,7 @@ from Arbol.Goto import *
 from Arbol.If import *
 from Arbol.Instruccion import *
 from Arbol.Logica import *
+from Arbol.Mensaje import *
 from Arbol.Print import *
 from Arbol.Relacional import *
 from Arbol.Unaria import *
@@ -349,7 +353,8 @@ def p_expresion_simple_cadena(t):
     t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_error(t):
-    print("Error sintáctico en '%s'" % t.value)
+    global mensajes
+    mensajes.append(Mensaje(TIPO_MENSAJE.SINTACTICO,'Error sintáctico en: '+t.value+'.',t.lineno,find_column(entrada, t)))
 
 def find_column(input, token):
     line_start = input.rfind('\n', 0, token.lexpos) + 1
@@ -359,6 +364,7 @@ import ply.yacc as yacc
 parser = yacc.yacc()
 
 entrada = ''
+mensajes = []
 
 def parse(input) :
     global entrada
