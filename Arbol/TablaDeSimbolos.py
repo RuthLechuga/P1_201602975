@@ -4,6 +4,7 @@ class TablaDeSimbolos() :
         self.simbolos = simbolos
         self.etiquetas = etiquetas
         self.et_actual = et_actual
+        self.num_et = 0
 
     def addSimbolo(self, simbolo):
         self.simbolos[simbolo.identificador] = simbolo
@@ -21,25 +22,35 @@ class TablaDeSimbolos() :
         del self.simbolos[identificador]
         return True
     
-    def addEtiqueta(self, etiqueta):
-        if not etiqueta.identificador in self.etiquetas:
-            self.etiquetas[etiqueta.identificador] = etiqueta
-            return True
-                 
-        return False
+    def addEtiqueta(self, new_etiqueta):
+        for etiqueta in self.etiquetas.values():
+            if etiqueta.identificador == new_etiqueta.identificador:
+                return False
+        
+        self.etiquetas[len(self.etiquetas)] = new_etiqueta
+        return True
     
     def getEtiqueta(self, identificador):
-        if not identificador in self.etiquetas:
-            return None
+        for id, etiqueta in self.etiquetas.items():
+            if etiqueta.identificador == identificador:
+                self.num_et = id
+                self.et_actual = etiqueta
+                return etiqueta
 
-        return self.etiquetas[identificador]
+        return None
     
     def getEtiquetas(self):
         return self.etiquetas
     
-    def setEtActual(self, etiqueta):
-        self.et_actual = etiqueta
-    
+    def getSiguiente(self):
+        self.num_et +=1
+
+        if self.num_et==len(self.etiquetas):
+            return None
+        
+        self.et_actual = self.etiquetas[self.num_et].identificador
+        return self.etiquetas[self.num_et]
+       
     def getEtActual(self):
         return self.et_actual
     

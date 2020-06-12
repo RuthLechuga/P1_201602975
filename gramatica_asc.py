@@ -155,6 +155,7 @@ from Arbol.Asignacion import *
 from Arbol.BitToBit import *
 from Arbol.Convertir import *
 from Arbol.Etiqueta import *
+from Arbol.Exit import *
 from Arbol.Goto import *
 from Arbol.If import *
 from Arbol.Instruccion import *
@@ -203,7 +204,7 @@ def p_instruccion(t):
     t[0] = t[1]
 
 def p_instruccion_print(t):
-    'print_inst     : PRINT PIZQ asignable PDER PTCOMA'
+    'print_inst     : PRINT PIZQ expresion_simple PDER PTCOMA'
     t[0] = Print(t[3],t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_instruccion_goto(t):
@@ -212,7 +213,7 @@ def p_instruccion_goto(t):
 
 def p_instruccion_exit(t):
     'exit_inst     : EXIT PTCOMA'
-    print('instruccion exit')
+    t[0] = Exit(t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_instruccion_unset(t):
     'unset_inst     : UNSET PIZQ asignable PDER PTCOMA'

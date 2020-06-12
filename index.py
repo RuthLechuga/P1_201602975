@@ -1,7 +1,9 @@
 from tkinter import ttk
 from tkinter import filedialog
 from tkinter import *
+from Arbol.Exit import *
 from Arbol.Mensaje import *
+from Arbol.Goto import *
 
 import gramatica_asc as g_asc
 import Arbol.TablaDeSimbolos as TS
@@ -118,17 +120,25 @@ class EditorTexto:
                 mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'La etiqueta: '+etiqueta.identificador+' ya existe.',0,0))
         
         print('-----------------------------------------------')
-        goto=0
-        for etiqueta in etiquetas:
+                
+        etiqueta = ts_global.getEtiqueta('main')
+
+        while not (etiqueta is None):
+
+            bandera = False
+
             for instruccion in etiqueta.instrucciones:
                 res = instruccion.ejecutar(ts_global,mensajes)
-                if res:
-                    goto = 1;
+                if isinstance(instruccion,Goto) or isinstance(instruccion,Exit):
+                    etiqueta = res
+                    bandera = True
                     break
             
-            if goto==1:
-                break
-    
+            if bandera:
+                continue
+
+            etiqueta = ts_global.getSiguiente()
+             
     def ej_descendente(self):
         print('descendente')
 
@@ -167,14 +177,17 @@ class EditorTexto:
         '''
 
         for mensaje in mensajes:
-            html += '''
+            print(str(mensaje.mensaje))
+            if True or mensaje.tipo_mensaje != TIPO_MENSAJE.LOG:
+                html += '''
                 <tr>
                     <td>'''+mensaje.tipo_mensaje.name+'''</td>
-                    <td>'''+mensaje.mensaje+'''</td>
+                    <td>'''+str(mensaje.mensaje)+'''</td>
                     <td>'''+str(mensaje.linea)+'''</td>
                     <td>'''+str(mensaje.columna)+'''</td>
                 </tr>
-            '''
+                '''
+
         html += '''</table>
             </body>
             </html>

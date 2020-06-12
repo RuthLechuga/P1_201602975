@@ -1,16 +1,15 @@
 from .Instruccion import Instruccion
 from .Mensaje import *
 
-class Goto(Instruccion) :
+class Exit(Instruccion) :
 
-    def __init__(self, etiqueta, linea, columna) :
-        self.etiqueta = etiqueta
+    def __init__(self, linea, columna) :
         self.linea = linea
         self.columna = columna
     
     def ejecutar(self,ts,mensajes) :
-        return ts.getEtiqueta(self.etiqueta)
-
+        return None
+        
     def getAST_Ascendente(self) :
         print('ast')
     

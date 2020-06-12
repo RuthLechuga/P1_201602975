@@ -3,19 +3,19 @@ from .Mensaje import *
 
 class Print(Instruccion) :
 
-    def __init__(self, temporal, linea, columna) :
-        self.temporal = temporal
+    def __init__(self, expresion, linea, columna) :
+        self.expresion = expresion
         self.linea = linea
         self.columna = columna
     
     def ejecutar(self,ts,mensajes) :
-        simbolo = ts.getSimbolo(self.temporal)
+        valor = self.expresion.ejecutar(ts,mensajes)
 
-        if simbolo is None:
-            mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'No se ha encontrado el identificador '+self.temporal+'.',self.linea,self.columna))           
+        if valor is None:
+            mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'No se ha podido procesar la información del print.'+self.temporal+'.',self.linea,self.columna))           
             return
         
-        mensajes.append(Mensaje(TIPO_MENSAJE.LOG,simbolo.valor,self.linea,self.columna))
+        mensajes.append(Mensaje(TIPO_MENSAJE.LOG,valor,self.linea,self.columna))
         
     def getAST_Ascendente(self) :
         print('ast')
