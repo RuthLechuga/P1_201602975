@@ -3,7 +3,7 @@ from tkinter import filedialog
 from tkinter import *
 from Arbol.Exit import *
 from Arbol.Mensaje import *
-from Arbol.Goto import *
+from Arbol.Etiqueta import *
 
 import gramatica_asc as g_asc
 import Arbol.TablaDeSimbolos as TS
@@ -129,7 +129,7 @@ class EditorTexto:
 
             for instruccion in etiqueta.instrucciones:
                 res = instruccion.ejecutar(ts_global,mensajes)
-                if isinstance(instruccion,Goto) or isinstance(instruccion,Exit):
+                if isinstance(res,Etiqueta) or isinstance(instruccion,Exit):
                     etiqueta = res
                     bandera = True
                     break

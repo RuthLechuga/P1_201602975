@@ -81,8 +81,8 @@ t_BBAND             = r'&'
 t_BBOR              = r'\|'
 t_BBXOR             = r'\^'
 t_DESIGUAL_QUE      = r'!='
-t_RA                = r'$ra'
-t_SP                = r'$sp'
+t_RA                = r'\$ra'
+t_SP                = r'\$sp'
 
 def t_DECIMAL(t):
     r'\d+\.\d+'
