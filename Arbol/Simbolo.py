@@ -5,6 +5,7 @@ class TIPO_DATO(Enum) :
     DECIMAL = 2
     CADENA = 3
     CARACTER = 4
+    ARREGLO = 5
 
 class Simbolo() :
     def __init__(self, identificador, tipo, dimension, valor, linea, columna, ambito) :

@@ -34,7 +34,7 @@ class TablaDeSimbolos() :
         for id, etiqueta in self.etiquetas.items():
             if etiqueta.identificador == identificador:
                 self.num_et = id
-                self.et_actual = etiqueta
+                self.et_actual = etiqueta.identificador
                 return etiqueta
 
         return None

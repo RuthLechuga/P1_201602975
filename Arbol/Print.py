@@ -12,7 +12,7 @@ class Print(Instruccion) :
         valor = self.expresion.ejecutar(ts,mensajes)
 
         if valor is None:
-            mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'No se ha podido procesar la información del print.'+self.temporal+'.',self.linea,self.columna))           
+            mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'No se ha podido procesar la información del print.',self.linea,self.columna))           
             return
         
         mensajes.append(Mensaje(TIPO_MENSAJE.LOG,valor,self.linea,self.columna))

@@ -150,8 +150,10 @@ def t_error(t):
     t.lexer.skip(1)
 
 import ply.lex as lex
+from Arbol.Acceso import *
 from Arbol.Aritmetica import *
 from Arbol.Asignacion import *
+from Arbol.AsignacionArray import *
 from Arbol.BitToBit import *
 from Arbol.Convertir import *
 from Arbol.Etiqueta import *
@@ -162,6 +164,7 @@ from Arbol.Instruccion import *
 from Arbol.Logica import *
 from Arbol.Mensaje import *
 from Arbol.Print import *
+from Arbol.Read import *
 from Arbol.Relacional import *
 from Arbol.Unaria import *
 from Arbol.Unset import *
@@ -200,6 +203,7 @@ def p_instruccion(t):
                         | unset_inst
                         | if_inst
                         | asig_inst
+                        | asig_array_inst
     '''
     t[0] = t[1]
 
@@ -236,11 +240,28 @@ def p_instruccion_asignacion_conversion(t):
 
 def p_instruccion_asignacion_read(t):
     ' asig_inst     : asignable ASIG READ PIZQ PDER PTCOMA '
-    print('asignacion read')
+    t[0] = Read(t[1],t.lineno(2),find_column(entrada, t.slice[2]))
 
 def p_instruccion_asignacion_array(t):
     ' asig_inst     : asignable ASIG ARRAY PIZQ PDER PTCOMA '
-    print('asignacion array')
+    t[0] = Asignacion(t[1],{},t.lineno(2),find_column(entrada, t.slice[2]))
+
+def p_instruccion_asignacion_acceso_arreglo(t):
+    ' asig_array_inst : asignable accesos ASIG expresion PTCOMA'
+    t[0] = AsignacionArray(t[1],t[2],t[4],t.lineno(3),find_column(entrada, t.slice[3]))
+
+def p_accesos(t):
+    ' accesos   : accesos acceso '
+    t[1].append(t[2])
+    t[0] = t[1]
+
+def p_accesos_acceso(t):
+    ' accesos   : acceso'
+    t[0] = [t[1]]
+
+def p_acceso(t):
+    ' acceso    : CIZQ expresion_simple CDER '
+    t[0] = t[2]
 
 def p_registros_asignables(t):
     '''asignable     : TEMPORAL
@@ -251,13 +272,6 @@ def p_registros_asignables(t):
                      | SP
     '''
     t[0] = t[1]
-
-def p_registros_asignables_array(t):
-    '''asignable     : TEMPORAL CIZQ expresion_simple CDER
-                     | PARAMETRO CIZQ expresion_simple CDER
-                     | RETORNO CIZQ expresion_simple CDER
-                     | PILA CIZQ expresion_simple CDER
-    '''
 
 def p_expresion(t):
     ''' expresion     : expresion_simple MAS expresion_simple
@@ -321,12 +335,8 @@ def p_bit_not(t):
     t[0] = BitToBit(t[2],None,TIPO_BIT_BIT.NOT,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_acceso_arreglo(t):
-    ''' expresion     : TEMPORAL CIZQ expresion_simple CDER
-                      | PARAMETRO CIZQ expresion_simple CDER
-                      | RETORNO CIZQ expresion_simple CDER
-                      | PILA CIZQ expresion_simple CDER
-    '''
-    print('acceso arreglo');
+    ''' expresion_simple     : asignable accesos '''
+    t[0] = Acceso(t[1],t[2])
 
 def p_expresion_simple_identificador(t):
     '''expresion_simple     : TEMPORAL

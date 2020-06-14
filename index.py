@@ -244,13 +244,13 @@ class EditorTexto:
         for simbolo in ts_global.simbolos.values():
             html += '''
                 <tr>
-                    <td>'''+simbolo.identificador+'''</td>
-                    <td>'''+simbolo.tipo.name+'''</td>
+                    <td>'''+str(simbolo.identificador)+'''</td>
+                    <td>'''+str(simbolo.tipo.name)+'''</td>
                     <td>'''+str(simbolo.dimension)+'''</td>
                     <td>'''+str(simbolo.valor)+'''</td>
                     <td>'''+str(simbolo.linea)+'''</td>
                     <td>'''+str(simbolo.columna)+'''</td>
-                    <td>'''+simbolo.ambito+'''</td>
+                    <td>'''+str(simbolo.ambito)+'''</td>
                 </tr>
             '''
         html += '''</table> <br> <br> <br>'''

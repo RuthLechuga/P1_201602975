@@ -11,11 +11,15 @@ class Asignacion(Instruccion) :
         self.columna = columna
     
     def ejecutar(self,ts,mensajes) :
-        temporal = self.expresion.ejecutar(ts,mensajes)
 
-        if temporal is None:
-            mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'La expresión para el identificador '+self.identificador+' es inválida.',self.linea,self.columna))
-            return
+        if not isinstance(self.expresion,dict):
+            temporal = self.expresion.ejecutar(ts,mensajes)
+
+            if temporal is None:
+                mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'La expresión para el identificador '+self.identificador+' es inválida.',self.linea,self.columna))
+                return
+        else:
+            temporal = {}
 
         tipo_dato = None
         dimension = 1
@@ -31,6 +35,9 @@ class Asignacion(Instruccion) :
         
         elif isinstance(temporal,str):
             tipo_dato = TIPO_DATO.CADENA
+        
+        elif isinstance(temporal,dict):
+            tipo_dato = TIPO_DATO.ARREGLO
         
         #validar arreglo, tipos de datos y ambitos
         ts.addSimbolo(Simbolo(self.identificador,tipo_dato,dimension,temporal,self.linea,self.columna,ts.getEtActual()))
