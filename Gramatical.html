@@ -1,0 +1,1067 @@
+ 
+        <html>
+<head> 
+    <style>
+        table {
+            width:100%;
+            white-space: pre-line;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        table#t01 th {
+            background-color: black;
+            color: white;
+        }
+        table#t02 th {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+
+            <body>
+            <h1>Reporte Gramatical</h1>
+            <table id="t02">
+                <tr>
+                    <th>Produccion</th>
+                    <th>Regla Semántica</th> 
+                </tr>
+        
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_inst -> asignable ASIG ARRAY PIZQ PDER PTCOMA </td>
+                    <td>t[0] = Asignacion(t[1],{},t.lineno(2),find_column(entrada, t.slice[2]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instruccion</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> acceso</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_array_inst -> asignable accesos ASIG expresion PTCOMA</td>
+                    <td>t[0] = AsignacionArray(t[1],t[2],t[4],t.lineno(3),find_column(entrada, t.slice[3]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_array_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> acceso</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_array_inst -> asignable accesos ASIG expresion PTCOMA</td>
+                    <td>t[0] = AsignacionArray(t[1],t[2],t[4],t.lineno(3),find_column(entrada, t.slice[3]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_array_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> acceso</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_array_inst -> asignable accesos ASIG expresion PTCOMA</td>
+                    <td>t[0] = AsignacionArray(t[1],t[2],t[4],t.lineno(3),find_column(entrada, t.slice[3]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_array_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> acceso</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_array_inst -> asignable accesos ASIG expresion PTCOMA</td>
+                    <td>t[0] = AsignacionArray(t[1],t[2],t[4],t.lineno(3),find_column(entrada, t.slice[3]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_array_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> acceso</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_array_inst -> asignable accesos ASIG expresion PTCOMA</td>
+                    <td>t[0] = AsignacionArray(t[1],t[2],t[4],t.lineno(3),find_column(entrada, t.slice[3]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_array_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> acceso</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_array_inst -> asignable accesos ASIG expresion PTCOMA</td>
+                    <td>t[0] = AsignacionArray(t[1],t[2],t[4],t.lineno(3),find_column(entrada, t.slice[3]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_array_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> acceso</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_array_inst -> asignable accesos ASIG expresion PTCOMA</td>
+                    <td>t[0] = AsignacionArray(t[1],t[2],t[4],t.lineno(3),find_column(entrada, t.slice[3]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_array_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> acceso</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_array_inst -> asignable accesos ASIG expresion PTCOMA</td>
+                    <td>t[0] = AsignacionArray(t[1],t[2],t[4],t.lineno(3),find_column(entrada, t.slice[3]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_array_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> acceso</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_array_inst -> asignable accesos ASIG expresion PTCOMA</td>
+                    <td>t[0] = AsignacionArray(t[1],t[2],t[4],t.lineno(3),find_column(entrada, t.slice[3]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_array_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> acceso</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_array_inst -> asignable accesos ASIG expresion PTCOMA</td>
+                    <td>t[0] = AsignacionArray(t[1],t[2],t[4],t.lineno(3),find_column(entrada, t.slice[3]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_array_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> acceso</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_array_inst -> asignable accesos ASIG expresion PTCOMA</td>
+                    <td>t[0] = AsignacionArray(t[1],t[2],t[4],t.lineno(3),find_column(entrada, t.slice[3]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_array_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_inst -> asignable ASIG expresion PTCOMA</td>
+                    <td>t[0] = Asignacion(t[1],t[3],t.lineno(2),find_column(entrada, t.slice[2]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>label -> LABEL DPUNTOS instrucciones</td>
+                    <td>t[0] = Etiqueta(t[1],TIPO_ESTRUCTURA.CONTROL,t.lineno(2),find_column(entrada, t.slice[2]),t[3])</td>
+                </tr>
+                
+                <tr>
+                    <td>labels -> label</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> TEMPORAL</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.IDENTIFICADOR,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple MAYOR_QUE expresion_simple</td>
+                    <td>t[0] = Relacional(t[1],t[3],TIPO_RELACIONAL.MAYOR_QUE,t.lineno(2),find_column(entrada, t.slice[2]))</td>
+                </tr>
+                
+                <tr>
+                    <td>goto_inst -> GOTO LABEL PTCOMA</td>
+                    <td>t[0] = Goto(t[2],t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> goto_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>if_inst -> IF PIZQ expresion PDER instruccion</td>
+                    <td>t[0] = If(t[3],t[5],t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> if_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instruccion</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> TEMPORAL</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.IDENTIFICADOR,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> acceso</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> CADENA</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>acceso -> CIZQ expresion_simple CDER</td>
+                    <td>t[0] = t[2]</td>
+                </tr>
+                
+                <tr>
+                    <td>accesos -> accesos acceso</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> asignable accesos</td>
+                    <td>t[0] = Acceso(t[1],t[2])</td>
+                </tr>
+                
+                <tr>
+                    <td>print_inst -> PRINT PIZQ expresion_simple PDER PTCOMA</td>
+                    <td>t[0] = Print(t[3],t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> print_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>asignable -> TEMPORAL</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> TEMPORAL</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.IDENTIFICADOR,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion_simple -> ENTERO</td>
+                    <td>t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>expresion -> expresion_simple MAS expresion_simple</td>
+                    <td>t[0] = Aritmetica(t[1],t[3],TIPO_ARITMETICA.SUMA,t.lineno(2),find_column(entrada, t.slice[2]))</td>
+                </tr>
+                
+                <tr>
+                    <td>asig_inst -> asignable ASIG expresion PTCOMA</td>
+                    <td>t[0] = Asignacion(t[1],t[3],t.lineno(2),find_column(entrada, t.slice[2]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> asig_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>goto_inst -> GOTO LABEL PTCOMA</td>
+                    <td>t[0] = Goto(t[2],t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> goto_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instrucciones instruccion</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>label -> LABEL DPUNTOS instrucciones</td>
+                    <td>t[0] = Etiqueta(t[1],TIPO_ESTRUCTURA.CONTROL,t.lineno(2),find_column(entrada, t.slice[2]),t[3])</td>
+                </tr>
+                
+                <tr>
+                    <td>labels -> labels label</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>exit_inst -> EXIT PTCOMA</td>
+                    <td>t[0] = Exit(t.lineno(1),find_column(entrada, t.slice[1]))</td>
+                </tr>
+                
+                <tr>
+                    <td>instruccion -> exit_inst</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>instrucciones -> instruccion</td>
+                    <td>t[0] = [t[1]]</td>
+                </tr>
+                
+                <tr>
+                    <td>label -> LABEL DPUNTOS instrucciones</td>
+                    <td>t[0] = Etiqueta(t[1],TIPO_ESTRUCTURA.CONTROL,t.lineno(2),find_column(entrada, t.slice[2]),t[3])</td>
+                </tr>
+                
+                <tr>
+                    <td>labels -> labels label</td>
+                    <td>t[1].append(t[2])
+t[0] = t[1]</td>
+                </tr>
+                
+                <tr>
+                    <td>init -> labels</td>
+                    <td>t[0] = t[1]</td>
+                </tr>
+                </table></body>
+            </html>
+        

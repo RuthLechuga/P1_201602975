@@ -11,6 +11,33 @@ import Arbol.TablaDeSimbolos as TS
 mensajes = []
 ts_global = None
 is_ascendente = False;
+reporte_gramatical = []
+head_html = '''
+<head> 
+    <style>
+        table {
+            width:100%;
+            white-space: pre-line;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        table#t01 th {
+            background-color: black;
+            color: white;
+        }
+        table#t02 th {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+'''
 
 class EditorTexto:
     def __init__(self):
@@ -105,18 +132,20 @@ class EditorTexto:
     
     def ej_ascendente(self):
         global is_ascendente
-        is_ascendente = True
-
         global mensajes
+        global ts_global
+        global reporte_gramatical
+       
+        is_ascendente = True
         mensajes = []
         etiquetas = g_asc.parse(self.text.get(0.0, END))
         mensajes = g_asc.mensajes
+        reporte_gramatical = g_asc.reporte_gramatical
 
         if len(mensajes) > 0:
             print('>>>>>Errores<<<<<')
             return
 
-        global ts_global
         ts_global = TS.TablaDeSimbolos()
 
         for etiqueta in etiquetas:
@@ -148,27 +177,9 @@ class EditorTexto:
 
     def reporte_errores(self):
         global mensajes
+        global head_html
         html = ''' 
-        <html>
-            <head>
-                <style>
-                    table {
-                        width:100%;
-                    }
-                    table, th, td {
-                        border: 1px solid black;
-                        border-collapse: collapse;
-                    }
-                    th, td {
-                        padding: 15px;
-                        text-align: left;
-                    }
-                    table#t01 th {
-                        background-color: blue;
-                        color: white;
-                    }
-                </style>
-            </head>
+        <html>'''+head_html+'''
             <body>
             <h1>Errores</h1>
             <table id="t01">
@@ -206,31 +217,9 @@ class EditorTexto:
     
     def reporte_ts(self):
         global ts_global
+        global head_html
         html = ''' 
-        <html>
-            <head>
-                <style>
-                    table {
-                        width:100%;
-                    }
-                    table, th, td {
-                        border: 1px solid black;
-                        border-collapse: collapse;
-                    }
-                    th, td {
-                        padding: 15px;
-                        text-align: left;
-                    }
-                    table#t01 th {
-                        background-color: black;
-                        color: white;
-                    }
-                    table#t02 th {
-                        background-color: blue;
-                        color: white;
-                    }
-                </style>
-            </head>
+        <html>'''+head_html+'''
             <body>
             <h1>Simbolos</h1>
             <table id="t01">
@@ -310,8 +299,39 @@ class EditorTexto:
         print(arbol)
 
     def reporte_gramatical(self):
-        print('reporte gramatical')
-    
+        global reporte_gramatical
+        global head_html
+        html = ''' 
+        <html>'''+head_html+'''
+            <body>
+            <h1>Reporte Gramatical</h1>
+            <table id="t02">
+                <tr>
+                    <th>Produccion</th>
+                    <th>Regla Semántica</th> 
+                </tr>
+        '''
+        if is_ascendente:
+            for r in reporte_gramatical:
+                html += '''
+                <tr>
+                    <td>'''+r[0]+'''</td>
+                    <td>'''+r[1]+'''</td>
+                </tr>
+                '''
+        html += '''</table>'''
+        
+        html += '''</body>
+            </html>
+        '''
+        try:
+            file = open('Gramatical.html', 'w')
+            file.write(html)
+        except:
+            pass
+        finally:
+            file.close()
+
     def cambiar_color(self):
         print('cambiar color')
     
