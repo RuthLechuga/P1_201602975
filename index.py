@@ -10,6 +10,7 @@ import Arbol.TablaDeSimbolos as TS
 
 mensajes = []
 ts_global = None
+is_ascendente = False;
 
 class EditorTexto:
     def __init__(self):
@@ -103,6 +104,9 @@ class EditorTexto:
         print('reemplazar')
     
     def ej_ascendente(self):
+        global is_ascendente
+        is_ascendente = True
+
         global mensajes
         mensajes = []
         etiquetas = g_asc.parse(self.text.get(0.0, END))
@@ -287,7 +291,23 @@ class EditorTexto:
             file.close()
 
     def reporte_ast(self):
-        print('reporte ast')
+        global is_ascendente
+        global ts_global
+
+        arbol = 'digraph ast_ascendente {\n init -> labels\n '
+
+        if is_ascendente:
+        
+            for etiqueta in ts_global.etiquetas.values():
+                arbol+= 'labels -> et_'+etiqueta.identificador+'\n'
+                arbol += 'et_'+etiqueta.identificador+' -> et_'+etiqueta.identificador+'_instrucciones\n'
+
+                for instruccion in etiqueta.instrucciones:
+                    arbol += 'et_'+etiqueta.identificador+'_instrucciones -> '+'\"'+str(instruccion)+'\"'+'\n'
+                    arbol += instruccion.getAST_Ascendente()
+
+        arbol += "\n}"
+        print(arbol)
 
     def reporte_gramatical(self):
         print('reporte gramatical')

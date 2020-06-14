@@ -21,10 +21,28 @@ class If(Instruccion) :
             return None 
 
     def getAST_Ascendente(self) :
-        print('ast')
+        arbol = '\"'+str(self)+'\"' + '[label=\"if_inst\"] ;\n'
+        
+        arbol += '\"if_'+str(self)+'\"' + '[label=\"if\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"if_'+str(self)+'\"\n'
+        
+        arbol += '\"PIZQ_'+str(self)+'\"' + '[label=\"(\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"PIZQ_'+str(self)+'\"\n'
+
+        arbol += '\"'+str(self.condicion)+'\"' + '[label=\"condicion\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"'+str(self.condicion)+'\"\n'
+        arbol += self.condicion.getAST_Ascendente()
+        
+        arbol += '\"PDER_'+str(self)+'\"' + '[label=\")\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"PDER_'+str(self)+'\"\n'
+        
+        arbol += '\"ins_'+str(self)+'\"' + '[label=\"instruccion\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"ins_'+str(self)+'\"\n'
+
+        arbol += '\"ins_'+str(self)+'\"'+' -> '+ '\"'+str(self.instruccion)+'\"\n'
+        arbol += self.instruccion.getAST_Ascendente()
+        
+        return arbol
     
     def getAST_Descendente(self) :
         print('ast')
-    
-    def getRepGramatical(self) :
-        print('gramatical')

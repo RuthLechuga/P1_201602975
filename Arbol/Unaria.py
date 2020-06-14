@@ -50,10 +50,30 @@ class Unaria(Instruccion) :
             return (-1)*temporal
 
     def getAST_Ascendente(self) :
-        print('ast')
+        if self.tipo == TIPO_UNARIO.CADENA:
+            arbol = '\"exp_'+str(self)+'\"' + '[label=\"CADENA\"] ;\n'
+            arbol += '\"'+str(self)+'\" -> '+'\"exp_'+str(self)+'\"'
+        
+        elif self.tipo == TIPO_UNARIO.ENTERO:
+            arbol = '\"exp_'+str(self)+'\"' + '[label=\"ENTERO\"] ;\n'
+            arbol += '\"'+str(self)+'\" -> '+'\"exp_'+str(self)+'\"'
+        
+        elif self.tipo == TIPO_UNARIO.DECIMAL:
+            arbol = '\"exp_'+str(self)+'\"' + '[label=\"DECIMAL\"] ;\n'
+            arbol += '\"'+str(self)+'\" -> '+'\"exp_'+str(self)+'\"'
+        
+        elif self.tipo == TIPO_UNARIO.IDENTIFICADOR:
+            arbol = '\"exp_'+str(self)+'\"' + '[label=\"IDENTIFICADOR\"] ;\n'
+            arbol += '\"'+str(self)+'\" -> '+'\"exp_'+str(self)+'\"'
+        
+        elif self.tipo == TIPO_UNARIO.NEGATIVO:
+            arbol = '\"exp_neg_'+str(self)+'\"' + '[label=\"-\"] ;\n'
+            arbol += '\"'+str(self)+'\" -> '+'\"exp_neg_'+str(self)+'\"\n'
+            arbol += '\"'+str(self.valor)+'\"' + '[label=\"expresion\"] ;\n'
+            arbol += '\"'+str(self)+'\" -> '+'\"'+str(self.valor)+'\"\n'
+            arbol += self.valor.getAST_Ascendente()
+        
+        return arbol
     
     def getAST_Descendente(self) :
         print('ast')
-    
-    def getRepGramatical(self) :
-        print('gramatical')

@@ -18,10 +18,22 @@ class Print(Instruccion) :
         mensajes.append(Mensaje(TIPO_MENSAJE.LOG,valor,self.linea,self.columna))
         
     def getAST_Ascendente(self) :
-        print('ast')
+        arbol = '\"'+str(self)+'\"' + '[label=\"print_inst\"] ;\n'
+        
+        arbol += '\"print_'+str(self)+'\"' + '[label=\"print\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"print_'+str(self)+'\"\n'
+        
+        arbol += '\"PIZQ_'+str(self)+'\"' + '[label=\"(\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"PIZQ_'+str(self)+'\"\n'
+        
+        arbol += '\"'+str(self.expresion)+'\"' + '[label=\"expresion\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"'+str(self.expresion)+'\"\n'
+
+        arbol += '\"PDER_'+str(self)+'\"' + '[label=\")\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"PDER_'+str(self)+'\"\n'
+
+        arbol += self.expresion.getAST_Ascendente()    
+        return arbol
     
     def getAST_Descendente(self) :
         print('ast')
-    
-    def getRepGramatical(self) :
-        print('gramatical')

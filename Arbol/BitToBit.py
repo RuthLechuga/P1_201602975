@@ -112,10 +112,34 @@ class BitToBit(Instruccion) :
         
 
     def getAST_Ascendente(self) :
-        print('ast')
-    
+        arbol = ""
+        if self.derecha is None:
+            arbol += '\"not_'+str(self)+'\"' + '[label=\"not\"] ;\n'
+            arbol +='\"'+str(self)+'\" -> \"abs_'+str(self)+'\"\n'
+
+            arbol += '\"PIZQ_'+str(self)+'\"' + '[label=\"(\"] ;\n'
+            arbol +='\"'+str(self)+'\" -> \"PIZQ_'+str(self)+'\"\n'
+
+            arbol += '\"'+str(self.izquierda)+'\"' + '[label=\"expresion\"] ;\n'
+            arbol +='\"'+str(self)+'\" -> \"'+str(self.izquierda)+'\"\n'
+            arbol += self.izquierda.getAST_Ascendente()
+
+            arbol += '\"PDER_'+str(self)+'\"' + '[label=\")\"] ;\n'
+            arbol +='\"'+str(self)+'\" -> \"PDER_'+str(self)+'\"\n'
+                
+        else:
+            arbol += '\"'+str(self.izquierda)+'\"' + '[label=\"expresion\"] ;\n'
+            arbol +='\"'+str(self)+'\" -> \"'+str(self.izquierda)+'\"\n'
+            arbol += self.izquierda.getAST_Ascendente()
+            
+            arbol += '\"sig_'+str(self)+'\"' + '[label=\"'+self.tipo.name+'\"] ;\n'
+            arbol +='\"'+str(self)+'\" -> \"sig_'+str(self)+'\"\n'
+            
+            arbol += '\"'+str(self.derecha)+'\"' + '[label=\"expresion\"] ;\n'
+            arbol +='\"'+str(self)+'\" -> \"'+str(self.derecha)+'\"\n'
+            arbol += self.derecha.getAST_Ascendente()
+        
+        return arbol
+        
     def getAST_Descendente(self) :
         print('ast')
-    
-    def getRepGramatical(self) :
-        print('gramatical')

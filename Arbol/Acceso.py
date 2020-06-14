@@ -33,10 +33,19 @@ class Acceso(Instruccion) :
             return diccionario       
 
     def getAST_Ascendente(self) :
-        print('ast')
+        arbol = '\"id_'+str(self)+'\"' + '[label=\"identificador\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"id_'+str(self)+'\"\n'
+
+        arbol += '\"accesos_'+str(self)+'\"' + '[label=\"accesos\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"accesos_'+str(self)+'\"\n'
+
+        for acceso in self.accesos:
+            arbol += '\"'+str(acceso)+'\"' + '[label=\"acceso\"] ;\n'
+            arbol += '\"accesos_'+str(self)+'\" -> \"'+str(acceso)+"\"\n"
+            arbol += acceso.getAST_Ascendente()
+
+        return arbol
     
     def getAST_Descendente(self) :
         print('ast')
     
-    def getRepGramatical(self) :
-        print('gramatical')

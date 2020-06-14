@@ -12,10 +12,15 @@ class Goto(Instruccion) :
         return ts.getEtiqueta(self.etiqueta)
 
     def getAST_Ascendente(self) :
-        print('ast')
+        arbol = '\"'+str(self)+'\"' + '[label=\"goto_inst\"] ;\n'
+        
+        arbol += '\"goto_'+str(self)+'\"' + '[label=\"goto\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"goto_'+str(self)+'\"\n'
+
+        arbol += '\"et_'+str(self)+'\"' + '[label=\"etiqueta\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"et_'+str(self)+'\"\n'
+        
+        return arbol
     
     def getAST_Descendente(self) :
         print('ast')
-    
-    def getRepGramatical(self) :
-        print('gramatical')

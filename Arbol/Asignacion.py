@@ -43,10 +43,19 @@ class Asignacion(Instruccion) :
         ts.addSimbolo(Simbolo(self.identificador,tipo_dato,dimension,temporal,self.linea,self.columna,ts.getEtActual()))
     
     def getAST_Ascendente(self) :
-        print('ast')
-    
+        arbol = '\"'+str(self)+'\"' + '[label=\"asig_inst\"] ;\n'
+        
+        arbol += '\"id_'+str(self)+'\"' + '[label=\"identificador\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"id_'+str(self)+'\"\n'
+        
+        arbol += '\"asig_'+str(self)+'\"' + '[label=\"=\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"asig_'+str(self)+'\"\n'
+
+        arbol += '\"'+str(self.expresion)+'\"' + '[label=\"expresion\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"'+str(self.expresion)+'\"\n'
+        arbol += self.expresion.getAST_Ascendente()
+
+        return arbol
+        
     def getAST_Descendente(self) :
         print('ast')
-    
-    def getRepGramatical(self) :
-        print('gramatical')

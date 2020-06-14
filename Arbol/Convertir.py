@@ -61,10 +61,28 @@ class Convertir(Instruccion) :
         ts.addSimbolo(Simbolo(self.identificador,TIPO_DATO.ENTERO,0,temporal,self.linea,self.columna,ts.getEtActual()))
     
     def getAST_Ascendente(self) :
-        print('ast')
+        arbol = '\"'+str(self)+'\"' + '[label=\"asig_inst\"] ;\n'
+        
+        arbol += '\"id_'+str(self)+'\"' + '[label=\"identificador\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"id_'+str(self)+'\"\n'
+
+        arbol += '\"as_'+str(self)+'\"' + '[label=\"=\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"as_'+str(self)+'\"\n'
+
+        arbol += '\"PIZQ_'+str(self)+'\"' + '[label=\"(\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"PIZQ_'+str(self)+'\"\n'
+        
+        arbol += '\"tipo_'+str(self)+'\"' + '[label=\"'+self.tipo+'\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"tipo_'+str(self)+'\"\n'
+
+        arbol += '\"PDER_'+str(self)+'\"' + '[label=\")\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"PDER_'+str(self)+'\"\n'
+
+        arbol += '\"'+str(self.expresion)+'\"' + '[label=\"expresion\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"'+str(self.expresion)+'\"\n'
+        arbol += self.expresion.getAST_Ascendente()
+
+        return arbol
     
     def getAST_Descendente(self) :
         print('ast')
-    
-    def getRepGramatical(self) :
-        print('gramatical')

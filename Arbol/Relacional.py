@@ -57,10 +57,18 @@ class Relacional(Instruccion) :
             return 0
          
     def getAST_Ascendente(self) :
-        print('ast')
-    
+        arbol = '\"'+str(self.izquierda)+'\"' + '[label=\"expresion\"] ;\n'
+        arbol +='\"'+str(self)+'\" -> \"'+str(self.izquierda)+'\"\n'
+        arbol += self.izquierda.getAST_Ascendente()
+        
+        arbol += '\"sig_'+str(self)+'\"' + '[label=\"'+self.tipo.name+'\"] ;\n'
+        arbol +='\"'+str(self)+'\" -> \"sig_'+str(self)+'\"\n'
+            
+        arbol += '\"'+str(self.derecha)+'\"' + '[label=\"expresion\"] ;\n'
+        arbol +='\"'+str(self)+'\" -> \"'+str(self.derecha)+'\"\n'
+        arbol += self.derecha.getAST_Ascendente()
+
+        return arbol
+
     def getAST_Descendente(self) :
         print('ast')
-    
-    def getRepGramatical(self) :
-        print('gramatical')

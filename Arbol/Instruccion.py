@@ -12,7 +12,3 @@ class Instruccion(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def getAST_Descendente(self) :
         pass
-    
-    @abc.abstractmethod
-    def getRepGramatical(self) :
-        pass
