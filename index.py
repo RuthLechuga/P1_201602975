@@ -4,14 +4,22 @@ from tkinter import *
 from Arbol.Exit import *
 from Arbol.Mensaje import *
 from Arbol.Etiqueta import *
-
-import gramatica_asc as g_asc
+from graphviz import Source
 import Arbol.TablaDeSimbolos as TS
+import gramatica_asc as g_asc
+import webbrowser
+
+#bibliotecas para interfaz gráfica
+from magicsticklibs.TextPad import TextPad
+from magicsticklibs.Graphics import Tkinter as tk, tkFileDialog, tkMessageBox 
+from magicsticklibs.FontChooser import FontChooser, Font_wm
 
 mensajes = []
 ts_global = None
 is_ascendente = False;
 reporte_gramatical = []
+path_archivo = ''
+new = 2
 head_html = '''
 <head> 
     <style>
@@ -42,28 +50,26 @@ head_html = '''
 class EditorTexto:
     def __init__(self):
         self.root = Tk()
+        self.root.geometry('1000x600')
         self.root.wm_title("Augus IDE")
-
-        scrollbar = Scrollbar(self.root)
-        scrollbar.pack(side=RIGHT, fill=Y)
-
-        menubar = Menu(self.root)
+        self.root.resizable(False,False)
         
-        mArchivo = Menu(menubar)
-        mArchivo.add_command(label="Nuevo", command=self.nuevo)
+        self.text = TextPad(self.root, bg="#81BEF7")
+        
+        menubar = Menu(self.root)
+        mArchivo = Menu(menubar, background='#FFFFFF',foreground='blue')
         mArchivo.add_command(label="Abrir", command=self.abrir)
         mArchivo.add_command(label="Guardar", command=self.guardar)
         mArchivo.add_command(label="Guardar Como", command=self.guardarComo)
-        mArchivo.add_command(label="Cerrar", command=self.cerrar)
         mArchivo.add_command(label="Salir", command=self.salir)
         menubar.add_cascade(label="Archivo", menu=mArchivo)
 
-        mEditar = Menu(menubar)
+        """mEditar = Menu(menubar, background='#FFFFFF',foreground='blue')
         mEditar.add_command(label="Buscar", command=self.buscar)
         mEditar.add_command(label="Reemplazar", command=self.reemplazar)
-        menubar.add_cascade(label="Editar", menu=mEditar)
+        menubar.add_cascade(label="Editar", menu=mEditar)"""
 
-        mEjecutar = Menu(menubar)
+        mEjecutar = Menu(menubar, background='#FFFFFF',foreground='blue')
         mEjecutar.add_command(label="Ejecutar ascendente", command=self.ej_ascendente)
         mEjecutar.add_command(label="Ejecutar descendente", command=self.ej_descendente)
         mEjecutar.add_command(label="Reporte errores", command=self.reporte_errores)
@@ -72,64 +78,112 @@ class EditorTexto:
         mEjecutar.add_command(label="Reporte gramatical",command=self.reporte_gramatical)
         menubar.add_cascade(label="Ejecutar", menu=mEjecutar)
 
-        mOpciones = Menu(menubar)
-        mOpciones.add_command(label="Color fondo",command=self.cambiar_color)
-        mOpciones.add_command(label="Activar lineas",command=self.activar_linas)
-        menubar.add_cascade(label="Opciones", menu=mOpciones)
+        mOpciones = Menu(menubar, background='#FFFFFF',foreground='blue')
+        mOpciones.add_command(label="Font",command=self.font)
 
-        mAyuda = Menu(menubar)
+        mColores = Menu(menubar, background='#FFFFFF',foreground='blue')
+        mColores.add_command(label="Celeste",command=self.celeste)
+        mColores.add_command(label="Verde",command=self.verde)
+        mColores.add_command(label="Blanco",command=self.blanco)
+        mColores.add_command(label="Gris",command=self.gris)
+        mColores.add_command(label="Rosa",command=self.rosa)
+        mColores.add_command(label="Lila",command=self.lila)
+        mOpciones.add_cascade(label="Color fondo", menu=mColores)
+        menubar.add_cascade(label="Opciones", menu=mOpciones)
+        
+        mAyuda = Menu(menubar, background='#FFFFFF',foreground='blue')
         mAyuda.add_command(label="Acerca de", command=self.acerca)
         menubar.add_cascade(label="Ayuda", menu=mAyuda)
         self.root.config(menu=menubar)
 
-        self.text = Text(self.root)
-        self.text.pack(expand=YES, fill=BOTH)
+        tab_control = ttk.Notebook(self.root)
+        tab_consola = ttk.Frame(tab_control)
+        self.tab_errores = ttk.Frame(tab_control)
+        tab_ts = ttk.Frame(tab_control)
+        tab_control.add(tab_consola,text='CONSOLA')
+        tab_control.add(self.tab_errores,text='ERRORES')
+        tab_control.add(tab_ts,text='TABLA SIMBOLOS')
+        tab_control.pack(expand=1, fill='both')
 
-        self.text.config(yscrollcommand=scrollbar.set)
-        scrollbar.config(command=self.text.yview)
+        self.consola = Text(tab_consola,bg="#000000",fg="#FFFFFF")
+        self.consola.pack(expand=True, fill='both')
+        
+        self.tipo = Entry(self.tab_errores, borderwidth=1, width=15, bg="black", fg='white', font=('Arial',11,'bold')) 
+        self.tipo.grid(row=0, column=0) 
+        self.tipo.insert(END, 'Tipo') 
+
+        self.linea = Entry(self.tab_errores, borderwidth=1, width=10, bg="black", fg='white', font=('Arial',11,'bold'))
+        self.linea.grid(row=0, column=1) 
+        self.linea.insert(END, 'Linea') 
+
+        self.columna = Entry(self.tab_errores, borderwidth=1, width=10, bg="black", fg='white', font=('Arial',11,'bold'))
+        self.columna.grid(row=0, column=2) 
+        self.columna.insert(END, 'Columna') 
+
+        self.error = Entry(self.tab_errores, borderwidth=1, width=95, bg="black", fg='white', font=('Arial',11,'bold'))
+        self.error.grid(row=0, column=3) 
+        self.error.insert(END, 'Error') 
 
         self.root.mainloop()
-        
-    def nuevo(self):
-        print('nuevo')
     
-    def abrir(self):
-        fileName = askopenfilename()
-        try:
-            file = open(fileName, 'r')
-            contents = file.read()
+    def celeste(self):
+        self.text.change_color("#81BEF7")
+    
+    def verde(self):
+        self.text.change_color("#81F79F")
 
-            self.text.delete(0.0, END)
-            self.text.insert(0.0, contents)
-        except:
-            pass
+    def blanco(self):
+        self.text.change_color("#FFFFFF")
+    
+    def gris(self):
+        self.text.change_color("#D8D8D8")
+
+    def rosa(self):
+        self.text.change_color("#F5A9F2")
+
+    def lila(self):
+        self.text.change_color("#E2A9F3")
+    
+    def font(self):
+        Font_wm(self.text)
+        
+    def abrir(self):
+        path = tkFileDialog.askopenfilename()
+        if path:
+            data=open(path,"rb").read()
+            self.text.delete_text()
+            self.text.insert_text(data)
+            self.path_archivo = path
+        return
 
     def guardar(self):
-        fileName = asksaveasfilename()
-        try:
-            file = open(fileName, 'w')
-            textoutput = self.text.get(0.0, END)
-            file.write(textoutput)
-        except:
-            pass
-        finally:
-            file.close()
+        if self.path_archivo == '':
+            path = tkFileDialog.asksaveasfilename()
+        else:
+            path = self.path_archivo
+        if path:
+            data = self.text.get_text()
+            f_=open(path,"w")
+            f_.write(data)
+            f_.close()
+            print('guardado')
+        return
 
     def guardarComo(self):
-        print('Guardar Como')
+        path = tkFileDialog.asksaveasfilename()
+        if path:
+            data = self.text.get_text()
+            f_=open(path,"w")
+            f_.write(data)
+            f_.close()
+            self.path_archivo = path
+        return
 
     def salir(self):
-        print('salir')
-    
-    def cerrar(self):
-        print('cerrar')
-    
-    def buscar(self):
-        print('buscar')
-    
-    def reemplazar(self):
-        print('reemplazar')
-    
+        import sys
+        sys.exit(0)
+        return
+
     def ej_ascendente(self):
         global is_ascendente
         global mensajes
@@ -138,12 +192,14 @@ class EditorTexto:
        
         is_ascendente = True
         mensajes = []
-        etiquetas = g_asc.parse(self.text.get(0.0, END))
+        etiquetas = g_asc.parse(self.text.get_text())
         mensajes = g_asc.mensajes
         reporte_gramatical = g_asc.reporte_gramatical
 
         if len(mensajes) > 0:
-            print('>>>>>Errores<<<<<')
+            self.consola.delete('1.0',END)
+            self.consola.insert('1.0','>>>>>Errores<<<<<')
+            self.imprimir_errores()
             return
 
         ts_global = TS.TablaDeSimbolos()
@@ -151,9 +207,7 @@ class EditorTexto:
         for etiqueta in etiquetas:
             if not ts_global.addEtiqueta(etiqueta):
                 mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'La etiqueta: '+etiqueta.identificador+' ya existe.',0,0))
-        
-        print('-----------------------------------------------')
-                
+                        
         etiqueta = ts_global.getEtiqueta('main')
 
         while not (etiqueta is None):
@@ -171,6 +225,33 @@ class EditorTexto:
                 continue
 
             etiqueta = ts_global.getSiguiente()
+        
+        salida = ""
+        for mensaje in mensajes:
+            if mensaje.tipo_mensaje == TIPO_MENSAJE.LOG:
+                salida += str(mensaje.mensaje)+"\n"
+        
+        self.consola.delete('1.0',END)
+        self.consola.insert('1.0',salida)
+        self.imprimir_errores()
+    
+    def imprimir_errores(self):
+        fila = 1
+        for mensaje in mensajes:
+            if mensaje.tipo_mensaje != TIPO_MENSAJE.LOG:
+                tipo = Entry(self.tab_errores, borderwidth=1, width=15, fg='black', font=('Arial',11)) 
+                tipo.grid(row=fila, column=0) 
+                tipo.insert(END, mensaje.tipo_mensaje.name)
+                linea = Entry(self.tab_errores, borderwidth=1, width=10, fg='black', font=('Arial',11))
+                linea.grid(row=fila, column=1) 
+                linea.insert(END, mensaje.linea)
+                columna = Entry(self.tab_errores, borderwidth=1, width=10, fg='black', font=('Arial',11))
+                columna.grid(row=fila, column=2) 
+                columna.insert(END, mensaje.columna)
+                error = Entry(self.tab_errores, borderwidth=1, width=95, fg='black', font=('Arial',11))
+                error.grid(row=fila, column=3) 
+                error.insert(END, mensaje.mensaje) 
+            fila+=1
              
     def ej_descendente(self):
         print('descendente')
@@ -192,8 +273,7 @@ class EditorTexto:
         '''
 
         for mensaje in mensajes:
-            print(str(mensaje.mensaje))
-            if True or mensaje.tipo_mensaje != TIPO_MENSAJE.LOG:
+            if mensaje.tipo_mensaje != TIPO_MENSAJE.LOG:
                 html += '''
                 <tr>
                     <td>'''+mensaje.tipo_mensaje.name+'''</td>
@@ -214,6 +294,8 @@ class EditorTexto:
             pass
         finally:
             file.close()
+            global new
+            webbrowser.open('Errores.html',new=new)
     
     def reporte_ts(self):
         global ts_global
@@ -278,6 +360,8 @@ class EditorTexto:
             pass
         finally:
             file.close()
+            global new
+            webbrowser.open('TS.html',new=new)
 
     def reporte_ast(self):
         global is_ascendente
@@ -296,7 +380,10 @@ class EditorTexto:
                     arbol += instruccion.getAST_Ascendente()
 
         arbol += "\n}"
-        print(arbol)
+        #print(arbol)
+
+        s = Source(arbol, filename="AST", format="svg")
+        s.view()
 
     def reporte_gramatical(self):
         global reporte_gramatical
@@ -331,18 +418,23 @@ class EditorTexto:
             pass
         finally:
             file.close()
-
-    def cambiar_color(self):
-        print('cambiar color')
-    
-    def activar_linas(self):
-        print('lineas')
-
+            global new
+            webbrowser.open('Gramatical.html',new=new)
+   
     def acerca(self):
         root = Tk()
-        root.wm_title("Acerca De")
-        texto=("Augus es un lenguaje de programación, basado en PHP y en MIPS. Su principal funcionalidad es ser un lenguaje intermedio, ni de alto nivel como PHP ni de bajo nivel como el lenguaje ensamblador de MIPS. \n Elaborado por Ruth Lechuga, 201602975")
-        textONlabel = Label(root, text=texto)
-        textONlabel.pack()
+        root.geometry('300x100')
+        root.wm_title("Augus IDE")
+        root.configure(bg="#81BEF7")
+        root.resizable(False,False)
+
+        textAugust = Label(root, text='August IDE', bg="#81BEF7")
+        textAugust.pack()
+
+        textName = Label(root,text='Ruth Nohemy Ardón Lechuga', bg="#81BEF7")
+        textName.pack()
+
+        textCarnet = Label(root,text='201602975',bg="#81BEF7")
+        textCarnet.pack()
 
 EditorTexto()

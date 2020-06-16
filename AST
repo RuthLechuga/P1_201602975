@@ -1,0 +1,17 @@
+digraph ast_ascendente {
+ init -> labels
+ labels -> et_main
+et_main -> et_main_instrucciones
+et_main_instrucciones -> "<Arbol.Print.Print object at 0x0000021A16915CA0>"
+"<Arbol.Print.Print object at 0x0000021A16915CA0>"[label="print_inst"] ;
+"print_<Arbol.Print.Print object at 0x0000021A16915CA0>"[label="print"] ;
+"<Arbol.Print.Print object at 0x0000021A16915CA0>" -> "print_<Arbol.Print.Print object at 0x0000021A16915CA0>"
+"PIZQ_<Arbol.Print.Print object at 0x0000021A16915CA0>"[label="("] ;
+"<Arbol.Print.Print object at 0x0000021A16915CA0>" -> "PIZQ_<Arbol.Print.Print object at 0x0000021A16915CA0>"
+"<Arbol.Unaria.Unaria object at 0x0000021A16915D60>"[label="expresion"] ;
+"<Arbol.Print.Print object at 0x0000021A16915CA0>" -> "<Arbol.Unaria.Unaria object at 0x0000021A16915D60>"
+"PDER_<Arbol.Print.Print object at 0x0000021A16915CA0>"[label=")"] ;
+"<Arbol.Print.Print object at 0x0000021A16915CA0>" -> "PDER_<Arbol.Print.Print object at 0x0000021A16915CA0>"
+"exp_<Arbol.Unaria.Unaria object at 0x0000021A16915D60>"[label="CADENA"] ;
+"<Arbol.Unaria.Unaria object at 0x0000021A16915D60>" -> "exp_<Arbol.Unaria.Unaria object at 0x0000021A16915D60>"
+}
