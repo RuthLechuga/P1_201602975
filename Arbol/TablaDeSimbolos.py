@@ -54,5 +54,7 @@ class TablaDeSimbolos() :
     def getEtActual(self):
         return self.et_actual
     
-
+    def reiniciar(self):
+        self.etiquetas.clear()
+        self.simbolos.clear()
     

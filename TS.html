@@ -1,28 +1,30 @@
  
         <html>
-            <head>
-                <style>
-                    table {
-                        width:100%;
-                    }
-                    table, th, td {
-                        border: 1px solid black;
-                        border-collapse: collapse;
-                    }
-                    th, td {
-                        padding: 15px;
-                        text-align: left;
-                    }
-                    table#t01 th {
-                        background-color: black;
-                        color: white;
-                    }
-                    table#t02 th {
-                        background-color: blue;
-                        color: white;
-                    }
-                </style>
-            </head>
+<head> 
+    <style>
+        table {
+            width:100%;
+            white-space: pre-line;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        table#t01 th {
+            background-color: black;
+            color: white;
+        }
+        table#t02 th {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+
             <body>
             <h1>Simbolos</h1>
             <table id="t01">
@@ -38,11 +40,11 @@
         
                 <tr>
                     <td>$t1</td>
-                    <td>ENTERO</td>
-                    <td>1</td>
-                    <td>1</td>
+                    <td>ARREGLO</td>
+                    <td>3</td>
+                    <td>{0: {'nombre': 'Daniel', 'direccion': 'zona 4', 'telefono': {0: 48842446, 1: 48842447}}, 1: {'nombre': 'Hugo', 'direccion': 'zona 8', 'telefono': {0: 24659865}}, 2: {'nombre': 'Manuel', 'direccion': 'zona 11', 'telefono': {0: 53435623, 1: 53435624}}}</td>
                     <td>2</td>
-                    <td>4</td>
+                    <td>9</td>
                     <td>main</td>
                 </tr>
             
@@ -50,20 +52,10 @@
                     <td>$t2</td>
                     <td>ENTERO</td>
                     <td>1</td>
-                    <td>1</td>
                     <td>3</td>
-                    <td>4</td>
-                    <td>main</td>
-                </tr>
-            
-                <tr>
-                    <td>$t3</td>
-                    <td>ENTERO</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>4</td>
-                    <td>4</td>
-                    <td>main</td>
+                    <td>23</td>
+                    <td>8</td>
+                    <td>while0</td>
                 </tr>
             </table> <br> <br> <br><h1>Etiquetas</h1>
                 <table id="t02">
@@ -78,6 +70,20 @@
                     <td>main</td>
                     <td>CONTROL</td>
                     <td>1</td>
+                    <td>5</td>
+                </tr>
+            
+                <tr>
+                    <td>while0</td>
+                    <td>CONTROL</td>
+                    <td>20</td>
+                    <td>7</td>
+                </tr>
+            
+                <tr>
+                    <td>end0</td>
+                    <td>CONTROL</td>
+                    <td>26</td>
                     <td>5</td>
                 </tr>
             </table></body>

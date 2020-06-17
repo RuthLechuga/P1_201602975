@@ -7,6 +7,7 @@ from Arbol.Etiqueta import *
 from graphviz import Source
 import Arbol.TablaDeSimbolos as TS
 import gramatica_asc as g_asc
+import gramatica_desc as g_desc
 import webbrowser
 
 #bibliotecas para interfaz gráfica
@@ -187,15 +188,49 @@ class EditorTexto:
     def ej_ascendente(self):
         global is_ascendente
         global mensajes
-        global ts_global
         global reporte_gramatical
-       
+        
         is_ascendente = True
-        mensajes = []
+        del mensajes[:]
         etiquetas = g_asc.parse(self.text.get_text())
         mensajes = g_asc.mensajes
         reporte_gramatical = g_asc.reporte_gramatical
+        self.ejecutar(etiquetas)
+    
+    def imprimir_errores(self):
+        fila = 1
+        for mensaje in mensajes:
+            if mensaje.tipo_mensaje != TIPO_MENSAJE.LOG:
+                tipo = Entry(self.tab_errores, borderwidth=1, width=15, fg='black', font=('Arial',11)) 
+                tipo.grid(row=fila, column=0) 
+                tipo.insert(END, mensaje.tipo_mensaje.name)
+                linea = Entry(self.tab_errores, borderwidth=1, width=10, fg='black', font=('Arial',11))
+                linea.grid(row=fila, column=1) 
+                linea.insert(END, mensaje.linea)
+                columna = Entry(self.tab_errores, borderwidth=1, width=10, fg='black', font=('Arial',11))
+                columna.grid(row=fila, column=2) 
+                columna.insert(END, mensaje.columna)
+                error = Entry(self.tab_errores, borderwidth=1, width=95, fg='black', font=('Arial',11))
+                error.grid(row=fila, column=3) 
+                error.insert(END, mensaje.mensaje) 
+            fila+=1
+             
+    def ej_descendente(self):
+        global is_ascendente
+        global mensajes
+        global reporte_gramatical
+        
+        is_ascendente = False
+        mensajes = []
+        etiquetas = g_desc.parse(self.text.get_text())
+        mensajes = g_desc.mensajes
+        reporte_gramatical = g_desc.reporte_gramatical
+        self.ejecutar(etiquetas)
 
+    def ejecutar(self,etiquetas):
+        global mensajes
+        global ts_global
+        
         if len(mensajes) > 0:
             self.consola.delete('1.0',END)
             self.consola.insert('1.0','>>>>>Errores<<<<<')
@@ -203,6 +238,7 @@ class EditorTexto:
             return
 
         ts_global = TS.TablaDeSimbolos()
+        ts_global.reiniciar()
 
         for etiqueta in etiquetas:
             if not ts_global.addEtiqueta(etiqueta):
@@ -234,27 +270,7 @@ class EditorTexto:
         self.consola.delete('1.0',END)
         self.consola.insert('1.0',salida)
         self.imprimir_errores()
-    
-    def imprimir_errores(self):
-        fila = 1
-        for mensaje in mensajes:
-            if mensaje.tipo_mensaje != TIPO_MENSAJE.LOG:
-                tipo = Entry(self.tab_errores, borderwidth=1, width=15, fg='black', font=('Arial',11)) 
-                tipo.grid(row=fila, column=0) 
-                tipo.insert(END, mensaje.tipo_mensaje.name)
-                linea = Entry(self.tab_errores, borderwidth=1, width=10, fg='black', font=('Arial',11))
-                linea.grid(row=fila, column=1) 
-                linea.insert(END, mensaje.linea)
-                columna = Entry(self.tab_errores, borderwidth=1, width=10, fg='black', font=('Arial',11))
-                columna.grid(row=fila, column=2) 
-                columna.insert(END, mensaje.columna)
-                error = Entry(self.tab_errores, borderwidth=1, width=95, fg='black', font=('Arial',11))
-                error.grid(row=fila, column=3) 
-                error.insert(END, mensaje.mensaje) 
-            fila+=1
-             
-    def ej_descendente(self):
-        print('descendente')
+        
 
     def reporte_errores(self):
         global mensajes

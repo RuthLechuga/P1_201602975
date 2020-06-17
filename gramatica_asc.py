@@ -143,6 +143,10 @@ t_ignore = " \t"
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
+
+def t_eof(t):
+    r'eof'
+    print('llegue')
     
 def t_error(t):
     global mensajes
@@ -168,6 +172,7 @@ from Arbol.Read import *
 from Arbol.Relacional import *
 from Arbol.Unaria import *
 from Arbol.Unset import *
+
 lexer = lex.lex()
 
 def p_init(t) :
