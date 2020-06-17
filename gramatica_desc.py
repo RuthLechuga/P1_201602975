@@ -305,10 +305,20 @@ def p_asig_valor(t):
         t[0] = AsignacionArray(t[-3],t[-2],t[1],0,0)
 
 def p_asig_conversion(t):
-    'asig_valor : PIZQ tipo PDER expresion'
+    'asig_valor : PIZQ asig_valor_der'
+    t[0] = t[2]
+
+def p_asig_valor_conversion_der(t):
+    'asig_valor_der : tipo PDER expresion'
     global reporte_gramatical
-    reporte_gramatical.append(['asig_valor -> PIZQ tipo PDER expresion','t[0] = Convertir(t[-3],t[4],t[2],t.lineno(1),find_column(entrada, t.slice[1]))'])
-    t[0] = Convertir(t[-3],t[4],t[2],t.lineno(1),find_column(entrada, t.slice[1]))
+    reporte_gramatical.append(['asig_valor_der -> tipo PDER expresion','t[0] = Convertir(t[-3],t[4],t[2],t.lineno(1),find_column(entrada, t.slice[1]))'])
+    t[0] = Convertir(t[-4],t[3],t[1],t.lineno(2),find_column(entrada, t.slice[2]))
+
+def p_asig_valor_expresion_der(t):
+    'asig_valor_der : expresion PDER'
+    global reporte_gramatical
+    reporte_gramatical.append(['asig_valor_der -> expresion PDER','t[0] = t[1]'])
+    t[0] = t[1]
 
 def p_tipo(t):
     ''' tipo : INT

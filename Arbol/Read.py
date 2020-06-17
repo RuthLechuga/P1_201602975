@@ -12,13 +12,26 @@ class Read(Instruccion) :
         self.columna = columna
     
     def ejecutar(self,ts,mensajes) :
-        valor = easygui.enterbox("Valor para"+self.identificador)
+        valor = easygui.enterbox("Valor para: "+self.identificador)
+        valor_tipado = ''
+        tipo = TIPO_DATO.CADENA
+        
+        try:
+            valor_tipado = int(valor)
+            tipo = TIPO_DATO.ENTERO
+        except:
+            try:
+                valor_tipado = float(valor)
+                tipo = TIPO_DATO.DECIMAL
+            except:
+                valor_tipado = str(valor)
+                tipo = TIPO_DATO.CADENA
 
         print(valor)
         if not valor is None:
-            ts.addSimbolo(Simbolo(self.identificador,TIPO_DATO.CADENA,1,valor,self.linea,self.columna,ts.getEtActual()))
+            ts.addSimbolo(Simbolo(self.identificador,tipo,1,valor_tipado,self.linea,self.columna,ts.getEtActual()))
         else:
-            self.mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'La expresión para el identificador '+self.identificador+' es inválida.',self.linea,self.columna))
+            mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'La expresión para el identificador '+self.identificador+' es inválida.',self.linea,self.columna))
                 
     def getAST_Ascendente(self) :
         arbol = '\"'+str(self)+'\"' + '[label=\"asig_inst\"] ;\n'

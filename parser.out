@@ -24,117 +24,120 @@ Rule 18    unset_inst -> UNSET PIZQ expresion_simple PDER PTCOMA
 Rule 19    if_inst -> IF PIZQ expresion PDER instruccion
 Rule 20    asig_inst -> asignable accesos ASIG asig_valor PTCOMA
 Rule 21    asig_valor -> expresion
-Rule 22    asig_valor -> PIZQ tipo PDER expresion
-Rule 23    tipo -> INT
-Rule 24    tipo -> FLOAT
-Rule 25    tipo -> CHAR
-Rule 26    asig_valor -> READ PIZQ PDER
-Rule 27    asig_valor -> ARRAY PIZQ PDER
-Rule 28    asignable -> TEMPORAL
-Rule 29    asignable -> PARAMETRO
-Rule 30    asignable -> RETORNO
-Rule 31    asignable -> PILA
-Rule 32    asignable -> RA
-Rule 33    asignable -> SP
-Rule 34    accesos -> acceso accesos
-Rule 35    accesos -> epsilon
-Rule 36    acceso -> CIZQ expresion_simple CDER
-Rule 37    expresion -> expresion_simple expresion_der
-Rule 38    expresion_der -> MAS expresion_simple
-Rule 39    expresion_der -> MENOS expresion_simple
-Rule 40    expresion_der -> POR expresion_simple
-Rule 41    expresion_der -> DIVIDIDO expresion_simple
-Rule 42    expresion_der -> MODULO expresion_simple
-Rule 43    expresion_der -> AND expresion_simple
-Rule 44    expresion_der -> OR expresion_simple
-Rule 45    expresion_der -> XOR expresion_simple
-Rule 46    expresion_der -> BBAND expresion_simple
-Rule 47    expresion_der -> BBOR expresion_simple
-Rule 48    expresion_der -> BBXOR expresion_simple
-Rule 49    expresion_der -> BBIZQ expresion_simple
-Rule 50    expresion_der -> BBDER expresion_simple
-Rule 51    expresion_der -> IGUAL_QUE expresion_simple
-Rule 52    expresion_der -> DESIGUAL_QUE expresion_simple
-Rule 53    expresion_der -> MAYOR_QUE expresion_simple
-Rule 54    expresion_der -> MENOR_QUE expresion_simple
-Rule 55    expresion_der -> MAYOR_IGUAL_QUE expresion_simple
-Rule 56    expresion_der -> MENOR_IGUAL_QUE expresion_simple
-Rule 57    expresion_der -> epsilon
-Rule 58    expresion_simple -> MENOS expresion_simple
-Rule 59    expresion -> ABS PIZQ expresion_simple PDER
-Rule 60    expresion -> NOT expresion_simple
-Rule 61    expresion -> BBNOT expresion_simple
-Rule 62    expresion_simple -> asignable accesos
-Rule 63    expresion_simple -> ENTERO
-Rule 64    expresion_simple -> DECIMAL
-Rule 65    expresion_simple -> CADENA
-Rule 66    epsilon -> <empty>
+Rule 22    asig_valor -> PIZQ asig_valor_der
+Rule 23    asig_valor_der -> tipo PDER expresion
+Rule 24    asig_valor_der -> expresion PDER
+Rule 25    tipo -> INT
+Rule 26    tipo -> FLOAT
+Rule 27    tipo -> CHAR
+Rule 28    asig_valor -> READ PIZQ PDER
+Rule 29    asig_valor -> ARRAY PIZQ PDER
+Rule 30    asignable -> TEMPORAL
+Rule 31    asignable -> PARAMETRO
+Rule 32    asignable -> RETORNO
+Rule 33    asignable -> PILA
+Rule 34    asignable -> RA
+Rule 35    asignable -> SP
+Rule 36    accesos -> acceso accesos
+Rule 37    accesos -> epsilon
+Rule 38    acceso -> CIZQ expresion_simple CDER
+Rule 39    expresion -> expresion_simple expresion_der
+Rule 40    expresion_der -> MAS expresion_simple
+Rule 41    expresion_der -> MENOS expresion_simple
+Rule 42    expresion_der -> POR expresion_simple
+Rule 43    expresion_der -> DIVIDIDO expresion_simple
+Rule 44    expresion_der -> MODULO expresion_simple
+Rule 45    expresion_der -> AND expresion_simple
+Rule 46    expresion_der -> OR expresion_simple
+Rule 47    expresion_der -> XOR expresion_simple
+Rule 48    expresion_der -> BBAND expresion_simple
+Rule 49    expresion_der -> BBOR expresion_simple
+Rule 50    expresion_der -> BBXOR expresion_simple
+Rule 51    expresion_der -> BBIZQ expresion_simple
+Rule 52    expresion_der -> BBDER expresion_simple
+Rule 53    expresion_der -> IGUAL_QUE expresion_simple
+Rule 54    expresion_der -> DESIGUAL_QUE expresion_simple
+Rule 55    expresion_der -> MAYOR_QUE expresion_simple
+Rule 56    expresion_der -> MENOR_QUE expresion_simple
+Rule 57    expresion_der -> MAYOR_IGUAL_QUE expresion_simple
+Rule 58    expresion_der -> MENOR_IGUAL_QUE expresion_simple
+Rule 59    expresion_der -> epsilon
+Rule 60    expresion_simple -> MENOS expresion_simple
+Rule 61    expresion -> ABS PIZQ expresion_simple PDER
+Rule 62    expresion -> NOT expresion_simple
+Rule 63    expresion -> BBNOT expresion_simple
+Rule 64    expresion_simple -> asignable accesos
+Rule 65    expresion_simple -> ENTERO
+Rule 66    expresion_simple -> DECIMAL
+Rule 67    expresion_simple -> CADENA
+Rule 68    epsilon -> <empty>
 
 Terminals, with rules where they appear
 
-ABS                  : 59
-AND                  : 43
-ARRAY                : 27
+ABS                  : 61
+AND                  : 45
+ARRAY                : 29
 ASIG                 : 20
-BBAND                : 46
-BBDER                : 50
-BBIZQ                : 49
-BBNOT                : 61
-BBOR                 : 47
-BBXOR                : 48
-CADENA               : 65
-CDER                 : 36
-CHAR                 : 25
-CIZQ                 : 36
-DECIMAL              : 64
-DESIGUAL_QUE         : 52
-DIVIDIDO             : 41
+BBAND                : 48
+BBDER                : 52
+BBIZQ                : 51
+BBNOT                : 63
+BBOR                 : 49
+BBXOR                : 50
+CADENA               : 67
+CDER                 : 38
+CHAR                 : 27
+CIZQ                 : 38
+DECIMAL              : 66
+DESIGUAL_QUE         : 54
+DIVIDIDO             : 43
 DPUNTOS              : 5
-ENTERO               : 63
+ENTERO               : 65
 EXIT                 : 17
-FLOAT                : 24
+FLOAT                : 26
 GOTO                 : 16
 IF                   : 19
-IGUAL_QUE            : 51
-INT                  : 23
+IGUAL_QUE            : 53
+INT                  : 25
 LABEL                : 5 16
-MAS                  : 38
-MAYOR_IGUAL_QUE      : 55
-MAYOR_QUE            : 53
-MENOR_IGUAL_QUE      : 56
-MENOR_QUE            : 54
-MENOS                : 39 58
-MODULO               : 42
-NOT                  : 60
-OR                   : 44
-PARAMETRO            : 29
-PDER                 : 15 18 19 22 26 27 59
-PILA                 : 31
-PIZQ                 : 15 18 19 22 26 27 59
-POR                  : 40
+MAS                  : 40
+MAYOR_IGUAL_QUE      : 57
+MAYOR_QUE            : 55
+MENOR_IGUAL_QUE      : 58
+MENOR_QUE            : 56
+MENOS                : 41 60
+MODULO               : 44
+NOT                  : 62
+OR                   : 46
+PARAMETRO            : 31
+PDER                 : 15 18 19 23 24 28 29 61
+PILA                 : 33
+PIZQ                 : 15 18 19 22 28 29 61
+POR                  : 42
 PRINT                : 15
 PTCOMA               : 15 16 17 18 20
-RA                   : 32
-READ                 : 26
-RETORNO              : 30
-SP                   : 33
-TEMPORAL             : 28
+RA                   : 34
+READ                 : 28
+RETORNO              : 32
+SP                   : 35
+TEMPORAL             : 30
 UNSET                : 18
-XOR                  : 45
+XOR                  : 47
 error                : 
 
 Nonterminals, with rules where they appear
 
-acceso               : 34
-accesos              : 20 34 62
+acceso               : 36
+accesos              : 20 36 64
 asig_inst            : 14
 asig_valor           : 20
-asignable            : 20 62
-epsilon              : 4 8 35 57
+asig_valor_der       : 22
+asignable            : 20 64
+epsilon              : 4 8 37 59
 exit_inst            : 11
-expresion            : 15 19 21 22
-expresion_der        : 37
-expresion_simple     : 18 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 58 59 60 61
+expresion            : 15 19 21 23 24
+expresion_der        : 39
+expresion_simple     : 18 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 60 61 62 63
 goto_inst            : 10
 if_inst              : 13
 init                 : 0
@@ -145,7 +148,7 @@ label                : 2 3
 labels               : 1
 labels_der           : 2 3
 print_inst           : 9
-tipo                 : 22
+tipo                 : 23
 unset_inst           : 12
 
 Parsing method: LALR
@@ -182,10 +185,10 @@ state 3
     (3) labels_der -> . label labels_der
     (4) labels_der -> . epsilon
     (5) label -> . LABEL DPUNTOS instrucciones
-    (66) epsilon -> .
+    (68) epsilon -> .
 
     LABEL           shift and go to state 4
-    $end            reduce using rule 66 (epsilon -> .)
+    $end            reduce using rule 68 (epsilon -> .)
 
     label                          shift and go to state 5
     labels_der                     shift and go to state 6
@@ -204,10 +207,10 @@ state 5
     (3) labels_der -> . label labels_der
     (4) labels_der -> . epsilon
     (5) label -> . LABEL DPUNTOS instrucciones
-    (66) epsilon -> .
+    (68) epsilon -> .
 
     LABEL           shift and go to state 4
-    $end            reduce using rule 66 (epsilon -> .)
+    $end            reduce using rule 68 (epsilon -> .)
 
     label                          shift and go to state 5
     labels_der                     shift and go to state 9
@@ -243,12 +246,12 @@ state 8
     (18) unset_inst -> . UNSET PIZQ expresion_simple PDER PTCOMA
     (19) if_inst -> . IF PIZQ expresion PDER instruccion
     (20) asig_inst -> . asignable accesos ASIG asig_valor PTCOMA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     PRINT           shift and go to state 18
     GOTO            shift and go to state 19
@@ -298,22 +301,22 @@ state 11
     (12) instruccion -> . unset_inst
     (13) instruccion -> . if_inst
     (14) instruccion -> . asig_inst
-    (66) epsilon -> .
+    (68) epsilon -> .
     (15) print_inst -> . PRINT PIZQ expresion PDER PTCOMA
     (16) goto_inst -> . GOTO LABEL PTCOMA
     (17) exit_inst -> . EXIT PTCOMA
     (18) unset_inst -> . UNSET PIZQ expresion_simple PDER PTCOMA
     (19) if_inst -> . IF PIZQ expresion PDER instruccion
     (20) asig_inst -> . asignable accesos ASIG asig_valor PTCOMA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
-    LABEL           reduce using rule 66 (epsilon -> .)
-    $end            reduce using rule 66 (epsilon -> .)
+    LABEL           reduce using rule 68 (epsilon -> .)
+    $end            reduce using rule 68 (epsilon -> .)
     PRINT           shift and go to state 18
     GOTO            shift and go to state 19
     EXIT            shift and go to state 20
@@ -489,13 +492,13 @@ state 22
 state 23
 
     (20) asig_inst -> asignable . accesos ASIG asig_valor PTCOMA
-    (34) accesos -> . acceso accesos
-    (35) accesos -> . epsilon
-    (36) acceso -> . CIZQ expresion_simple CDER
-    (66) epsilon -> .
+    (36) accesos -> . acceso accesos
+    (37) accesos -> . epsilon
+    (38) acceso -> . CIZQ expresion_simple CDER
+    (68) epsilon -> .
 
     CIZQ            shift and go to state 41
-    ASIG            reduce using rule 66 (epsilon -> .)
+    ASIG            reduce using rule 68 (epsilon -> .)
 
     accesos                        shift and go to state 38
     acceso                         shift and go to state 39
@@ -503,182 +506,182 @@ state 23
 
 state 24
 
-    (28) asignable -> TEMPORAL .
+    (30) asignable -> TEMPORAL .
 
-    CIZQ            reduce using rule 28 (asignable -> TEMPORAL .)
-    ASIG            reduce using rule 28 (asignable -> TEMPORAL .)
-    MAS             reduce using rule 28 (asignable -> TEMPORAL .)
-    MENOS           reduce using rule 28 (asignable -> TEMPORAL .)
-    POR             reduce using rule 28 (asignable -> TEMPORAL .)
-    DIVIDIDO        reduce using rule 28 (asignable -> TEMPORAL .)
-    MODULO          reduce using rule 28 (asignable -> TEMPORAL .)
-    AND             reduce using rule 28 (asignable -> TEMPORAL .)
-    OR              reduce using rule 28 (asignable -> TEMPORAL .)
-    XOR             reduce using rule 28 (asignable -> TEMPORAL .)
-    BBAND           reduce using rule 28 (asignable -> TEMPORAL .)
-    BBOR            reduce using rule 28 (asignable -> TEMPORAL .)
-    BBXOR           reduce using rule 28 (asignable -> TEMPORAL .)
-    BBIZQ           reduce using rule 28 (asignable -> TEMPORAL .)
-    BBDER           reduce using rule 28 (asignable -> TEMPORAL .)
-    IGUAL_QUE       reduce using rule 28 (asignable -> TEMPORAL .)
-    DESIGUAL_QUE    reduce using rule 28 (asignable -> TEMPORAL .)
-    MAYOR_QUE       reduce using rule 28 (asignable -> TEMPORAL .)
-    MENOR_QUE       reduce using rule 28 (asignable -> TEMPORAL .)
-    MAYOR_IGUAL_QUE reduce using rule 28 (asignable -> TEMPORAL .)
-    MENOR_IGUAL_QUE reduce using rule 28 (asignable -> TEMPORAL .)
-    PDER            reduce using rule 28 (asignable -> TEMPORAL .)
-    CDER            reduce using rule 28 (asignable -> TEMPORAL .)
-    PTCOMA          reduce using rule 28 (asignable -> TEMPORAL .)
+    CIZQ            reduce using rule 30 (asignable -> TEMPORAL .)
+    ASIG            reduce using rule 30 (asignable -> TEMPORAL .)
+    MAS             reduce using rule 30 (asignable -> TEMPORAL .)
+    MENOS           reduce using rule 30 (asignable -> TEMPORAL .)
+    POR             reduce using rule 30 (asignable -> TEMPORAL .)
+    DIVIDIDO        reduce using rule 30 (asignable -> TEMPORAL .)
+    MODULO          reduce using rule 30 (asignable -> TEMPORAL .)
+    AND             reduce using rule 30 (asignable -> TEMPORAL .)
+    OR              reduce using rule 30 (asignable -> TEMPORAL .)
+    XOR             reduce using rule 30 (asignable -> TEMPORAL .)
+    BBAND           reduce using rule 30 (asignable -> TEMPORAL .)
+    BBOR            reduce using rule 30 (asignable -> TEMPORAL .)
+    BBXOR           reduce using rule 30 (asignable -> TEMPORAL .)
+    BBIZQ           reduce using rule 30 (asignable -> TEMPORAL .)
+    BBDER           reduce using rule 30 (asignable -> TEMPORAL .)
+    IGUAL_QUE       reduce using rule 30 (asignable -> TEMPORAL .)
+    DESIGUAL_QUE    reduce using rule 30 (asignable -> TEMPORAL .)
+    MAYOR_QUE       reduce using rule 30 (asignable -> TEMPORAL .)
+    MENOR_QUE       reduce using rule 30 (asignable -> TEMPORAL .)
+    MAYOR_IGUAL_QUE reduce using rule 30 (asignable -> TEMPORAL .)
+    MENOR_IGUAL_QUE reduce using rule 30 (asignable -> TEMPORAL .)
+    PDER            reduce using rule 30 (asignable -> TEMPORAL .)
+    CDER            reduce using rule 30 (asignable -> TEMPORAL .)
+    PTCOMA          reduce using rule 30 (asignable -> TEMPORAL .)
 
 
 state 25
 
-    (29) asignable -> PARAMETRO .
+    (31) asignable -> PARAMETRO .
 
-    CIZQ            reduce using rule 29 (asignable -> PARAMETRO .)
-    ASIG            reduce using rule 29 (asignable -> PARAMETRO .)
-    MAS             reduce using rule 29 (asignable -> PARAMETRO .)
-    MENOS           reduce using rule 29 (asignable -> PARAMETRO .)
-    POR             reduce using rule 29 (asignable -> PARAMETRO .)
-    DIVIDIDO        reduce using rule 29 (asignable -> PARAMETRO .)
-    MODULO          reduce using rule 29 (asignable -> PARAMETRO .)
-    AND             reduce using rule 29 (asignable -> PARAMETRO .)
-    OR              reduce using rule 29 (asignable -> PARAMETRO .)
-    XOR             reduce using rule 29 (asignable -> PARAMETRO .)
-    BBAND           reduce using rule 29 (asignable -> PARAMETRO .)
-    BBOR            reduce using rule 29 (asignable -> PARAMETRO .)
-    BBXOR           reduce using rule 29 (asignable -> PARAMETRO .)
-    BBIZQ           reduce using rule 29 (asignable -> PARAMETRO .)
-    BBDER           reduce using rule 29 (asignable -> PARAMETRO .)
-    IGUAL_QUE       reduce using rule 29 (asignable -> PARAMETRO .)
-    DESIGUAL_QUE    reduce using rule 29 (asignable -> PARAMETRO .)
-    MAYOR_QUE       reduce using rule 29 (asignable -> PARAMETRO .)
-    MENOR_QUE       reduce using rule 29 (asignable -> PARAMETRO .)
-    MAYOR_IGUAL_QUE reduce using rule 29 (asignable -> PARAMETRO .)
-    MENOR_IGUAL_QUE reduce using rule 29 (asignable -> PARAMETRO .)
-    PDER            reduce using rule 29 (asignable -> PARAMETRO .)
-    CDER            reduce using rule 29 (asignable -> PARAMETRO .)
-    PTCOMA          reduce using rule 29 (asignable -> PARAMETRO .)
+    CIZQ            reduce using rule 31 (asignable -> PARAMETRO .)
+    ASIG            reduce using rule 31 (asignable -> PARAMETRO .)
+    MAS             reduce using rule 31 (asignable -> PARAMETRO .)
+    MENOS           reduce using rule 31 (asignable -> PARAMETRO .)
+    POR             reduce using rule 31 (asignable -> PARAMETRO .)
+    DIVIDIDO        reduce using rule 31 (asignable -> PARAMETRO .)
+    MODULO          reduce using rule 31 (asignable -> PARAMETRO .)
+    AND             reduce using rule 31 (asignable -> PARAMETRO .)
+    OR              reduce using rule 31 (asignable -> PARAMETRO .)
+    XOR             reduce using rule 31 (asignable -> PARAMETRO .)
+    BBAND           reduce using rule 31 (asignable -> PARAMETRO .)
+    BBOR            reduce using rule 31 (asignable -> PARAMETRO .)
+    BBXOR           reduce using rule 31 (asignable -> PARAMETRO .)
+    BBIZQ           reduce using rule 31 (asignable -> PARAMETRO .)
+    BBDER           reduce using rule 31 (asignable -> PARAMETRO .)
+    IGUAL_QUE       reduce using rule 31 (asignable -> PARAMETRO .)
+    DESIGUAL_QUE    reduce using rule 31 (asignable -> PARAMETRO .)
+    MAYOR_QUE       reduce using rule 31 (asignable -> PARAMETRO .)
+    MENOR_QUE       reduce using rule 31 (asignable -> PARAMETRO .)
+    MAYOR_IGUAL_QUE reduce using rule 31 (asignable -> PARAMETRO .)
+    MENOR_IGUAL_QUE reduce using rule 31 (asignable -> PARAMETRO .)
+    PDER            reduce using rule 31 (asignable -> PARAMETRO .)
+    CDER            reduce using rule 31 (asignable -> PARAMETRO .)
+    PTCOMA          reduce using rule 31 (asignable -> PARAMETRO .)
 
 
 state 26
 
-    (30) asignable -> RETORNO .
+    (32) asignable -> RETORNO .
 
-    CIZQ            reduce using rule 30 (asignable -> RETORNO .)
-    ASIG            reduce using rule 30 (asignable -> RETORNO .)
-    MAS             reduce using rule 30 (asignable -> RETORNO .)
-    MENOS           reduce using rule 30 (asignable -> RETORNO .)
-    POR             reduce using rule 30 (asignable -> RETORNO .)
-    DIVIDIDO        reduce using rule 30 (asignable -> RETORNO .)
-    MODULO          reduce using rule 30 (asignable -> RETORNO .)
-    AND             reduce using rule 30 (asignable -> RETORNO .)
-    OR              reduce using rule 30 (asignable -> RETORNO .)
-    XOR             reduce using rule 30 (asignable -> RETORNO .)
-    BBAND           reduce using rule 30 (asignable -> RETORNO .)
-    BBOR            reduce using rule 30 (asignable -> RETORNO .)
-    BBXOR           reduce using rule 30 (asignable -> RETORNO .)
-    BBIZQ           reduce using rule 30 (asignable -> RETORNO .)
-    BBDER           reduce using rule 30 (asignable -> RETORNO .)
-    IGUAL_QUE       reduce using rule 30 (asignable -> RETORNO .)
-    DESIGUAL_QUE    reduce using rule 30 (asignable -> RETORNO .)
-    MAYOR_QUE       reduce using rule 30 (asignable -> RETORNO .)
-    MENOR_QUE       reduce using rule 30 (asignable -> RETORNO .)
-    MAYOR_IGUAL_QUE reduce using rule 30 (asignable -> RETORNO .)
-    MENOR_IGUAL_QUE reduce using rule 30 (asignable -> RETORNO .)
-    PDER            reduce using rule 30 (asignable -> RETORNO .)
-    CDER            reduce using rule 30 (asignable -> RETORNO .)
-    PTCOMA          reduce using rule 30 (asignable -> RETORNO .)
+    CIZQ            reduce using rule 32 (asignable -> RETORNO .)
+    ASIG            reduce using rule 32 (asignable -> RETORNO .)
+    MAS             reduce using rule 32 (asignable -> RETORNO .)
+    MENOS           reduce using rule 32 (asignable -> RETORNO .)
+    POR             reduce using rule 32 (asignable -> RETORNO .)
+    DIVIDIDO        reduce using rule 32 (asignable -> RETORNO .)
+    MODULO          reduce using rule 32 (asignable -> RETORNO .)
+    AND             reduce using rule 32 (asignable -> RETORNO .)
+    OR              reduce using rule 32 (asignable -> RETORNO .)
+    XOR             reduce using rule 32 (asignable -> RETORNO .)
+    BBAND           reduce using rule 32 (asignable -> RETORNO .)
+    BBOR            reduce using rule 32 (asignable -> RETORNO .)
+    BBXOR           reduce using rule 32 (asignable -> RETORNO .)
+    BBIZQ           reduce using rule 32 (asignable -> RETORNO .)
+    BBDER           reduce using rule 32 (asignable -> RETORNO .)
+    IGUAL_QUE       reduce using rule 32 (asignable -> RETORNO .)
+    DESIGUAL_QUE    reduce using rule 32 (asignable -> RETORNO .)
+    MAYOR_QUE       reduce using rule 32 (asignable -> RETORNO .)
+    MENOR_QUE       reduce using rule 32 (asignable -> RETORNO .)
+    MAYOR_IGUAL_QUE reduce using rule 32 (asignable -> RETORNO .)
+    MENOR_IGUAL_QUE reduce using rule 32 (asignable -> RETORNO .)
+    PDER            reduce using rule 32 (asignable -> RETORNO .)
+    CDER            reduce using rule 32 (asignable -> RETORNO .)
+    PTCOMA          reduce using rule 32 (asignable -> RETORNO .)
 
 
 state 27
 
-    (31) asignable -> PILA .
+    (33) asignable -> PILA .
 
-    CIZQ            reduce using rule 31 (asignable -> PILA .)
-    ASIG            reduce using rule 31 (asignable -> PILA .)
-    MAS             reduce using rule 31 (asignable -> PILA .)
-    MENOS           reduce using rule 31 (asignable -> PILA .)
-    POR             reduce using rule 31 (asignable -> PILA .)
-    DIVIDIDO        reduce using rule 31 (asignable -> PILA .)
-    MODULO          reduce using rule 31 (asignable -> PILA .)
-    AND             reduce using rule 31 (asignable -> PILA .)
-    OR              reduce using rule 31 (asignable -> PILA .)
-    XOR             reduce using rule 31 (asignable -> PILA .)
-    BBAND           reduce using rule 31 (asignable -> PILA .)
-    BBOR            reduce using rule 31 (asignable -> PILA .)
-    BBXOR           reduce using rule 31 (asignable -> PILA .)
-    BBIZQ           reduce using rule 31 (asignable -> PILA .)
-    BBDER           reduce using rule 31 (asignable -> PILA .)
-    IGUAL_QUE       reduce using rule 31 (asignable -> PILA .)
-    DESIGUAL_QUE    reduce using rule 31 (asignable -> PILA .)
-    MAYOR_QUE       reduce using rule 31 (asignable -> PILA .)
-    MENOR_QUE       reduce using rule 31 (asignable -> PILA .)
-    MAYOR_IGUAL_QUE reduce using rule 31 (asignable -> PILA .)
-    MENOR_IGUAL_QUE reduce using rule 31 (asignable -> PILA .)
-    PDER            reduce using rule 31 (asignable -> PILA .)
-    CDER            reduce using rule 31 (asignable -> PILA .)
-    PTCOMA          reduce using rule 31 (asignable -> PILA .)
+    CIZQ            reduce using rule 33 (asignable -> PILA .)
+    ASIG            reduce using rule 33 (asignable -> PILA .)
+    MAS             reduce using rule 33 (asignable -> PILA .)
+    MENOS           reduce using rule 33 (asignable -> PILA .)
+    POR             reduce using rule 33 (asignable -> PILA .)
+    DIVIDIDO        reduce using rule 33 (asignable -> PILA .)
+    MODULO          reduce using rule 33 (asignable -> PILA .)
+    AND             reduce using rule 33 (asignable -> PILA .)
+    OR              reduce using rule 33 (asignable -> PILA .)
+    XOR             reduce using rule 33 (asignable -> PILA .)
+    BBAND           reduce using rule 33 (asignable -> PILA .)
+    BBOR            reduce using rule 33 (asignable -> PILA .)
+    BBXOR           reduce using rule 33 (asignable -> PILA .)
+    BBIZQ           reduce using rule 33 (asignable -> PILA .)
+    BBDER           reduce using rule 33 (asignable -> PILA .)
+    IGUAL_QUE       reduce using rule 33 (asignable -> PILA .)
+    DESIGUAL_QUE    reduce using rule 33 (asignable -> PILA .)
+    MAYOR_QUE       reduce using rule 33 (asignable -> PILA .)
+    MENOR_QUE       reduce using rule 33 (asignable -> PILA .)
+    MAYOR_IGUAL_QUE reduce using rule 33 (asignable -> PILA .)
+    MENOR_IGUAL_QUE reduce using rule 33 (asignable -> PILA .)
+    PDER            reduce using rule 33 (asignable -> PILA .)
+    CDER            reduce using rule 33 (asignable -> PILA .)
+    PTCOMA          reduce using rule 33 (asignable -> PILA .)
 
 
 state 28
 
-    (32) asignable -> RA .
+    (34) asignable -> RA .
 
-    CIZQ            reduce using rule 32 (asignable -> RA .)
-    ASIG            reduce using rule 32 (asignable -> RA .)
-    MAS             reduce using rule 32 (asignable -> RA .)
-    MENOS           reduce using rule 32 (asignable -> RA .)
-    POR             reduce using rule 32 (asignable -> RA .)
-    DIVIDIDO        reduce using rule 32 (asignable -> RA .)
-    MODULO          reduce using rule 32 (asignable -> RA .)
-    AND             reduce using rule 32 (asignable -> RA .)
-    OR              reduce using rule 32 (asignable -> RA .)
-    XOR             reduce using rule 32 (asignable -> RA .)
-    BBAND           reduce using rule 32 (asignable -> RA .)
-    BBOR            reduce using rule 32 (asignable -> RA .)
-    BBXOR           reduce using rule 32 (asignable -> RA .)
-    BBIZQ           reduce using rule 32 (asignable -> RA .)
-    BBDER           reduce using rule 32 (asignable -> RA .)
-    IGUAL_QUE       reduce using rule 32 (asignable -> RA .)
-    DESIGUAL_QUE    reduce using rule 32 (asignable -> RA .)
-    MAYOR_QUE       reduce using rule 32 (asignable -> RA .)
-    MENOR_QUE       reduce using rule 32 (asignable -> RA .)
-    MAYOR_IGUAL_QUE reduce using rule 32 (asignable -> RA .)
-    MENOR_IGUAL_QUE reduce using rule 32 (asignable -> RA .)
-    PDER            reduce using rule 32 (asignable -> RA .)
-    CDER            reduce using rule 32 (asignable -> RA .)
-    PTCOMA          reduce using rule 32 (asignable -> RA .)
+    CIZQ            reduce using rule 34 (asignable -> RA .)
+    ASIG            reduce using rule 34 (asignable -> RA .)
+    MAS             reduce using rule 34 (asignable -> RA .)
+    MENOS           reduce using rule 34 (asignable -> RA .)
+    POR             reduce using rule 34 (asignable -> RA .)
+    DIVIDIDO        reduce using rule 34 (asignable -> RA .)
+    MODULO          reduce using rule 34 (asignable -> RA .)
+    AND             reduce using rule 34 (asignable -> RA .)
+    OR              reduce using rule 34 (asignable -> RA .)
+    XOR             reduce using rule 34 (asignable -> RA .)
+    BBAND           reduce using rule 34 (asignable -> RA .)
+    BBOR            reduce using rule 34 (asignable -> RA .)
+    BBXOR           reduce using rule 34 (asignable -> RA .)
+    BBIZQ           reduce using rule 34 (asignable -> RA .)
+    BBDER           reduce using rule 34 (asignable -> RA .)
+    IGUAL_QUE       reduce using rule 34 (asignable -> RA .)
+    DESIGUAL_QUE    reduce using rule 34 (asignable -> RA .)
+    MAYOR_QUE       reduce using rule 34 (asignable -> RA .)
+    MENOR_QUE       reduce using rule 34 (asignable -> RA .)
+    MAYOR_IGUAL_QUE reduce using rule 34 (asignable -> RA .)
+    MENOR_IGUAL_QUE reduce using rule 34 (asignable -> RA .)
+    PDER            reduce using rule 34 (asignable -> RA .)
+    CDER            reduce using rule 34 (asignable -> RA .)
+    PTCOMA          reduce using rule 34 (asignable -> RA .)
 
 
 state 29
 
-    (33) asignable -> SP .
+    (35) asignable -> SP .
 
-    CIZQ            reduce using rule 33 (asignable -> SP .)
-    ASIG            reduce using rule 33 (asignable -> SP .)
-    MAS             reduce using rule 33 (asignable -> SP .)
-    MENOS           reduce using rule 33 (asignable -> SP .)
-    POR             reduce using rule 33 (asignable -> SP .)
-    DIVIDIDO        reduce using rule 33 (asignable -> SP .)
-    MODULO          reduce using rule 33 (asignable -> SP .)
-    AND             reduce using rule 33 (asignable -> SP .)
-    OR              reduce using rule 33 (asignable -> SP .)
-    XOR             reduce using rule 33 (asignable -> SP .)
-    BBAND           reduce using rule 33 (asignable -> SP .)
-    BBOR            reduce using rule 33 (asignable -> SP .)
-    BBXOR           reduce using rule 33 (asignable -> SP .)
-    BBIZQ           reduce using rule 33 (asignable -> SP .)
-    BBDER           reduce using rule 33 (asignable -> SP .)
-    IGUAL_QUE       reduce using rule 33 (asignable -> SP .)
-    DESIGUAL_QUE    reduce using rule 33 (asignable -> SP .)
-    MAYOR_QUE       reduce using rule 33 (asignable -> SP .)
-    MENOR_QUE       reduce using rule 33 (asignable -> SP .)
-    MAYOR_IGUAL_QUE reduce using rule 33 (asignable -> SP .)
-    MENOR_IGUAL_QUE reduce using rule 33 (asignable -> SP .)
-    PDER            reduce using rule 33 (asignable -> SP .)
-    CDER            reduce using rule 33 (asignable -> SP .)
-    PTCOMA          reduce using rule 33 (asignable -> SP .)
+    CIZQ            reduce using rule 35 (asignable -> SP .)
+    ASIG            reduce using rule 35 (asignable -> SP .)
+    MAS             reduce using rule 35 (asignable -> SP .)
+    MENOS           reduce using rule 35 (asignable -> SP .)
+    POR             reduce using rule 35 (asignable -> SP .)
+    DIVIDIDO        reduce using rule 35 (asignable -> SP .)
+    MODULO          reduce using rule 35 (asignable -> SP .)
+    AND             reduce using rule 35 (asignable -> SP .)
+    OR              reduce using rule 35 (asignable -> SP .)
+    XOR             reduce using rule 35 (asignable -> SP .)
+    BBAND           reduce using rule 35 (asignable -> SP .)
+    BBOR            reduce using rule 35 (asignable -> SP .)
+    BBXOR           reduce using rule 35 (asignable -> SP .)
+    BBIZQ           reduce using rule 35 (asignable -> SP .)
+    BBDER           reduce using rule 35 (asignable -> SP .)
+    IGUAL_QUE       reduce using rule 35 (asignable -> SP .)
+    DESIGUAL_QUE    reduce using rule 35 (asignable -> SP .)
+    MAYOR_QUE       reduce using rule 35 (asignable -> SP .)
+    MENOR_QUE       reduce using rule 35 (asignable -> SP .)
+    MAYOR_IGUAL_QUE reduce using rule 35 (asignable -> SP .)
+    MENOR_IGUAL_QUE reduce using rule 35 (asignable -> SP .)
+    PDER            reduce using rule 35 (asignable -> SP .)
+    CDER            reduce using rule 35 (asignable -> SP .)
+    PTCOMA          reduce using rule 35 (asignable -> SP .)
 
 
 state 30
@@ -692,22 +695,22 @@ state 30
     (12) instruccion -> . unset_inst
     (13) instruccion -> . if_inst
     (14) instruccion -> . asig_inst
-    (66) epsilon -> .
+    (68) epsilon -> .
     (15) print_inst -> . PRINT PIZQ expresion PDER PTCOMA
     (16) goto_inst -> . GOTO LABEL PTCOMA
     (17) exit_inst -> . EXIT PTCOMA
     (18) unset_inst -> . UNSET PIZQ expresion_simple PDER PTCOMA
     (19) if_inst -> . IF PIZQ expresion PDER instruccion
     (20) asig_inst -> . asignable accesos ASIG asig_valor PTCOMA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
-    LABEL           reduce using rule 66 (epsilon -> .)
-    $end            reduce using rule 66 (epsilon -> .)
+    LABEL           reduce using rule 68 (epsilon -> .)
+    $end            reduce using rule 68 (epsilon -> .)
     PRINT           shift and go to state 18
     GOTO            shift and go to state 19
     EXIT            shift and go to state 20
@@ -750,21 +753,21 @@ state 32
 state 33
 
     (15) print_inst -> PRINT PIZQ . expresion PDER PTCOMA
-    (37) expresion -> . expresion_simple expresion_der
-    (59) expresion -> . ABS PIZQ expresion_simple PDER
-    (60) expresion -> . NOT expresion_simple
-    (61) expresion -> . BBNOT expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (39) expresion -> . expresion_simple expresion_der
+    (61) expresion -> . ABS PIZQ expresion_simple PDER
+    (62) expresion -> . NOT expresion_simple
+    (63) expresion -> . BBNOT expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     ABS             shift and go to state 45
     NOT             shift and go to state 46
@@ -813,17 +816,17 @@ state 35
 state 36
 
     (18) unset_inst -> UNSET PIZQ . expresion_simple PDER PTCOMA
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -842,21 +845,21 @@ state 36
 state 37
 
     (19) if_inst -> IF PIZQ . expresion PDER instruccion
-    (37) expresion -> . expresion_simple expresion_der
-    (59) expresion -> . ABS PIZQ expresion_simple PDER
-    (60) expresion -> . NOT expresion_simple
-    (61) expresion -> . BBNOT expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (39) expresion -> . expresion_simple expresion_der
+    (61) expresion -> . ABS PIZQ expresion_simple PDER
+    (62) expresion -> . NOT expresion_simple
+    (63) expresion -> . BBNOT expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     ABS             shift and go to state 45
     NOT             shift and go to state 46
@@ -885,36 +888,36 @@ state 38
 
 state 39
 
-    (34) accesos -> acceso . accesos
-    (34) accesos -> . acceso accesos
-    (35) accesos -> . epsilon
-    (36) acceso -> . CIZQ expresion_simple CDER
-    (66) epsilon -> .
+    (36) accesos -> acceso . accesos
+    (36) accesos -> . acceso accesos
+    (37) accesos -> . epsilon
+    (38) acceso -> . CIZQ expresion_simple CDER
+    (68) epsilon -> .
 
     CIZQ            shift and go to state 41
-    ASIG            reduce using rule 66 (epsilon -> .)
-    MAS             reduce using rule 66 (epsilon -> .)
-    MENOS           reduce using rule 66 (epsilon -> .)
-    POR             reduce using rule 66 (epsilon -> .)
-    DIVIDIDO        reduce using rule 66 (epsilon -> .)
-    MODULO          reduce using rule 66 (epsilon -> .)
-    AND             reduce using rule 66 (epsilon -> .)
-    OR              reduce using rule 66 (epsilon -> .)
-    XOR             reduce using rule 66 (epsilon -> .)
-    BBAND           reduce using rule 66 (epsilon -> .)
-    BBOR            reduce using rule 66 (epsilon -> .)
-    BBXOR           reduce using rule 66 (epsilon -> .)
-    BBIZQ           reduce using rule 66 (epsilon -> .)
-    BBDER           reduce using rule 66 (epsilon -> .)
-    IGUAL_QUE       reduce using rule 66 (epsilon -> .)
-    DESIGUAL_QUE    reduce using rule 66 (epsilon -> .)
-    MAYOR_QUE       reduce using rule 66 (epsilon -> .)
-    MENOR_QUE       reduce using rule 66 (epsilon -> .)
-    MAYOR_IGUAL_QUE reduce using rule 66 (epsilon -> .)
-    MENOR_IGUAL_QUE reduce using rule 66 (epsilon -> .)
-    PDER            reduce using rule 66 (epsilon -> .)
-    CDER            reduce using rule 66 (epsilon -> .)
-    PTCOMA          reduce using rule 66 (epsilon -> .)
+    ASIG            reduce using rule 68 (epsilon -> .)
+    MAS             reduce using rule 68 (epsilon -> .)
+    MENOS           reduce using rule 68 (epsilon -> .)
+    POR             reduce using rule 68 (epsilon -> .)
+    DIVIDIDO        reduce using rule 68 (epsilon -> .)
+    MODULO          reduce using rule 68 (epsilon -> .)
+    AND             reduce using rule 68 (epsilon -> .)
+    OR              reduce using rule 68 (epsilon -> .)
+    XOR             reduce using rule 68 (epsilon -> .)
+    BBAND           reduce using rule 68 (epsilon -> .)
+    BBOR            reduce using rule 68 (epsilon -> .)
+    BBXOR           reduce using rule 68 (epsilon -> .)
+    BBIZQ           reduce using rule 68 (epsilon -> .)
+    BBDER           reduce using rule 68 (epsilon -> .)
+    IGUAL_QUE       reduce using rule 68 (epsilon -> .)
+    DESIGUAL_QUE    reduce using rule 68 (epsilon -> .)
+    MAYOR_QUE       reduce using rule 68 (epsilon -> .)
+    MENOR_QUE       reduce using rule 68 (epsilon -> .)
+    MAYOR_IGUAL_QUE reduce using rule 68 (epsilon -> .)
+    MENOR_IGUAL_QUE reduce using rule 68 (epsilon -> .)
+    PDER            reduce using rule 68 (epsilon -> .)
+    CDER            reduce using rule 68 (epsilon -> .)
+    PTCOMA          reduce using rule 68 (epsilon -> .)
 
     acceso                         shift and go to state 39
     accesos                        shift and go to state 57
@@ -922,47 +925,47 @@ state 39
 
 state 40
 
-    (35) accesos -> epsilon .
+    (37) accesos -> epsilon .
 
-    ASIG            reduce using rule 35 (accesos -> epsilon .)
-    MAS             reduce using rule 35 (accesos -> epsilon .)
-    MENOS           reduce using rule 35 (accesos -> epsilon .)
-    POR             reduce using rule 35 (accesos -> epsilon .)
-    DIVIDIDO        reduce using rule 35 (accesos -> epsilon .)
-    MODULO          reduce using rule 35 (accesos -> epsilon .)
-    AND             reduce using rule 35 (accesos -> epsilon .)
-    OR              reduce using rule 35 (accesos -> epsilon .)
-    XOR             reduce using rule 35 (accesos -> epsilon .)
-    BBAND           reduce using rule 35 (accesos -> epsilon .)
-    BBOR            reduce using rule 35 (accesos -> epsilon .)
-    BBXOR           reduce using rule 35 (accesos -> epsilon .)
-    BBIZQ           reduce using rule 35 (accesos -> epsilon .)
-    BBDER           reduce using rule 35 (accesos -> epsilon .)
-    IGUAL_QUE       reduce using rule 35 (accesos -> epsilon .)
-    DESIGUAL_QUE    reduce using rule 35 (accesos -> epsilon .)
-    MAYOR_QUE       reduce using rule 35 (accesos -> epsilon .)
-    MENOR_QUE       reduce using rule 35 (accesos -> epsilon .)
-    MAYOR_IGUAL_QUE reduce using rule 35 (accesos -> epsilon .)
-    MENOR_IGUAL_QUE reduce using rule 35 (accesos -> epsilon .)
-    PDER            reduce using rule 35 (accesos -> epsilon .)
-    CDER            reduce using rule 35 (accesos -> epsilon .)
-    PTCOMA          reduce using rule 35 (accesos -> epsilon .)
+    ASIG            reduce using rule 37 (accesos -> epsilon .)
+    MAS             reduce using rule 37 (accesos -> epsilon .)
+    MENOS           reduce using rule 37 (accesos -> epsilon .)
+    POR             reduce using rule 37 (accesos -> epsilon .)
+    DIVIDIDO        reduce using rule 37 (accesos -> epsilon .)
+    MODULO          reduce using rule 37 (accesos -> epsilon .)
+    AND             reduce using rule 37 (accesos -> epsilon .)
+    OR              reduce using rule 37 (accesos -> epsilon .)
+    XOR             reduce using rule 37 (accesos -> epsilon .)
+    BBAND           reduce using rule 37 (accesos -> epsilon .)
+    BBOR            reduce using rule 37 (accesos -> epsilon .)
+    BBXOR           reduce using rule 37 (accesos -> epsilon .)
+    BBIZQ           reduce using rule 37 (accesos -> epsilon .)
+    BBDER           reduce using rule 37 (accesos -> epsilon .)
+    IGUAL_QUE       reduce using rule 37 (accesos -> epsilon .)
+    DESIGUAL_QUE    reduce using rule 37 (accesos -> epsilon .)
+    MAYOR_QUE       reduce using rule 37 (accesos -> epsilon .)
+    MENOR_QUE       reduce using rule 37 (accesos -> epsilon .)
+    MAYOR_IGUAL_QUE reduce using rule 37 (accesos -> epsilon .)
+    MENOR_IGUAL_QUE reduce using rule 37 (accesos -> epsilon .)
+    PDER            reduce using rule 37 (accesos -> epsilon .)
+    CDER            reduce using rule 37 (accesos -> epsilon .)
+    PTCOMA          reduce using rule 37 (accesos -> epsilon .)
 
 
 state 41
 
-    (36) acceso -> CIZQ . expresion_simple CDER
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (38) acceso -> CIZQ . expresion_simple CDER
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -995,28 +998,28 @@ state 43
 
 state 44
 
-    (37) expresion -> expresion_simple . expresion_der
-    (38) expresion_der -> . MAS expresion_simple
-    (39) expresion_der -> . MENOS expresion_simple
-    (40) expresion_der -> . POR expresion_simple
-    (41) expresion_der -> . DIVIDIDO expresion_simple
-    (42) expresion_der -> . MODULO expresion_simple
-    (43) expresion_der -> . AND expresion_simple
-    (44) expresion_der -> . OR expresion_simple
-    (45) expresion_der -> . XOR expresion_simple
-    (46) expresion_der -> . BBAND expresion_simple
-    (47) expresion_der -> . BBOR expresion_simple
-    (48) expresion_der -> . BBXOR expresion_simple
-    (49) expresion_der -> . BBIZQ expresion_simple
-    (50) expresion_der -> . BBDER expresion_simple
-    (51) expresion_der -> . IGUAL_QUE expresion_simple
-    (52) expresion_der -> . DESIGUAL_QUE expresion_simple
-    (53) expresion_der -> . MAYOR_QUE expresion_simple
-    (54) expresion_der -> . MENOR_QUE expresion_simple
-    (55) expresion_der -> . MAYOR_IGUAL_QUE expresion_simple
-    (56) expresion_der -> . MENOR_IGUAL_QUE expresion_simple
-    (57) expresion_der -> . epsilon
-    (66) epsilon -> .
+    (39) expresion -> expresion_simple . expresion_der
+    (40) expresion_der -> . MAS expresion_simple
+    (41) expresion_der -> . MENOS expresion_simple
+    (42) expresion_der -> . POR expresion_simple
+    (43) expresion_der -> . DIVIDIDO expresion_simple
+    (44) expresion_der -> . MODULO expresion_simple
+    (45) expresion_der -> . AND expresion_simple
+    (46) expresion_der -> . OR expresion_simple
+    (47) expresion_der -> . XOR expresion_simple
+    (48) expresion_der -> . BBAND expresion_simple
+    (49) expresion_der -> . BBOR expresion_simple
+    (50) expresion_der -> . BBXOR expresion_simple
+    (51) expresion_der -> . BBIZQ expresion_simple
+    (52) expresion_der -> . BBDER expresion_simple
+    (53) expresion_der -> . IGUAL_QUE expresion_simple
+    (54) expresion_der -> . DESIGUAL_QUE expresion_simple
+    (55) expresion_der -> . MAYOR_QUE expresion_simple
+    (56) expresion_der -> . MENOR_QUE expresion_simple
+    (57) expresion_der -> . MAYOR_IGUAL_QUE expresion_simple
+    (58) expresion_der -> . MENOR_IGUAL_QUE expresion_simple
+    (59) expresion_der -> . epsilon
+    (68) epsilon -> .
 
     MAS             shift and go to state 61
     MENOS           shift and go to state 62
@@ -1037,33 +1040,33 @@ state 44
     MENOR_QUE       shift and go to state 77
     MAYOR_IGUAL_QUE shift and go to state 78
     MENOR_IGUAL_QUE shift and go to state 79
-    PDER            reduce using rule 66 (epsilon -> .)
-    PTCOMA          reduce using rule 66 (epsilon -> .)
+    PDER            reduce using rule 68 (epsilon -> .)
+    PTCOMA          reduce using rule 68 (epsilon -> .)
 
     expresion_der                  shift and go to state 60
     epsilon                        shift and go to state 80
 
 state 45
 
-    (59) expresion -> ABS . PIZQ expresion_simple PDER
+    (61) expresion -> ABS . PIZQ expresion_simple PDER
 
     PIZQ            shift and go to state 81
 
 
 state 46
 
-    (60) expresion -> NOT . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (62) expresion -> NOT . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1081,18 +1084,18 @@ state 46
 
 state 47
 
-    (61) expresion -> BBNOT . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (63) expresion -> BBNOT . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1110,18 +1113,18 @@ state 47
 
 state 48
 
-    (58) expresion_simple -> MENOS . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (60) expresion_simple -> MENOS . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1139,35 +1142,35 @@ state 48
 
 state 49
 
-    (62) expresion_simple -> asignable . accesos
-    (34) accesos -> . acceso accesos
-    (35) accesos -> . epsilon
-    (36) acceso -> . CIZQ expresion_simple CDER
-    (66) epsilon -> .
+    (64) expresion_simple -> asignable . accesos
+    (36) accesos -> . acceso accesos
+    (37) accesos -> . epsilon
+    (38) acceso -> . CIZQ expresion_simple CDER
+    (68) epsilon -> .
 
     CIZQ            shift and go to state 41
-    MAS             reduce using rule 66 (epsilon -> .)
-    MENOS           reduce using rule 66 (epsilon -> .)
-    POR             reduce using rule 66 (epsilon -> .)
-    DIVIDIDO        reduce using rule 66 (epsilon -> .)
-    MODULO          reduce using rule 66 (epsilon -> .)
-    AND             reduce using rule 66 (epsilon -> .)
-    OR              reduce using rule 66 (epsilon -> .)
-    XOR             reduce using rule 66 (epsilon -> .)
-    BBAND           reduce using rule 66 (epsilon -> .)
-    BBOR            reduce using rule 66 (epsilon -> .)
-    BBXOR           reduce using rule 66 (epsilon -> .)
-    BBIZQ           reduce using rule 66 (epsilon -> .)
-    BBDER           reduce using rule 66 (epsilon -> .)
-    IGUAL_QUE       reduce using rule 66 (epsilon -> .)
-    DESIGUAL_QUE    reduce using rule 66 (epsilon -> .)
-    MAYOR_QUE       reduce using rule 66 (epsilon -> .)
-    MENOR_QUE       reduce using rule 66 (epsilon -> .)
-    MAYOR_IGUAL_QUE reduce using rule 66 (epsilon -> .)
-    MENOR_IGUAL_QUE reduce using rule 66 (epsilon -> .)
-    PDER            reduce using rule 66 (epsilon -> .)
-    CDER            reduce using rule 66 (epsilon -> .)
-    PTCOMA          reduce using rule 66 (epsilon -> .)
+    MAS             reduce using rule 68 (epsilon -> .)
+    MENOS           reduce using rule 68 (epsilon -> .)
+    POR             reduce using rule 68 (epsilon -> .)
+    DIVIDIDO        reduce using rule 68 (epsilon -> .)
+    MODULO          reduce using rule 68 (epsilon -> .)
+    AND             reduce using rule 68 (epsilon -> .)
+    OR              reduce using rule 68 (epsilon -> .)
+    XOR             reduce using rule 68 (epsilon -> .)
+    BBAND           reduce using rule 68 (epsilon -> .)
+    BBOR            reduce using rule 68 (epsilon -> .)
+    BBXOR           reduce using rule 68 (epsilon -> .)
+    BBIZQ           reduce using rule 68 (epsilon -> .)
+    BBDER           reduce using rule 68 (epsilon -> .)
+    IGUAL_QUE       reduce using rule 68 (epsilon -> .)
+    DESIGUAL_QUE    reduce using rule 68 (epsilon -> .)
+    MAYOR_QUE       reduce using rule 68 (epsilon -> .)
+    MENOR_QUE       reduce using rule 68 (epsilon -> .)
+    MAYOR_IGUAL_QUE reduce using rule 68 (epsilon -> .)
+    MENOR_IGUAL_QUE reduce using rule 68 (epsilon -> .)
+    PDER            reduce using rule 68 (epsilon -> .)
+    CDER            reduce using rule 68 (epsilon -> .)
+    PTCOMA          reduce using rule 68 (epsilon -> .)
 
     accesos                        shift and go to state 85
     acceso                         shift and go to state 39
@@ -1175,86 +1178,86 @@ state 49
 
 state 50
 
-    (63) expresion_simple -> ENTERO .
+    (65) expresion_simple -> ENTERO .
 
-    MAS             reduce using rule 63 (expresion_simple -> ENTERO .)
-    MENOS           reduce using rule 63 (expresion_simple -> ENTERO .)
-    POR             reduce using rule 63 (expresion_simple -> ENTERO .)
-    DIVIDIDO        reduce using rule 63 (expresion_simple -> ENTERO .)
-    MODULO          reduce using rule 63 (expresion_simple -> ENTERO .)
-    AND             reduce using rule 63 (expresion_simple -> ENTERO .)
-    OR              reduce using rule 63 (expresion_simple -> ENTERO .)
-    XOR             reduce using rule 63 (expresion_simple -> ENTERO .)
-    BBAND           reduce using rule 63 (expresion_simple -> ENTERO .)
-    BBOR            reduce using rule 63 (expresion_simple -> ENTERO .)
-    BBXOR           reduce using rule 63 (expresion_simple -> ENTERO .)
-    BBIZQ           reduce using rule 63 (expresion_simple -> ENTERO .)
-    BBDER           reduce using rule 63 (expresion_simple -> ENTERO .)
-    IGUAL_QUE       reduce using rule 63 (expresion_simple -> ENTERO .)
-    DESIGUAL_QUE    reduce using rule 63 (expresion_simple -> ENTERO .)
-    MAYOR_QUE       reduce using rule 63 (expresion_simple -> ENTERO .)
-    MENOR_QUE       reduce using rule 63 (expresion_simple -> ENTERO .)
-    MAYOR_IGUAL_QUE reduce using rule 63 (expresion_simple -> ENTERO .)
-    MENOR_IGUAL_QUE reduce using rule 63 (expresion_simple -> ENTERO .)
-    PDER            reduce using rule 63 (expresion_simple -> ENTERO .)
-    CDER            reduce using rule 63 (expresion_simple -> ENTERO .)
-    PTCOMA          reduce using rule 63 (expresion_simple -> ENTERO .)
+    MAS             reduce using rule 65 (expresion_simple -> ENTERO .)
+    MENOS           reduce using rule 65 (expresion_simple -> ENTERO .)
+    POR             reduce using rule 65 (expresion_simple -> ENTERO .)
+    DIVIDIDO        reduce using rule 65 (expresion_simple -> ENTERO .)
+    MODULO          reduce using rule 65 (expresion_simple -> ENTERO .)
+    AND             reduce using rule 65 (expresion_simple -> ENTERO .)
+    OR              reduce using rule 65 (expresion_simple -> ENTERO .)
+    XOR             reduce using rule 65 (expresion_simple -> ENTERO .)
+    BBAND           reduce using rule 65 (expresion_simple -> ENTERO .)
+    BBOR            reduce using rule 65 (expresion_simple -> ENTERO .)
+    BBXOR           reduce using rule 65 (expresion_simple -> ENTERO .)
+    BBIZQ           reduce using rule 65 (expresion_simple -> ENTERO .)
+    BBDER           reduce using rule 65 (expresion_simple -> ENTERO .)
+    IGUAL_QUE       reduce using rule 65 (expresion_simple -> ENTERO .)
+    DESIGUAL_QUE    reduce using rule 65 (expresion_simple -> ENTERO .)
+    MAYOR_QUE       reduce using rule 65 (expresion_simple -> ENTERO .)
+    MENOR_QUE       reduce using rule 65 (expresion_simple -> ENTERO .)
+    MAYOR_IGUAL_QUE reduce using rule 65 (expresion_simple -> ENTERO .)
+    MENOR_IGUAL_QUE reduce using rule 65 (expresion_simple -> ENTERO .)
+    PDER            reduce using rule 65 (expresion_simple -> ENTERO .)
+    CDER            reduce using rule 65 (expresion_simple -> ENTERO .)
+    PTCOMA          reduce using rule 65 (expresion_simple -> ENTERO .)
 
 
 state 51
 
-    (64) expresion_simple -> DECIMAL .
+    (66) expresion_simple -> DECIMAL .
 
-    MAS             reduce using rule 64 (expresion_simple -> DECIMAL .)
-    MENOS           reduce using rule 64 (expresion_simple -> DECIMAL .)
-    POR             reduce using rule 64 (expresion_simple -> DECIMAL .)
-    DIVIDIDO        reduce using rule 64 (expresion_simple -> DECIMAL .)
-    MODULO          reduce using rule 64 (expresion_simple -> DECIMAL .)
-    AND             reduce using rule 64 (expresion_simple -> DECIMAL .)
-    OR              reduce using rule 64 (expresion_simple -> DECIMAL .)
-    XOR             reduce using rule 64 (expresion_simple -> DECIMAL .)
-    BBAND           reduce using rule 64 (expresion_simple -> DECIMAL .)
-    BBOR            reduce using rule 64 (expresion_simple -> DECIMAL .)
-    BBXOR           reduce using rule 64 (expresion_simple -> DECIMAL .)
-    BBIZQ           reduce using rule 64 (expresion_simple -> DECIMAL .)
-    BBDER           reduce using rule 64 (expresion_simple -> DECIMAL .)
-    IGUAL_QUE       reduce using rule 64 (expresion_simple -> DECIMAL .)
-    DESIGUAL_QUE    reduce using rule 64 (expresion_simple -> DECIMAL .)
-    MAYOR_QUE       reduce using rule 64 (expresion_simple -> DECIMAL .)
-    MENOR_QUE       reduce using rule 64 (expresion_simple -> DECIMAL .)
-    MAYOR_IGUAL_QUE reduce using rule 64 (expresion_simple -> DECIMAL .)
-    MENOR_IGUAL_QUE reduce using rule 64 (expresion_simple -> DECIMAL .)
-    PDER            reduce using rule 64 (expresion_simple -> DECIMAL .)
-    CDER            reduce using rule 64 (expresion_simple -> DECIMAL .)
-    PTCOMA          reduce using rule 64 (expresion_simple -> DECIMAL .)
+    MAS             reduce using rule 66 (expresion_simple -> DECIMAL .)
+    MENOS           reduce using rule 66 (expresion_simple -> DECIMAL .)
+    POR             reduce using rule 66 (expresion_simple -> DECIMAL .)
+    DIVIDIDO        reduce using rule 66 (expresion_simple -> DECIMAL .)
+    MODULO          reduce using rule 66 (expresion_simple -> DECIMAL .)
+    AND             reduce using rule 66 (expresion_simple -> DECIMAL .)
+    OR              reduce using rule 66 (expresion_simple -> DECIMAL .)
+    XOR             reduce using rule 66 (expresion_simple -> DECIMAL .)
+    BBAND           reduce using rule 66 (expresion_simple -> DECIMAL .)
+    BBOR            reduce using rule 66 (expresion_simple -> DECIMAL .)
+    BBXOR           reduce using rule 66 (expresion_simple -> DECIMAL .)
+    BBIZQ           reduce using rule 66 (expresion_simple -> DECIMAL .)
+    BBDER           reduce using rule 66 (expresion_simple -> DECIMAL .)
+    IGUAL_QUE       reduce using rule 66 (expresion_simple -> DECIMAL .)
+    DESIGUAL_QUE    reduce using rule 66 (expresion_simple -> DECIMAL .)
+    MAYOR_QUE       reduce using rule 66 (expresion_simple -> DECIMAL .)
+    MENOR_QUE       reduce using rule 66 (expresion_simple -> DECIMAL .)
+    MAYOR_IGUAL_QUE reduce using rule 66 (expresion_simple -> DECIMAL .)
+    MENOR_IGUAL_QUE reduce using rule 66 (expresion_simple -> DECIMAL .)
+    PDER            reduce using rule 66 (expresion_simple -> DECIMAL .)
+    CDER            reduce using rule 66 (expresion_simple -> DECIMAL .)
+    PTCOMA          reduce using rule 66 (expresion_simple -> DECIMAL .)
 
 
 state 52
 
-    (65) expresion_simple -> CADENA .
+    (67) expresion_simple -> CADENA .
 
-    MAS             reduce using rule 65 (expresion_simple -> CADENA .)
-    MENOS           reduce using rule 65 (expresion_simple -> CADENA .)
-    POR             reduce using rule 65 (expresion_simple -> CADENA .)
-    DIVIDIDO        reduce using rule 65 (expresion_simple -> CADENA .)
-    MODULO          reduce using rule 65 (expresion_simple -> CADENA .)
-    AND             reduce using rule 65 (expresion_simple -> CADENA .)
-    OR              reduce using rule 65 (expresion_simple -> CADENA .)
-    XOR             reduce using rule 65 (expresion_simple -> CADENA .)
-    BBAND           reduce using rule 65 (expresion_simple -> CADENA .)
-    BBOR            reduce using rule 65 (expresion_simple -> CADENA .)
-    BBXOR           reduce using rule 65 (expresion_simple -> CADENA .)
-    BBIZQ           reduce using rule 65 (expresion_simple -> CADENA .)
-    BBDER           reduce using rule 65 (expresion_simple -> CADENA .)
-    IGUAL_QUE       reduce using rule 65 (expresion_simple -> CADENA .)
-    DESIGUAL_QUE    reduce using rule 65 (expresion_simple -> CADENA .)
-    MAYOR_QUE       reduce using rule 65 (expresion_simple -> CADENA .)
-    MENOR_QUE       reduce using rule 65 (expresion_simple -> CADENA .)
-    MAYOR_IGUAL_QUE reduce using rule 65 (expresion_simple -> CADENA .)
-    MENOR_IGUAL_QUE reduce using rule 65 (expresion_simple -> CADENA .)
-    PDER            reduce using rule 65 (expresion_simple -> CADENA .)
-    CDER            reduce using rule 65 (expresion_simple -> CADENA .)
-    PTCOMA          reduce using rule 65 (expresion_simple -> CADENA .)
+    MAS             reduce using rule 67 (expresion_simple -> CADENA .)
+    MENOS           reduce using rule 67 (expresion_simple -> CADENA .)
+    POR             reduce using rule 67 (expresion_simple -> CADENA .)
+    DIVIDIDO        reduce using rule 67 (expresion_simple -> CADENA .)
+    MODULO          reduce using rule 67 (expresion_simple -> CADENA .)
+    AND             reduce using rule 67 (expresion_simple -> CADENA .)
+    OR              reduce using rule 67 (expresion_simple -> CADENA .)
+    XOR             reduce using rule 67 (expresion_simple -> CADENA .)
+    BBAND           reduce using rule 67 (expresion_simple -> CADENA .)
+    BBOR            reduce using rule 67 (expresion_simple -> CADENA .)
+    BBXOR           reduce using rule 67 (expresion_simple -> CADENA .)
+    BBIZQ           reduce using rule 67 (expresion_simple -> CADENA .)
+    BBDER           reduce using rule 67 (expresion_simple -> CADENA .)
+    IGUAL_QUE       reduce using rule 67 (expresion_simple -> CADENA .)
+    DESIGUAL_QUE    reduce using rule 67 (expresion_simple -> CADENA .)
+    MAYOR_QUE       reduce using rule 67 (expresion_simple -> CADENA .)
+    MENOR_QUE       reduce using rule 67 (expresion_simple -> CADENA .)
+    MAYOR_IGUAL_QUE reduce using rule 67 (expresion_simple -> CADENA .)
+    MENOR_IGUAL_QUE reduce using rule 67 (expresion_simple -> CADENA .)
+    PDER            reduce using rule 67 (expresion_simple -> CADENA .)
+    CDER            reduce using rule 67 (expresion_simple -> CADENA .)
+    PTCOMA          reduce using rule 67 (expresion_simple -> CADENA .)
 
 
 state 53
@@ -1294,24 +1297,24 @@ state 56
 
     (20) asig_inst -> asignable accesos ASIG . asig_valor PTCOMA
     (21) asig_valor -> . expresion
-    (22) asig_valor -> . PIZQ tipo PDER expresion
-    (26) asig_valor -> . READ PIZQ PDER
-    (27) asig_valor -> . ARRAY PIZQ PDER
-    (37) expresion -> . expresion_simple expresion_der
-    (59) expresion -> . ABS PIZQ expresion_simple PDER
-    (60) expresion -> . NOT expresion_simple
-    (61) expresion -> . BBNOT expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (22) asig_valor -> . PIZQ asig_valor_der
+    (28) asig_valor -> . READ PIZQ PDER
+    (29) asig_valor -> . ARRAY PIZQ PDER
+    (39) expresion -> . expresion_simple expresion_der
+    (61) expresion -> . ABS PIZQ expresion_simple PDER
+    (62) expresion -> . NOT expresion_simple
+    (63) expresion -> . BBNOT expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     PIZQ            shift and go to state 90
     READ            shift and go to state 91
@@ -1337,36 +1340,36 @@ state 56
 
 state 57
 
-    (34) accesos -> acceso accesos .
+    (36) accesos -> acceso accesos .
 
-    ASIG            reduce using rule 34 (accesos -> acceso accesos .)
-    MAS             reduce using rule 34 (accesos -> acceso accesos .)
-    MENOS           reduce using rule 34 (accesos -> acceso accesos .)
-    POR             reduce using rule 34 (accesos -> acceso accesos .)
-    DIVIDIDO        reduce using rule 34 (accesos -> acceso accesos .)
-    MODULO          reduce using rule 34 (accesos -> acceso accesos .)
-    AND             reduce using rule 34 (accesos -> acceso accesos .)
-    OR              reduce using rule 34 (accesos -> acceso accesos .)
-    XOR             reduce using rule 34 (accesos -> acceso accesos .)
-    BBAND           reduce using rule 34 (accesos -> acceso accesos .)
-    BBOR            reduce using rule 34 (accesos -> acceso accesos .)
-    BBXOR           reduce using rule 34 (accesos -> acceso accesos .)
-    BBIZQ           reduce using rule 34 (accesos -> acceso accesos .)
-    BBDER           reduce using rule 34 (accesos -> acceso accesos .)
-    IGUAL_QUE       reduce using rule 34 (accesos -> acceso accesos .)
-    DESIGUAL_QUE    reduce using rule 34 (accesos -> acceso accesos .)
-    MAYOR_QUE       reduce using rule 34 (accesos -> acceso accesos .)
-    MENOR_QUE       reduce using rule 34 (accesos -> acceso accesos .)
-    MAYOR_IGUAL_QUE reduce using rule 34 (accesos -> acceso accesos .)
-    MENOR_IGUAL_QUE reduce using rule 34 (accesos -> acceso accesos .)
-    PDER            reduce using rule 34 (accesos -> acceso accesos .)
-    CDER            reduce using rule 34 (accesos -> acceso accesos .)
-    PTCOMA          reduce using rule 34 (accesos -> acceso accesos .)
+    ASIG            reduce using rule 36 (accesos -> acceso accesos .)
+    MAS             reduce using rule 36 (accesos -> acceso accesos .)
+    MENOS           reduce using rule 36 (accesos -> acceso accesos .)
+    POR             reduce using rule 36 (accesos -> acceso accesos .)
+    DIVIDIDO        reduce using rule 36 (accesos -> acceso accesos .)
+    MODULO          reduce using rule 36 (accesos -> acceso accesos .)
+    AND             reduce using rule 36 (accesos -> acceso accesos .)
+    OR              reduce using rule 36 (accesos -> acceso accesos .)
+    XOR             reduce using rule 36 (accesos -> acceso accesos .)
+    BBAND           reduce using rule 36 (accesos -> acceso accesos .)
+    BBOR            reduce using rule 36 (accesos -> acceso accesos .)
+    BBXOR           reduce using rule 36 (accesos -> acceso accesos .)
+    BBIZQ           reduce using rule 36 (accesos -> acceso accesos .)
+    BBDER           reduce using rule 36 (accesos -> acceso accesos .)
+    IGUAL_QUE       reduce using rule 36 (accesos -> acceso accesos .)
+    DESIGUAL_QUE    reduce using rule 36 (accesos -> acceso accesos .)
+    MAYOR_QUE       reduce using rule 36 (accesos -> acceso accesos .)
+    MENOR_QUE       reduce using rule 36 (accesos -> acceso accesos .)
+    MAYOR_IGUAL_QUE reduce using rule 36 (accesos -> acceso accesos .)
+    MENOR_IGUAL_QUE reduce using rule 36 (accesos -> acceso accesos .)
+    PDER            reduce using rule 36 (accesos -> acceso accesos .)
+    CDER            reduce using rule 36 (accesos -> acceso accesos .)
+    PTCOMA          reduce using rule 36 (accesos -> acceso accesos .)
 
 
 state 58
 
-    (36) acceso -> CIZQ expresion_simple . CDER
+    (38) acceso -> CIZQ expresion_simple . CDER
 
     CDER            shift and go to state 93
 
@@ -1380,26 +1383,26 @@ state 59
 
 state 60
 
-    (37) expresion -> expresion_simple expresion_der .
+    (39) expresion -> expresion_simple expresion_der .
 
-    PDER            reduce using rule 37 (expresion -> expresion_simple expresion_der .)
-    PTCOMA          reduce using rule 37 (expresion -> expresion_simple expresion_der .)
+    PDER            reduce using rule 39 (expresion -> expresion_simple expresion_der .)
+    PTCOMA          reduce using rule 39 (expresion -> expresion_simple expresion_der .)
 
 
 state 61
 
-    (38) expresion_der -> MAS . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (40) expresion_der -> MAS . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1417,18 +1420,18 @@ state 61
 
 state 62
 
-    (39) expresion_der -> MENOS . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (41) expresion_der -> MENOS . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1446,18 +1449,18 @@ state 62
 
 state 63
 
-    (40) expresion_der -> POR . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (42) expresion_der -> POR . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1475,18 +1478,18 @@ state 63
 
 state 64
 
-    (41) expresion_der -> DIVIDIDO . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (43) expresion_der -> DIVIDIDO . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1504,18 +1507,18 @@ state 64
 
 state 65
 
-    (42) expresion_der -> MODULO . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (44) expresion_der -> MODULO . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1533,18 +1536,18 @@ state 65
 
 state 66
 
-    (43) expresion_der -> AND . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (45) expresion_der -> AND . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1562,18 +1565,18 @@ state 66
 
 state 67
 
-    (44) expresion_der -> OR . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (46) expresion_der -> OR . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1591,18 +1594,18 @@ state 67
 
 state 68
 
-    (45) expresion_der -> XOR . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (47) expresion_der -> XOR . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1620,18 +1623,18 @@ state 68
 
 state 69
 
-    (46) expresion_der -> BBAND . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (48) expresion_der -> BBAND . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1649,18 +1652,18 @@ state 69
 
 state 70
 
-    (47) expresion_der -> BBOR . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (49) expresion_der -> BBOR . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1678,18 +1681,18 @@ state 70
 
 state 71
 
-    (48) expresion_der -> BBXOR . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (50) expresion_der -> BBXOR . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1707,18 +1710,18 @@ state 71
 
 state 72
 
-    (49) expresion_der -> BBIZQ . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (51) expresion_der -> BBIZQ . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1736,18 +1739,18 @@ state 72
 
 state 73
 
-    (50) expresion_der -> BBDER . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (52) expresion_der -> BBDER . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1765,18 +1768,18 @@ state 73
 
 state 74
 
-    (51) expresion_der -> IGUAL_QUE . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (53) expresion_der -> IGUAL_QUE . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1794,18 +1797,18 @@ state 74
 
 state 75
 
-    (52) expresion_der -> DESIGUAL_QUE . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (54) expresion_der -> DESIGUAL_QUE . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1823,18 +1826,18 @@ state 75
 
 state 76
 
-    (53) expresion_der -> MAYOR_QUE . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (55) expresion_der -> MAYOR_QUE . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1852,18 +1855,18 @@ state 76
 
 state 77
 
-    (54) expresion_der -> MENOR_QUE . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (56) expresion_der -> MENOR_QUE . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1881,18 +1884,18 @@ state 77
 
 state 78
 
-    (55) expresion_der -> MAYOR_IGUAL_QUE . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (57) expresion_der -> MAYOR_IGUAL_QUE . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1910,18 +1913,18 @@ state 78
 
 state 79
 
-    (56) expresion_der -> MENOR_IGUAL_QUE . expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (58) expresion_der -> MENOR_IGUAL_QUE . expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1939,26 +1942,26 @@ state 79
 
 state 80
 
-    (57) expresion_der -> epsilon .
+    (59) expresion_der -> epsilon .
 
-    PDER            reduce using rule 57 (expresion_der -> epsilon .)
-    PTCOMA          reduce using rule 57 (expresion_der -> epsilon .)
+    PDER            reduce using rule 59 (expresion_der -> epsilon .)
+    PTCOMA          reduce using rule 59 (expresion_der -> epsilon .)
 
 
 state 81
 
-    (59) expresion -> ABS PIZQ . expresion_simple PDER
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (61) expresion -> ABS PIZQ . expresion_simple PDER
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     MENOS           shift and go to state 48
     ENTERO          shift and go to state 50
@@ -1976,74 +1979,74 @@ state 81
 
 state 82
 
-    (60) expresion -> NOT expresion_simple .
+    (62) expresion -> NOT expresion_simple .
 
-    PDER            reduce using rule 60 (expresion -> NOT expresion_simple .)
-    PTCOMA          reduce using rule 60 (expresion -> NOT expresion_simple .)
+    PDER            reduce using rule 62 (expresion -> NOT expresion_simple .)
+    PTCOMA          reduce using rule 62 (expresion -> NOT expresion_simple .)
 
 
 state 83
 
-    (61) expresion -> BBNOT expresion_simple .
+    (63) expresion -> BBNOT expresion_simple .
 
-    PDER            reduce using rule 61 (expresion -> BBNOT expresion_simple .)
-    PTCOMA          reduce using rule 61 (expresion -> BBNOT expresion_simple .)
+    PDER            reduce using rule 63 (expresion -> BBNOT expresion_simple .)
+    PTCOMA          reduce using rule 63 (expresion -> BBNOT expresion_simple .)
 
 
 state 84
 
-    (58) expresion_simple -> MENOS expresion_simple .
+    (60) expresion_simple -> MENOS expresion_simple .
 
-    MAS             reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    MENOS           reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    POR             reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    DIVIDIDO        reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    MODULO          reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    AND             reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    OR              reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    XOR             reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    BBAND           reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    BBOR            reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    BBXOR           reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    BBIZQ           reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    BBDER           reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    IGUAL_QUE       reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    DESIGUAL_QUE    reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    MAYOR_QUE       reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    MENOR_QUE       reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    MAYOR_IGUAL_QUE reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    MENOR_IGUAL_QUE reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    PDER            reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    CDER            reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
-    PTCOMA          reduce using rule 58 (expresion_simple -> MENOS expresion_simple .)
+    MAS             reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    MENOS           reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    POR             reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    DIVIDIDO        reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    MODULO          reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    AND             reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    OR              reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    XOR             reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    BBAND           reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    BBOR            reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    BBXOR           reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    BBIZQ           reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    BBDER           reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    IGUAL_QUE       reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    DESIGUAL_QUE    reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    MAYOR_QUE       reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    MENOR_QUE       reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    MAYOR_IGUAL_QUE reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    MENOR_IGUAL_QUE reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    PDER            reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    CDER            reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
+    PTCOMA          reduce using rule 60 (expresion_simple -> MENOS expresion_simple .)
 
 
 state 85
 
-    (62) expresion_simple -> asignable accesos .
+    (64) expresion_simple -> asignable accesos .
 
-    MAS             reduce using rule 62 (expresion_simple -> asignable accesos .)
-    MENOS           reduce using rule 62 (expresion_simple -> asignable accesos .)
-    POR             reduce using rule 62 (expresion_simple -> asignable accesos .)
-    DIVIDIDO        reduce using rule 62 (expresion_simple -> asignable accesos .)
-    MODULO          reduce using rule 62 (expresion_simple -> asignable accesos .)
-    AND             reduce using rule 62 (expresion_simple -> asignable accesos .)
-    OR              reduce using rule 62 (expresion_simple -> asignable accesos .)
-    XOR             reduce using rule 62 (expresion_simple -> asignable accesos .)
-    BBAND           reduce using rule 62 (expresion_simple -> asignable accesos .)
-    BBOR            reduce using rule 62 (expresion_simple -> asignable accesos .)
-    BBXOR           reduce using rule 62 (expresion_simple -> asignable accesos .)
-    BBIZQ           reduce using rule 62 (expresion_simple -> asignable accesos .)
-    BBDER           reduce using rule 62 (expresion_simple -> asignable accesos .)
-    IGUAL_QUE       reduce using rule 62 (expresion_simple -> asignable accesos .)
-    DESIGUAL_QUE    reduce using rule 62 (expresion_simple -> asignable accesos .)
-    MAYOR_QUE       reduce using rule 62 (expresion_simple -> asignable accesos .)
-    MENOR_QUE       reduce using rule 62 (expresion_simple -> asignable accesos .)
-    MAYOR_IGUAL_QUE reduce using rule 62 (expresion_simple -> asignable accesos .)
-    MENOR_IGUAL_QUE reduce using rule 62 (expresion_simple -> asignable accesos .)
-    PDER            reduce using rule 62 (expresion_simple -> asignable accesos .)
-    CDER            reduce using rule 62 (expresion_simple -> asignable accesos .)
-    PTCOMA          reduce using rule 62 (expresion_simple -> asignable accesos .)
+    MAS             reduce using rule 64 (expresion_simple -> asignable accesos .)
+    MENOS           reduce using rule 64 (expresion_simple -> asignable accesos .)
+    POR             reduce using rule 64 (expresion_simple -> asignable accesos .)
+    DIVIDIDO        reduce using rule 64 (expresion_simple -> asignable accesos .)
+    MODULO          reduce using rule 64 (expresion_simple -> asignable accesos .)
+    AND             reduce using rule 64 (expresion_simple -> asignable accesos .)
+    OR              reduce using rule 64 (expresion_simple -> asignable accesos .)
+    XOR             reduce using rule 64 (expresion_simple -> asignable accesos .)
+    BBAND           reduce using rule 64 (expresion_simple -> asignable accesos .)
+    BBOR            reduce using rule 64 (expresion_simple -> asignable accesos .)
+    BBXOR           reduce using rule 64 (expresion_simple -> asignable accesos .)
+    BBIZQ           reduce using rule 64 (expresion_simple -> asignable accesos .)
+    BBDER           reduce using rule 64 (expresion_simple -> asignable accesos .)
+    IGUAL_QUE       reduce using rule 64 (expresion_simple -> asignable accesos .)
+    DESIGUAL_QUE    reduce using rule 64 (expresion_simple -> asignable accesos .)
+    MAYOR_QUE       reduce using rule 64 (expresion_simple -> asignable accesos .)
+    MENOR_QUE       reduce using rule 64 (expresion_simple -> asignable accesos .)
+    MAYOR_IGUAL_QUE reduce using rule 64 (expresion_simple -> asignable accesos .)
+    MENOR_IGUAL_QUE reduce using rule 64 (expresion_simple -> asignable accesos .)
+    PDER            reduce using rule 64 (expresion_simple -> asignable accesos .)
+    CDER            reduce using rule 64 (expresion_simple -> asignable accesos .)
+    PTCOMA          reduce using rule 64 (expresion_simple -> asignable accesos .)
 
 
 state 86
@@ -2068,12 +2071,12 @@ state 87
     (18) unset_inst -> . UNSET PIZQ expresion_simple PDER PTCOMA
     (19) if_inst -> . IF PIZQ expresion PDER instruccion
     (20) asig_inst -> . asignable accesos ASIG asig_valor PTCOMA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     PRINT           shift and go to state 18
     GOTO            shift and go to state 19
@@ -2112,59 +2115,93 @@ state 89
 
 state 90
 
-    (22) asig_valor -> PIZQ . tipo PDER expresion
-    (23) tipo -> . INT
-    (24) tipo -> . FLOAT
-    (25) tipo -> . CHAR
+    (22) asig_valor -> PIZQ . asig_valor_der
+    (23) asig_valor_der -> . tipo PDER expresion
+    (24) asig_valor_der -> . expresion PDER
+    (25) tipo -> . INT
+    (26) tipo -> . FLOAT
+    (27) tipo -> . CHAR
+    (39) expresion -> . expresion_simple expresion_der
+    (61) expresion -> . ABS PIZQ expresion_simple PDER
+    (62) expresion -> . NOT expresion_simple
+    (63) expresion -> . BBNOT expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
-    INT             shift and go to state 119
-    FLOAT           shift and go to state 120
-    CHAR            shift and go to state 121
+    INT             shift and go to state 121
+    FLOAT           shift and go to state 122
+    CHAR            shift and go to state 123
+    ABS             shift and go to state 45
+    NOT             shift and go to state 46
+    BBNOT           shift and go to state 47
+    MENOS           shift and go to state 48
+    ENTERO          shift and go to state 50
+    DECIMAL         shift and go to state 51
+    CADENA          shift and go to state 52
+    TEMPORAL        shift and go to state 24
+    PARAMETRO       shift and go to state 25
+    RETORNO         shift and go to state 26
+    PILA            shift and go to state 27
+    RA              shift and go to state 28
+    SP              shift and go to state 29
 
-    tipo                           shift and go to state 118
+    asig_valor_der                 shift and go to state 118
+    tipo                           shift and go to state 119
+    expresion                      shift and go to state 120
+    expresion_simple               shift and go to state 44
+    asignable                      shift and go to state 49
 
 state 91
 
-    (26) asig_valor -> READ . PIZQ PDER
+    (28) asig_valor -> READ . PIZQ PDER
 
-    PIZQ            shift and go to state 122
+    PIZQ            shift and go to state 124
 
 
 state 92
 
-    (27) asig_valor -> ARRAY . PIZQ PDER
+    (29) asig_valor -> ARRAY . PIZQ PDER
 
-    PIZQ            shift and go to state 123
+    PIZQ            shift and go to state 125
 
 
 state 93
 
-    (36) acceso -> CIZQ expresion_simple CDER .
+    (38) acceso -> CIZQ expresion_simple CDER .
 
-    CIZQ            reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    ASIG            reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    MAS             reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    MENOS           reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    POR             reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    DIVIDIDO        reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    MODULO          reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    AND             reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    OR              reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    XOR             reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    BBAND           reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    BBOR            reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    BBXOR           reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    BBIZQ           reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    BBDER           reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    IGUAL_QUE       reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    DESIGUAL_QUE    reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    MAYOR_QUE       reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    MENOR_QUE       reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    MAYOR_IGUAL_QUE reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    MENOR_IGUAL_QUE reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    PDER            reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    CDER            reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
-    PTCOMA          reduce using rule 36 (acceso -> CIZQ expresion_simple CDER .)
+    CIZQ            reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    ASIG            reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    MAS             reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    MENOS           reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    POR             reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    DIVIDIDO        reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    MODULO          reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    AND             reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    OR              reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    XOR             reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    BBAND           reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    BBOR            reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    BBXOR           reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    BBIZQ           reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    BBDER           reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    IGUAL_QUE       reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    DESIGUAL_QUE    reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    MAYOR_QUE       reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    MENOR_QUE       reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    MAYOR_IGUAL_QUE reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    MENOR_IGUAL_QUE reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    PDER            reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    CDER            reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
+    PTCOMA          reduce using rule 38 (acceso -> CIZQ expresion_simple CDER .)
 
 
 state 94
@@ -2188,161 +2225,161 @@ state 94
 
 state 95
 
-    (38) expresion_der -> MAS expresion_simple .
+    (40) expresion_der -> MAS expresion_simple .
 
-    PDER            reduce using rule 38 (expresion_der -> MAS expresion_simple .)
-    PTCOMA          reduce using rule 38 (expresion_der -> MAS expresion_simple .)
+    PDER            reduce using rule 40 (expresion_der -> MAS expresion_simple .)
+    PTCOMA          reduce using rule 40 (expresion_der -> MAS expresion_simple .)
 
 
 state 96
 
-    (39) expresion_der -> MENOS expresion_simple .
+    (41) expresion_der -> MENOS expresion_simple .
 
-    PDER            reduce using rule 39 (expresion_der -> MENOS expresion_simple .)
-    PTCOMA          reduce using rule 39 (expresion_der -> MENOS expresion_simple .)
+    PDER            reduce using rule 41 (expresion_der -> MENOS expresion_simple .)
+    PTCOMA          reduce using rule 41 (expresion_der -> MENOS expresion_simple .)
 
 
 state 97
 
-    (40) expresion_der -> POR expresion_simple .
+    (42) expresion_der -> POR expresion_simple .
 
-    PDER            reduce using rule 40 (expresion_der -> POR expresion_simple .)
-    PTCOMA          reduce using rule 40 (expresion_der -> POR expresion_simple .)
+    PDER            reduce using rule 42 (expresion_der -> POR expresion_simple .)
+    PTCOMA          reduce using rule 42 (expresion_der -> POR expresion_simple .)
 
 
 state 98
 
-    (41) expresion_der -> DIVIDIDO expresion_simple .
+    (43) expresion_der -> DIVIDIDO expresion_simple .
 
-    PDER            reduce using rule 41 (expresion_der -> DIVIDIDO expresion_simple .)
-    PTCOMA          reduce using rule 41 (expresion_der -> DIVIDIDO expresion_simple .)
+    PDER            reduce using rule 43 (expresion_der -> DIVIDIDO expresion_simple .)
+    PTCOMA          reduce using rule 43 (expresion_der -> DIVIDIDO expresion_simple .)
 
 
 state 99
 
-    (42) expresion_der -> MODULO expresion_simple .
+    (44) expresion_der -> MODULO expresion_simple .
 
-    PDER            reduce using rule 42 (expresion_der -> MODULO expresion_simple .)
-    PTCOMA          reduce using rule 42 (expresion_der -> MODULO expresion_simple .)
+    PDER            reduce using rule 44 (expresion_der -> MODULO expresion_simple .)
+    PTCOMA          reduce using rule 44 (expresion_der -> MODULO expresion_simple .)
 
 
 state 100
 
-    (43) expresion_der -> AND expresion_simple .
+    (45) expresion_der -> AND expresion_simple .
 
-    PDER            reduce using rule 43 (expresion_der -> AND expresion_simple .)
-    PTCOMA          reduce using rule 43 (expresion_der -> AND expresion_simple .)
+    PDER            reduce using rule 45 (expresion_der -> AND expresion_simple .)
+    PTCOMA          reduce using rule 45 (expresion_der -> AND expresion_simple .)
 
 
 state 101
 
-    (44) expresion_der -> OR expresion_simple .
+    (46) expresion_der -> OR expresion_simple .
 
-    PDER            reduce using rule 44 (expresion_der -> OR expresion_simple .)
-    PTCOMA          reduce using rule 44 (expresion_der -> OR expresion_simple .)
+    PDER            reduce using rule 46 (expresion_der -> OR expresion_simple .)
+    PTCOMA          reduce using rule 46 (expresion_der -> OR expresion_simple .)
 
 
 state 102
 
-    (45) expresion_der -> XOR expresion_simple .
+    (47) expresion_der -> XOR expresion_simple .
 
-    PDER            reduce using rule 45 (expresion_der -> XOR expresion_simple .)
-    PTCOMA          reduce using rule 45 (expresion_der -> XOR expresion_simple .)
+    PDER            reduce using rule 47 (expresion_der -> XOR expresion_simple .)
+    PTCOMA          reduce using rule 47 (expresion_der -> XOR expresion_simple .)
 
 
 state 103
 
-    (46) expresion_der -> BBAND expresion_simple .
+    (48) expresion_der -> BBAND expresion_simple .
 
-    PDER            reduce using rule 46 (expresion_der -> BBAND expresion_simple .)
-    PTCOMA          reduce using rule 46 (expresion_der -> BBAND expresion_simple .)
+    PDER            reduce using rule 48 (expresion_der -> BBAND expresion_simple .)
+    PTCOMA          reduce using rule 48 (expresion_der -> BBAND expresion_simple .)
 
 
 state 104
 
-    (47) expresion_der -> BBOR expresion_simple .
+    (49) expresion_der -> BBOR expresion_simple .
 
-    PDER            reduce using rule 47 (expresion_der -> BBOR expresion_simple .)
-    PTCOMA          reduce using rule 47 (expresion_der -> BBOR expresion_simple .)
+    PDER            reduce using rule 49 (expresion_der -> BBOR expresion_simple .)
+    PTCOMA          reduce using rule 49 (expresion_der -> BBOR expresion_simple .)
 
 
 state 105
 
-    (48) expresion_der -> BBXOR expresion_simple .
+    (50) expresion_der -> BBXOR expresion_simple .
 
-    PDER            reduce using rule 48 (expresion_der -> BBXOR expresion_simple .)
-    PTCOMA          reduce using rule 48 (expresion_der -> BBXOR expresion_simple .)
+    PDER            reduce using rule 50 (expresion_der -> BBXOR expresion_simple .)
+    PTCOMA          reduce using rule 50 (expresion_der -> BBXOR expresion_simple .)
 
 
 state 106
 
-    (49) expresion_der -> BBIZQ expresion_simple .
+    (51) expresion_der -> BBIZQ expresion_simple .
 
-    PDER            reduce using rule 49 (expresion_der -> BBIZQ expresion_simple .)
-    PTCOMA          reduce using rule 49 (expresion_der -> BBIZQ expresion_simple .)
+    PDER            reduce using rule 51 (expresion_der -> BBIZQ expresion_simple .)
+    PTCOMA          reduce using rule 51 (expresion_der -> BBIZQ expresion_simple .)
 
 
 state 107
 
-    (50) expresion_der -> BBDER expresion_simple .
+    (52) expresion_der -> BBDER expresion_simple .
 
-    PDER            reduce using rule 50 (expresion_der -> BBDER expresion_simple .)
-    PTCOMA          reduce using rule 50 (expresion_der -> BBDER expresion_simple .)
+    PDER            reduce using rule 52 (expresion_der -> BBDER expresion_simple .)
+    PTCOMA          reduce using rule 52 (expresion_der -> BBDER expresion_simple .)
 
 
 state 108
 
-    (51) expresion_der -> IGUAL_QUE expresion_simple .
+    (53) expresion_der -> IGUAL_QUE expresion_simple .
 
-    PDER            reduce using rule 51 (expresion_der -> IGUAL_QUE expresion_simple .)
-    PTCOMA          reduce using rule 51 (expresion_der -> IGUAL_QUE expresion_simple .)
+    PDER            reduce using rule 53 (expresion_der -> IGUAL_QUE expresion_simple .)
+    PTCOMA          reduce using rule 53 (expresion_der -> IGUAL_QUE expresion_simple .)
 
 
 state 109
 
-    (52) expresion_der -> DESIGUAL_QUE expresion_simple .
+    (54) expresion_der -> DESIGUAL_QUE expresion_simple .
 
-    PDER            reduce using rule 52 (expresion_der -> DESIGUAL_QUE expresion_simple .)
-    PTCOMA          reduce using rule 52 (expresion_der -> DESIGUAL_QUE expresion_simple .)
+    PDER            reduce using rule 54 (expresion_der -> DESIGUAL_QUE expresion_simple .)
+    PTCOMA          reduce using rule 54 (expresion_der -> DESIGUAL_QUE expresion_simple .)
 
 
 state 110
 
-    (53) expresion_der -> MAYOR_QUE expresion_simple .
+    (55) expresion_der -> MAYOR_QUE expresion_simple .
 
-    PDER            reduce using rule 53 (expresion_der -> MAYOR_QUE expresion_simple .)
-    PTCOMA          reduce using rule 53 (expresion_der -> MAYOR_QUE expresion_simple .)
+    PDER            reduce using rule 55 (expresion_der -> MAYOR_QUE expresion_simple .)
+    PTCOMA          reduce using rule 55 (expresion_der -> MAYOR_QUE expresion_simple .)
 
 
 state 111
 
-    (54) expresion_der -> MENOR_QUE expresion_simple .
+    (56) expresion_der -> MENOR_QUE expresion_simple .
 
-    PDER            reduce using rule 54 (expresion_der -> MENOR_QUE expresion_simple .)
-    PTCOMA          reduce using rule 54 (expresion_der -> MENOR_QUE expresion_simple .)
+    PDER            reduce using rule 56 (expresion_der -> MENOR_QUE expresion_simple .)
+    PTCOMA          reduce using rule 56 (expresion_der -> MENOR_QUE expresion_simple .)
 
 
 state 112
 
-    (55) expresion_der -> MAYOR_IGUAL_QUE expresion_simple .
+    (57) expresion_der -> MAYOR_IGUAL_QUE expresion_simple .
 
-    PDER            reduce using rule 55 (expresion_der -> MAYOR_IGUAL_QUE expresion_simple .)
-    PTCOMA          reduce using rule 55 (expresion_der -> MAYOR_IGUAL_QUE expresion_simple .)
+    PDER            reduce using rule 57 (expresion_der -> MAYOR_IGUAL_QUE expresion_simple .)
+    PTCOMA          reduce using rule 57 (expresion_der -> MAYOR_IGUAL_QUE expresion_simple .)
 
 
 state 113
 
-    (56) expresion_der -> MENOR_IGUAL_QUE expresion_simple .
+    (58) expresion_der -> MENOR_IGUAL_QUE expresion_simple .
 
-    PDER            reduce using rule 56 (expresion_der -> MENOR_IGUAL_QUE expresion_simple .)
-    PTCOMA          reduce using rule 56 (expresion_der -> MENOR_IGUAL_QUE expresion_simple .)
+    PDER            reduce using rule 58 (expresion_der -> MENOR_IGUAL_QUE expresion_simple .)
+    PTCOMA          reduce using rule 58 (expresion_der -> MENOR_IGUAL_QUE expresion_simple .)
 
 
 state 114
 
-    (59) expresion -> ABS PIZQ expresion_simple . PDER
+    (61) expresion -> ABS PIZQ expresion_simple . PDER
 
-    PDER            shift and go to state 124
+    PDER            shift and go to state 126
 
 
 state 115
@@ -2404,72 +2441,86 @@ state 117
 
 state 118
 
-    (22) asig_valor -> PIZQ tipo . PDER expresion
+    (22) asig_valor -> PIZQ asig_valor_der .
 
-    PDER            shift and go to state 125
+    PTCOMA          reduce using rule 22 (asig_valor -> PIZQ asig_valor_der .)
 
 
 state 119
 
-    (23) tipo -> INT .
-
-    PDER            reduce using rule 23 (tipo -> INT .)
-
-
-state 120
-
-    (24) tipo -> FLOAT .
-
-    PDER            reduce using rule 24 (tipo -> FLOAT .)
-
-
-state 121
-
-    (25) tipo -> CHAR .
-
-    PDER            reduce using rule 25 (tipo -> CHAR .)
-
-
-state 122
-
-    (26) asig_valor -> READ PIZQ . PDER
-
-    PDER            shift and go to state 126
-
-
-state 123
-
-    (27) asig_valor -> ARRAY PIZQ . PDER
+    (23) asig_valor_der -> tipo . PDER expresion
 
     PDER            shift and go to state 127
 
 
+state 120
+
+    (24) asig_valor_der -> expresion . PDER
+
+    PDER            shift and go to state 128
+
+
+state 121
+
+    (25) tipo -> INT .
+
+    PDER            reduce using rule 25 (tipo -> INT .)
+
+
+state 122
+
+    (26) tipo -> FLOAT .
+
+    PDER            reduce using rule 26 (tipo -> FLOAT .)
+
+
+state 123
+
+    (27) tipo -> CHAR .
+
+    PDER            reduce using rule 27 (tipo -> CHAR .)
+
+
 state 124
 
-    (59) expresion -> ABS PIZQ expresion_simple PDER .
+    (28) asig_valor -> READ PIZQ . PDER
 
-    PDER            reduce using rule 59 (expresion -> ABS PIZQ expresion_simple PDER .)
-    PTCOMA          reduce using rule 59 (expresion -> ABS PIZQ expresion_simple PDER .)
+    PDER            shift and go to state 129
 
 
 state 125
 
-    (22) asig_valor -> PIZQ tipo PDER . expresion
-    (37) expresion -> . expresion_simple expresion_der
-    (59) expresion -> . ABS PIZQ expresion_simple PDER
-    (60) expresion -> . NOT expresion_simple
-    (61) expresion -> . BBNOT expresion_simple
-    (58) expresion_simple -> . MENOS expresion_simple
-    (62) expresion_simple -> . asignable accesos
-    (63) expresion_simple -> . ENTERO
-    (64) expresion_simple -> . DECIMAL
-    (65) expresion_simple -> . CADENA
-    (28) asignable -> . TEMPORAL
-    (29) asignable -> . PARAMETRO
-    (30) asignable -> . RETORNO
-    (31) asignable -> . PILA
-    (32) asignable -> . RA
-    (33) asignable -> . SP
+    (29) asig_valor -> ARRAY PIZQ . PDER
+
+    PDER            shift and go to state 130
+
+
+state 126
+
+    (61) expresion -> ABS PIZQ expresion_simple PDER .
+
+    PDER            reduce using rule 61 (expresion -> ABS PIZQ expresion_simple PDER .)
+    PTCOMA          reduce using rule 61 (expresion -> ABS PIZQ expresion_simple PDER .)
+
+
+state 127
+
+    (23) asig_valor_der -> tipo PDER . expresion
+    (39) expresion -> . expresion_simple expresion_der
+    (61) expresion -> . ABS PIZQ expresion_simple PDER
+    (62) expresion -> . NOT expresion_simple
+    (63) expresion -> . BBNOT expresion_simple
+    (60) expresion_simple -> . MENOS expresion_simple
+    (64) expresion_simple -> . asignable accesos
+    (65) expresion_simple -> . ENTERO
+    (66) expresion_simple -> . DECIMAL
+    (67) expresion_simple -> . CADENA
+    (30) asignable -> . TEMPORAL
+    (31) asignable -> . PARAMETRO
+    (32) asignable -> . RETORNO
+    (33) asignable -> . PILA
+    (34) asignable -> . RA
+    (35) asignable -> . SP
 
     ABS             shift and go to state 45
     NOT             shift and go to state 46
@@ -2485,27 +2536,34 @@ state 125
     RA              shift and go to state 28
     SP              shift and go to state 29
 
-    expresion                      shift and go to state 128
+    expresion                      shift and go to state 131
     expresion_simple               shift and go to state 44
     asignable                      shift and go to state 49
 
-state 126
-
-    (26) asig_valor -> READ PIZQ PDER .
-
-    PTCOMA          reduce using rule 26 (asig_valor -> READ PIZQ PDER .)
-
-
-state 127
-
-    (27) asig_valor -> ARRAY PIZQ PDER .
-
-    PTCOMA          reduce using rule 27 (asig_valor -> ARRAY PIZQ PDER .)
-
-
 state 128
 
-    (22) asig_valor -> PIZQ tipo PDER expresion .
+    (24) asig_valor_der -> expresion PDER .
 
-    PTCOMA          reduce using rule 22 (asig_valor -> PIZQ tipo PDER expresion .)
+    PTCOMA          reduce using rule 24 (asig_valor_der -> expresion PDER .)
+
+
+state 129
+
+    (28) asig_valor -> READ PIZQ PDER .
+
+    PTCOMA          reduce using rule 28 (asig_valor -> READ PIZQ PDER .)
+
+
+state 130
+
+    (29) asig_valor -> ARRAY PIZQ PDER .
+
+    PTCOMA          reduce using rule 29 (asig_valor -> ARRAY PIZQ PDER .)
+
+
+state 131
+
+    (23) asig_valor_der -> tipo PDER expresion .
+
+    PTCOMA          reduce using rule 23 (asig_valor_der -> tipo PDER expresion .)
 

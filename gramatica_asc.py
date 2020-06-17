@@ -570,6 +570,12 @@ def p_expresion_simple_cadena(t):
     reporte_gramatical.append(['expresion_simple -> CADENA','t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))
 
+def p_expresion_simple_parentesis(t):
+    '''expresion_simple : PIZQ expresion_simple PDER '''
+    global reporte_gramatical
+    reporte_gramatical.append(['expresion_simple : PIZQ expresion_simple PDER','t[0] = t[2]'])
+    t[0] = t[2]
+
 def p_error(t):
     if not t:
         mensajes.append(Mensaje(TIPO_MENSAJE.SINTACTICO,'Error sintáctico irrecuperable.',0,0))    
