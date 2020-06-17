@@ -2,6 +2,8 @@ from .Instruccion import Instruccion
 from .Mensaje import *
 from .Simbolo import *
 
+import easygui
+
 class Read(Instruccion) :
 
     def __init__(self, identificador, linea, columna) :
@@ -10,8 +12,14 @@ class Read(Instruccion) :
         self.columna = columna
     
     def ejecutar(self,ts,mensajes) :
-        print("read")
-        
+        valor = easygui.enterbox("Valor para"+self.identificador)
+
+        print(valor)
+        if not valor is None:
+            ts.addSimbolo(Simbolo(self.identificador,TIPO_DATO.CADENA,1,valor,self.linea,self.columna,ts.getEtActual()))
+        else:
+            self.mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'La expresión para el identificador '+self.identificador+' es inválida.',self.linea,self.columna))
+                
     def getAST_Ascendente(self) :
         arbol = '\"'+str(self)+'\"' + '[label=\"asig_inst\"] ;\n'
         

@@ -172,97 +172,142 @@ lexer = lex.lex()
 
 def p_init(t) :
     'init            : labels'
+    global reporte_gramatical
+    reporte_gramatical.append(['init -> labels','t[0] = t[1]']);
     t[0] = t[1]
 
 def p_labels(t) :
     'labels    : label labels_der'
+    global reporte_gramatical
+    reporte_gramatical.append(['labels -> label labels_der', 't[0] = t[2]']);
     t[0] = t[2]
 
 def p_labels_der(t):
     'labels_der : label labels_der'
+    global reporte_gramatical
+    reporte_gramatical.append(['labels_der -> label labels_der', 't[0] = []\nt[0].append(t[-1])\nt[0].extend(t[2])']);
     t[0] = []
     t[0].append(t[-1])
     t[0].extend(t[2])
     
 def p_labels_der_epsilon(t):
     'labels_der : epsilon'
+    global reporte_gramatical
+    reporte_gramatical.append(['labels_der -> epsilon', 't[0] = [t[-1]]']);
     t[0] = [t[-1]]
 
 def p_label(t):
     'label    : LABEL DPUNTOS instrucciones'
+    global reporte_gramatical
+    reporte_gramatical.append(['label -> LABEL DPUNTOS instrucciones','t[0] = Etiqueta(t[1],TIPO_ESTRUCTURA.CONTROL,t.lineno(2),find_column(entrada, t.slice[2]),t[3])']);
     t[0] = Etiqueta(t[1],TIPO_ESTRUCTURA.CONTROL,t.lineno(2),find_column(entrada, t.slice[2]),t[3])
 
 def p_instrucciones(t):
     'instrucciones : instruccion instrucciones_der'
+    global reporte_gramatical
+    reporte_gramatical.append(['instrucciones -> instruccion instrucciones_der', 't[0] = t[2]']);
     t[0] = t[2]
 
 def p_instrucciones_der(t):
     'instrucciones_der : instruccion instrucciones_der'
+    global reporte_gramatical
+    reporte_gramatical.append(['instrucciones_der -> instruccion instrucciones_der', 't[0] = []\nt[0].append(t[-1])\nt[0].extend(t[2])']);
     t[0] = []
     t[0].append(t[-1])
     t[0].extend(t[2])
     
 def p_instrucciones_der_epsilon(t):
     'instrucciones_der : epsilon'
+    global reporte_gramatical
+    reporte_gramatical.append(['instrucciones_der -> epsilon', 't[0] = [t[-1]]']);
     t[0] = [t[-1]]
 
 def p_instruccion_1(t):
     ''' instruccion     : print_inst'''
+    global reporte_gramatical
+    reporte_gramatical.append(['instruccion -> print_inst','t[0] = t[1]'])
     t[0] = t[1]
 
 def p_instruccion_2(t):
     ''' instruccion     : goto_inst'''
+    global reporte_gramatical
+    reporte_gramatical.append(['instruccion -> goto_inst','t[0] = t[1]'])
     t[0] = t[1]
 
 def p_instruccion_3(t):
     ''' instruccion     : exit_inst'''
+    global reporte_gramatical
+    reporte_gramatical.append(['instruccion -> exit_inst','t[0] = t[1]'])
     t[0] = t[1]
 
 def p_instruccion_4(t):
     ''' instruccion     : unset_inst'''
+    global reporte_gramatical
+    reporte_gramatical.append(['instruccion -> unset_inst','t[0] = t[1]'])
     t[0] = t[1]
 
 def p_instruccion_5(t):
     ''' instruccion     : if_inst'''
+    global reporte_gramatical
+    reporte_gramatical.append(['instruccion -> if_inst','t[0] = t[1]'])
     t[0] = t[1]
 
 def p_instruccion_6(t):
     ''' instruccion : asig_inst '''
+    global reporte_gramatical
+    reporte_gramatical.append(['instruccion -> asig_inst','t[0] = t[1]'])
     t[0] = t[1]
 
 def p_instruccion_print(t):
     'print_inst     : PRINT PIZQ expresion PDER PTCOMA'
+    global reporte_gramatical
+    reporte_gramatical.append(['print_inst -> PRINT PIZQ expresion_simple PDER PTCOMA','t[0] = Print(t[3],t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Print(t[3],t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_instruccion_goto(t):
     'goto_inst     : GOTO LABEL PTCOMA'
+    global reporte_gramatical
+    reporte_gramatical.append(['goto_inst -> GOTO LABEL PTCOMA','t[0] = Goto(t[2],t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Goto(t[2],t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_instruccion_exit(t):
     'exit_inst     : EXIT PTCOMA'
+    global reporte_gramatical
+    reporte_gramatical.append(['exit_inst -> EXIT PTCOMA','t[0] = Exit(t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Exit(t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_instruccion_unset(t):
     'unset_inst     : UNSET PIZQ expresion_simple PDER PTCOMA'
+    global reporte_gramatical
+    reporte_gramatical.append(['unset_inst -> UNSET PIZQ asignable PDER PTCOMA','t[0] = Unset(t[3],t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Unset(t[3],t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_instruccion_if(t):
     'if_inst     : IF PIZQ expresion PDER instruccion'
+    global reporte_gramatical
+    reporte_gramatical.append(['if_inst -> IF PIZQ expresion PDER instruccion','t[0] = If(t[3],t[5],t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = If(t[3],t[5],t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_instruccion_asig(t):
     'asig_inst  : asignable accesos ASIG asig_valor PTCOMA'
+    global reporte_gramatical
+    reporte_gramatical.append(['asig_inst -> asignable accesos ASIG asig_valor PTCOMA','t[0] = t[4]'])
     t[0] = t[4]
 
 def p_asig_valor(t):
     'asig_valor : expresion'
+    global reporte_gramatical
     if len(t[-2])==0:
+        reporte_gramatical.append(['asig_inst -> expresion','t[0] = Asignacion(t[-3],t[1],0,0)'])
         t[0] = Asignacion(t[-3],t[1],0,0)
     else:
+        reporte_gramatical.append(['asig_inst -> expresion','t[0] = AsignacionArray(t[-3],t[-2],t[1],0,0)'])
         t[0] = AsignacionArray(t[-3],t[-2],t[1],0,0)
 
 def p_asig_conversion(t):
     'asig_valor : PIZQ tipo PDER expresion'
+    global reporte_gramatical
+    reporte_gramatical.append(['asig_valor -> PIZQ tipo PDER expresion','t[0] = Convertir(t[-3],t[4],t[2],t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Convertir(t[-3],t[4],t[2],t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_tipo(t):
@@ -270,14 +315,20 @@ def p_tipo(t):
             | FLOAT
             | CHAR
     '''
+    global reporte_gramatical
+    reporte_gramatical.append(['tipo -> '+t[1],'t[0] = t[1]'])
     t[0] = t[1]
 
 def p_asig_read(t):
     'asig_valor : READ PIZQ PDER'
+    global reporte_gramatical
+    reporte_gramatical.append(['asig_valor -> READ PIZQ PDER','t[0] = Read(t[-3],t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Read(t[-3],t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_asig_array(t):
     'asig_valor : ARRAY PIZQ PDER'
+    global reporte_gramatical
+    reporte_gramatical.append(['asig_valor -> ARRAY PIZQ PDER','t[0] = Asignacion(t[-3],{},t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Asignacion(t[-3],{},t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_registros_asignables_1(t):
@@ -421,41 +472,60 @@ def p_expresion_der(t):
 
 def p_expresion_der_epsilon(t):
     ''' expresion_der : epsilon '''
+    global reporte_gramatical
+    reporte_gramatical.append(['expresion_der -> epsilon','t[0] = t[-1]'])
     t[0] = t[-1]
 
 def p_negativo(t):
     ' expresion_simple     : MENOS expresion_simple'
+    global reporte_gramatical
+    reporte_gramatical.append(['expresion_simple -> MENOS expresion_simple','t[0] = Unaria(t[2],TIPO_UNARIO.NEGATIVO,t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Unaria(t[2],TIPO_UNARIO.NEGATIVO,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_abs(t):
     ' expresion     : ABS PIZQ expresion_simple PDER '
+    global reporte_gramatical
+    reporte_gramatical.append(['expresion -> ABS PIZQ expresion_simple PDER','t[0] = Aritmetica(t[3],None,TIPO_ARITMETICA.ABSOLUTO,t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Aritmetica(t[3],None,TIPO_ARITMETICA.ABSOLUTO,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_not(t):
     ' expresion     : NOT expresion_simple'
+    global reporte_gramatical
+    reporte_gramatical.append(['expresion -> NOT expresion_simple','t[0] = Logica(t[2],None,TIPO_LOGICA.NOT,t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Logica(t[2],None,TIPO_LOGICA.NOT,t.lineno(1),find_column(entrada, t.slice[1]))
     
 def p_bit_not(t):
     ' expresion     : BBNOT expresion_simple'
+    global reporte_gramatical
+    reporte_gramatical.append(['expresion -> BBNOT expresion_simple','t[0] = BitToBit(t[2],None,TIPO_BIT_BIT.NOT,t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = BitToBit(t[2],None,TIPO_BIT_BIT.NOT,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_acceso_arreglo(t):
     ''' expresion_simple     : asignable accesos '''
+    global reporte_gramatical
     if len(t[2])==0:
+        reporte_gramatical.append(['expresion_simple -> asignable accesos','t[0] = Unaria(t[1],TIPO_UNARIO.IDENTIFICADOR,0,0)'])
         t[0] = Unaria(t[1],TIPO_UNARIO.IDENTIFICADOR,0,0)
     else:
+        reporte_gramatical.append(['expresion_simple -> asignable accesos','t[0] = Acceso(t[1],t[2])'])
         t[0] = Acceso(t[1],t[2])
 
 def p_expresion_simple_entero(t):
     '''expresion_simple     : ENTERO '''
+    global reporte_gramatical
+    reporte_gramatical.append(['expresion_simple -> ENTERO','t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Unaria(t[1],TIPO_UNARIO.ENTERO,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_expresion_simple_decimal(t):
     '''expresion_simple     : DECIMAL '''
+    global reporte_gramatical
+    reporte_gramatical.append(['expresion_simple -> DECIMAL','t[0] = Unaria(t[1],TIPO_UNARIO.DECIMAL,t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Unaria(t[1],TIPO_UNARIO.DECIMAL,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_expresion_simple_cadena(t):
     '''expresion_simple     : CADENA'''
+    global reporte_gramatical
+    reporte_gramatical.append(['expresion_simple -> CADENA','t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))'])
     t[0] = Unaria(t[1],TIPO_UNARIO.CADENA,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_epsilon(p):

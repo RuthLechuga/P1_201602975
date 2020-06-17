@@ -143,11 +143,7 @@ t_ignore = " \t"
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
-
-def t_eof(t):
-    r'eof'
-    print('llegue')
-    
+   
 def t_error(t):
     global mensajes
     mensajes.append(Mensaje(TIPO_MENSAJE.LEXICO,'Caracter no válido: '+t.value[0]+'.',t.lexer.lineno,0))

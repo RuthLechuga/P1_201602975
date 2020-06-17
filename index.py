@@ -394,6 +394,16 @@ class EditorTexto:
                 for instruccion in etiqueta.instrucciones:
                     arbol += 'et_'+etiqueta.identificador+'_instrucciones -> '+'\"'+str(instruccion)+'\"'+'\n'
                     arbol += instruccion.getAST_Ascendente()
+        
+        else:
+            temporal = ''
+            for etiqueta in ts_global.etiquetas.values():
+                arbol+= 'labels -> et_'+etiqueta.identificador+'\n'
+                arbol += 'et_'+etiqueta.identificador+' -> et_'+etiqueta.identificador+'_instrucciones\n'
+
+                #for instruccion in etiqueta.instrucciones:
+                    #arbol += 'et_'+etiqueta.identificador+'_instrucciones -> '+'\"'+str(instruccion)+'\"'+'\n'
+                    #arbol += instruccion.getAST_Descendente()
 
         arbol += "\n}"
         #print(arbol)
@@ -414,14 +424,13 @@ class EditorTexto:
                     <th>Regla Semántica</th> 
                 </tr>
         '''
-        if is_ascendente:
-            for r in reporte_gramatical:
-                html += '''
-                <tr>
-                    <td>'''+r[0]+'''</td>
-                    <td>'''+r[1]+'''</td>
-                </tr>
-                '''
+        for r in reporte_gramatical:
+            html += '''
+            <tr>
+                <td>'''+r[0]+'''</td>
+                <td>'''+r[1]+'''</td>
+            </tr>
+            '''
         html += '''</table>'''
         
         html += '''</body>
