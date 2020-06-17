@@ -27,7 +27,6 @@ class Read(Instruccion) :
                 valor_tipado = str(valor)
                 tipo = TIPO_DATO.CADENA
 
-        print(valor)
         if not valor is None:
             ts.addSimbolo(Simbolo(self.identificador,tipo,1,valor_tipado,self.linea,self.columna,ts.getEtActual()))
         else:

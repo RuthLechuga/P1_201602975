@@ -4,6 +4,7 @@ from tkinter import *
 from Arbol.Exit import *
 from Arbol.Mensaje import *
 from Arbol.Etiqueta import *
+from Arbol.Read import *
 from graphviz import Source
 import Arbol.TablaDeSimbolos as TS
 import gramatica_asc as g_asc
@@ -253,12 +254,21 @@ class EditorTexto:
             bandera = False
 
             for instruccion in etiqueta.instrucciones:
+                if isinstance(instruccion,Read):
+                    salida = ""
+                    for mensaje in mensajes:
+                        if mensaje.tipo_mensaje == TIPO_MENSAJE.LOG:
+                            salida += str(mensaje.mensaje).replace('\\n','\n')
+                    
+                    self.consola.delete('1.0',END)
+                    self.consola.insert('1.0',salida)
+                
                 res = instruccion.ejecutar(ts_global,mensajes)
                 if isinstance(res,Etiqueta) or isinstance(instruccion,Exit):
                     etiqueta = res
                     bandera = True
                     break
-            
+         
             if bandera:
                 continue
 

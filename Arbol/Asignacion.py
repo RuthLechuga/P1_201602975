@@ -29,6 +29,7 @@ class Asignacion(Instruccion) :
         
         elif isinstance(temporal,float):
             tipo_dato = TIPO_DATO.DECIMAL
+            temporal = round(temporal,2)
         
         elif isinstance(temporal,str) and len(temporal)==1:
             tipo_dato = TIPO_DATO.CARACTER
