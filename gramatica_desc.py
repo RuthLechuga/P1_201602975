@@ -533,8 +533,16 @@ def p_epsilon(p):
     pass
 
 def p_error(t):
-    global mensajes
-    mensajes.append(Mensaje(TIPO_MENSAJE.SINTACTICO,'Error sintáctico en: '+t.value+'.',t.lineno,find_column(entrada, t)))
+    if not t:
+        mensajes.append(Mensaje(TIPO_MENSAJE.SINTACTICO,'Error sintáctico irrecuperable.',0,0))    
+        return
+
+    mensajes.append(Mensaje(TIPO_MENSAJE.SINTACTICO,'Error sintáctico en: '+str(t.value)+'.',t.lineno,find_column(entrada, t)))    
+    while True:
+        tok = parser.token()
+        if not tok or tok.type == 'PTCOMA': 
+            break
+    parser.restart()
 
 def find_column(input, token):
     line_start = input.rfind('\n', 0, token.lexpos) + 1

@@ -189,7 +189,8 @@ class EditorTexto:
         global is_ascendente
         global mensajes
         global reporte_gramatical
-        
+
+        self.cleanTable()
         is_ascendente = True
         del mensajes[:]
         etiquetas = g_asc.parse(self.text.get_text())
@@ -220,6 +221,7 @@ class EditorTexto:
         global mensajes
         global reporte_gramatical
         
+        self.cleanTable()
         is_ascendente = False
         mensajes = []
         etiquetas = g_desc.parse(self.text.get_text())
@@ -462,4 +464,19 @@ class EditorTexto:
         textCarnet = Label(root,text='201602975',bg="#81BEF7")
         textCarnet.pack()
 
+    def cleanTable(self):
+        for fila in range(1,25):
+            tipo = Entry(self.tab_errores, borderwidth=1, width=15, fg='black', font=('Arial',11)) 
+            tipo.grid(row=fila, column=0) 
+            tipo.insert(END, "")
+            linea = Entry(self.tab_errores, borderwidth=1, width=10, fg='black', font=('Arial',11))
+            linea.grid(row=fila, column=1) 
+            linea.insert(END, "")
+            columna = Entry(self.tab_errores, borderwidth=1, width=10, fg='black', font=('Arial',11))
+            columna.grid(row=fila, column=2) 
+            columna.insert(END, "")
+            error = Entry(self.tab_errores, borderwidth=1, width=95, fg='black', font=('Arial',11))
+            error.grid(row=fila, column=3) 
+            error.insert(END, "")
+            
 EditorTexto()
