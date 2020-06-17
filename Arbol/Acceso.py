@@ -26,10 +26,12 @@ class Acceso(Instruccion) :
                     diccionario = diccionario.get(indice, None)          
                 elif isinstance(diccionario,str):
                     diccionario = diccionario[indice]
+                else:
+                    return None
 
                 if diccionario is None:
                     return None
-            
+                    
             return diccionario       
 
     def getAST_Ascendente(self) :

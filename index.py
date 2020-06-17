@@ -214,7 +214,7 @@ class EditorTexto:
                 error = Entry(self.tab_errores, borderwidth=1, width=95, fg='black', font=('Arial',11))
                 error.grid(row=fila, column=3) 
                 error.insert(END, mensaje.mensaje) 
-            fila+=1
+                fila+=1
              
     def ej_descendente(self):
         global is_ascendente
@@ -267,7 +267,7 @@ class EditorTexto:
         salida = ""
         for mensaje in mensajes:
             if mensaje.tipo_mensaje == TIPO_MENSAJE.LOG:
-                salida += str(mensaje.mensaje)+"\n"
+                salida += str(mensaje.mensaje).replace('\\n','\n')
         
         self.consola.delete('1.0',END)
         self.consola.insert('1.0',salida)

@@ -15,6 +15,10 @@ class Print(Instruccion) :
             mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'No se ha podido procesar la información del print.',self.linea,self.columna))           
             return
         
+        if isinstance(valor,dict):
+            mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'No se puede imprimir un arreglo.',self.linea,self.columna))           
+            return
+
         mensajes.append(Mensaje(TIPO_MENSAJE.LOG,valor,self.linea,self.columna))
         
     def getAST_Ascendente(self) :
