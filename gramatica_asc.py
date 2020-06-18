@@ -194,7 +194,15 @@ def p_label(t):
     'label    : LABEL DPUNTOS instrucciones'
     global reporte_gramatical
     reporte_gramatical.append(['label -> LABEL DPUNTOS instrucciones','t[0] = Etiqueta(t[1],TIPO_ESTRUCTURA.CONTROL,t.lineno(2),find_column(entrada, t.slice[2]),t[3])']);
-    t[0] = Etiqueta(t[1],TIPO_ESTRUCTURA.CONTROL,t.lineno(2),find_column(entrada, t.slice[2]),t[3])
+    global b_parametro
+    global b_retorno
+    tipo = TIPO_ESTRUCTURA.CONTROL
+    if b_parametro:
+        tipo = TIPO_ESTRUCTURA.PROCEDIMIENTO
+    elif b_retorno:
+        tipo = TIPO_ESTRUCTURA.FUNCION
+    
+    t[0] = Etiqueta(t[1],tipo,t.lineno(2),find_column(entrada, t.slice[2]),t[3])
 
 def p_instrucciones_lista(t):
     'instrucciones     : instrucciones instruccion'
@@ -205,6 +213,10 @@ def p_instrucciones_lista(t):
 
 def p_instrucciones_instruccion(t):
     'instrucciones     : instruccion'
+    global b_parametro
+    global b_retorno
+    b_parametro = False
+    b_retorno = False
     global reporte_gramatical
     reporte_gramatical.append(['instrucciones -> instruccion','t[0] = [t[1]]']);
     t[0] = [t[1]]
@@ -352,12 +364,16 @@ def p_registros_asignables_2(t):
     '''asignable     : PARAMETRO'''
     global reporte_gramatical
     reporte_gramatical.append(['asignable -> PARAMETRO','t[0] = t[1]'])
+    global b_parametro
+    b_parametro = True
     t[0] = t[1]
 
 def p_registros_asignables_3(t):
     '''asignable     : RETORNO'''
     global reporte_gramatical
     reporte_gramatical.append(['asignable -> RETORNO','t[0] = t[1]'])
+    global b_retorno
+    b_retorno = True
     t[0] = t[1]
 
 def p_registros_asignables_4(t):
@@ -523,12 +539,16 @@ def p_expresion_simple_identificador_2(t):
     '''expresion_simple     : PARAMETRO'''
     global reporte_gramatical
     reporte_gramatical.append(['expresion_simple -> PARAMETRO','t[0] = Unaria(t[1],TIPO_UNARIO.IDENTIFICADOR,t.lineno(1),find_column(entrada, t.slice[1]))'])
+    global b_parametro
+    b_parametro = True
     t[0] = Unaria(t[1],TIPO_UNARIO.IDENTIFICADOR,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_expresion_simple_identificador_3(t):
     '''expresion_simple     : RETORNO'''
     global reporte_gramatical
     reporte_gramatical.append(['expresion_simple -> RETORNO','t[0] = Unaria(t[1],TIPO_UNARIO.IDENTIFICADOR,t.lineno(1),find_column(entrada, t.slice[1]))'])
+    global b_retorno
+    b_retorno = True
     t[0] = Unaria(t[1],TIPO_UNARIO.IDENTIFICADOR,t.lineno(1),find_column(entrada, t.slice[1]))
 
 def p_expresion_simple_identificador_4(t):
@@ -598,6 +618,8 @@ parser = yacc.yacc()
 entrada = ''
 mensajes = []
 reporte_gramatical = []
+b_parametro = False
+b_retorno = False
 
 def parse(input) :
     global entrada
