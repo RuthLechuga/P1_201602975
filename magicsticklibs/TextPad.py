@@ -83,6 +83,13 @@ class TextPad(Tkinter.Text):
 	
 	def change_color(self,color):
 		self.config(bg=color)
+	
+	def resaltar(self,start):
+		self.tag_add("debug", float(start), float(start+1))
+		self.tag_config("debug", background="yellow", foreground="blue")
+	
+	def deleteResaltar(self):
+		self.tag_delete("debug")
 
 if __name__ == '__main__':
 	root = Tkinter.Tk(className = " Test TextPad")

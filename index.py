@@ -1,5 +1,6 @@
 from tkinter import ttk
 from tkinter import filedialog
+from tkinter import messagebox
 from tkinter import *
 from Arbol.Exit import *
 from Arbol.Mensaje import *
@@ -10,6 +11,7 @@ import Arbol.TablaDeSimbolos as TS
 import gramatica_asc as g_asc
 import gramatica_desc as g_desc
 import webbrowser
+import easygui as eg
 
 #bibliotecas para interfaz gráfica
 from magicsticklibs.TextPad import TextPad
@@ -92,7 +94,11 @@ class EditorTexto:
         mColores.add_command(label="Lila",command=self.lila)
         mOpciones.add_cascade(label="Color fondo", menu=mColores)
         menubar.add_cascade(label="Opciones", menu=mOpciones)
-        
+
+        mDebugger = Menu(menubar, background='#FFFFFF',foreground='blue')
+        mDebugger.add_command(label="Debuggear",command=self.debuggear)
+        menubar.add_cascade(label="Debuggear", menu=mDebugger)
+       
         mAyuda = Menu(menubar, background='#FFFFFF',foreground='blue')
         mAyuda.add_command(label="Acerca de", command=self.acerca)
         menubar.add_cascade(label="Ayuda", menu=mAyuda)
@@ -101,10 +107,10 @@ class EditorTexto:
         tab_control = ttk.Notebook(self.root)
         tab_consola = ttk.Frame(tab_control)
         self.tab_errores = ttk.Frame(tab_control)
-        tab_ts = ttk.Frame(tab_control)
+        self.tab_ts = ttk.Frame(tab_control)
         tab_control.add(tab_consola,text='CONSOLA')
         tab_control.add(self.tab_errores,text='ERRORES')
-        tab_control.add(tab_ts,text='TABLA SIMBOLOS')
+        tab_control.add(self.tab_ts,text='TABLA SIMBOLOS')
         tab_control.pack(expand=1, fill='both')
 
         self.consola = Text(tab_consola,bg="#000000",fg="#FFFFFF")
@@ -125,6 +131,34 @@ class EditorTexto:
         self.error = Entry(self.tab_errores, borderwidth=1, width=95, bg="black", fg='white', font=('Arial',11,'bold'))
         self.error.grid(row=0, column=3) 
         self.error.insert(END, 'Error') 
+
+        self.id = Entry(self.tab_ts, borderwidth=1, width=15, bg="black", fg='white', font=('Arial',11,'bold')) 
+        self.id.grid(row=0, column=0) 
+        self.id.insert(END, 'ID') 
+
+        self.tipo = Entry(self.tab_ts, borderwidth=1, width=15, bg="black", fg='white', font=('Arial',11,'bold')) 
+        self.tipo.grid(row=0, column=1) 
+        self.tipo.insert(END, 'Tipo') 
+
+        self.dimension = Entry(self.tab_ts, borderwidth=1, width=15, bg="black", fg='white', font=('Arial',11,'bold')) 
+        self.dimension.grid(row=0, column=2) 
+        self.dimension.insert(END, 'Dimension') 
+
+        self.valor = Entry(self.tab_ts, borderwidth=1, width=15, bg="black", fg='white', font=('Arial',11,'bold')) 
+        self.valor.grid(row=0, column=3) 
+        self.valor.insert(END, 'Valor') 
+        
+        self.linea = Entry(self.tab_ts, borderwidth=1, width=15, bg="black", fg='white', font=('Arial',11,'bold')) 
+        self.linea.grid(row=0, column=4) 
+        self.linea.insert(END, 'Linea') 
+
+        self.columna = Entry(self.tab_ts, borderwidth=1, width=15, bg="black", fg='white', font=('Arial',11,'bold')) 
+        self.columna.grid(row=0, column=5) 
+        self.columna.insert(END, 'Columna')     
+
+        self.ambito = Entry(self.tab_ts, borderwidth=1, width=15, bg="black", fg='white', font=('Arial',11,'bold')) 
+        self.ambito.grid(row=0, column=6) 
+        self.ambito.insert(END, 'ambito') 
 
         self.root.mainloop()
     
@@ -192,6 +226,7 @@ class EditorTexto:
         global reporte_gramatical
 
         self.cleanTable()
+        self.cleanTS()
         is_ascendente = True
         del mensajes[:]
         etiquetas = g_asc.parse(self.text.get_text())
@@ -223,6 +258,7 @@ class EditorTexto:
         global reporte_gramatical
         
         self.cleanTable()
+        self.cleanTS()
         is_ascendente = False
         mensajes = []
         etiquetas = g_desc.parse(self.text.get_text())
@@ -282,7 +318,7 @@ class EditorTexto:
         self.consola.delete('1.0',END)
         self.consola.insert('1.0',salida)
         self.imprimir_errores()
-        
+        self.imprimir_TS()
 
     def reporte_errores(self):
         global mensajes
@@ -485,7 +521,108 @@ class EditorTexto:
             file.close()
             global new
             webbrowser.open('Gramatical.html',new=new)
-   
+    
+    def debuggear(self):
+        global is_ascendente
+        global mensajes
+        global reporte_gramatical
+
+        self.cleanTable()
+        is_ascendente = True
+        del mensajes[:]
+        etiquetas = g_asc.parse(self.text.get_text())
+        mensajes = g_asc.mensajes
+        reporte_gramatical = g_asc.reporte_gramatical
+
+        global ts_global
+        if len(mensajes) > 0:
+            self.consola.delete('1.0',END)
+            self.consola.insert('1.0','>>>>>Errores<<<<<')
+            self.imprimir_errores()
+            return
+
+        ts_global = TS.TablaDeSimbolos()
+        ts_global.reiniciar()
+
+        for etiqueta in etiquetas:
+            if not ts_global.addEtiqueta(etiqueta):
+                mensajes.append(Mensaje(TIPO_MENSAJE.SEMANTICO,'La etiqueta: '+etiqueta.identificador+' ya existe.',0,0))
+                        
+        etiqueta = ts_global.getEtiqueta('main')
+
+        debugueando = True;
+        while (not (etiqueta is None)) and debugueando:
+
+            bandera = False
+
+            for instruccion in etiqueta.instrucciones:
+                self.text.resaltar(instruccion.linea)
+                res = instruccion.ejecutar(ts_global,mensajes)
+                if isinstance(res,Etiqueta) or isinstance(instruccion,Exit):
+                    etiqueta = res
+                    bandera = True
+                    debugueando = eg.ccbox(msg='Desea continuar debugueando',title='Debug',image='debug.svg')
+                    self.text.deleteResaltar()
+                    break
+                
+                salida = ""
+                for mensaje in mensajes:
+                    if mensaje.tipo_mensaje == TIPO_MENSAJE.LOG:
+                        salida += str(mensaje.mensaje).replace('\\n','\n')
+                
+                self.consola.delete('1.0',END)
+                self.consola.insert('1.0',salida)
+                self.imprimir_errores() 
+                self.imprimir_TS()
+
+                debugueando = eg.ccbox(msg='Desea continuar debugueando',title='Debug')
+
+                if not debugueando:
+                    break
+                self.text.deleteResaltar()
+
+            if bandera:
+                continue
+
+            etiqueta = ts_global.getSiguiente()
+
+        self.text.deleteResaltar()
+        salida = ""
+        for mensaje in mensajes:
+            if mensaje.tipo_mensaje == TIPO_MENSAJE.LOG:
+                salida += str(mensaje.mensaje).replace('\\n','\n')
+        
+        self.consola.delete('1.0',END)
+        self.consola.insert('1.0',salida)
+        self.imprimir_errores()
+    
+    def imprimir_TS(self):
+        global ts_global
+        fila = 1
+        for simbolo in ts_global.simbolos.values():
+            identificador = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11)) 
+            identificador.grid(row=fila, column=0) 
+            identificador.insert(END, simbolo.identificador)
+            tipo = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11))
+            tipo.grid(row=fila, column=1) 
+            tipo.insert(END, simbolo.tipo.name)
+            dimension = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11))
+            dimension.grid(row=fila, column=2) 
+            dimension.insert(END, str(simbolo.dimension))
+            valor = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11))
+            valor.grid(row=fila, column=3) 
+            valor.insert(END, str(simbolo.valor))
+            linea = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11))
+            linea.grid(row=fila, column=4) 
+            linea.insert(END, str(simbolo.linea))
+            columna = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11))
+            columna.grid(row=fila, column=5) 
+            columna.insert(END, str(simbolo.columna))
+            ambito = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11))
+            ambito.grid(row=fila, column=6) 
+            ambito.insert(END, simbolo.ambito)
+            fila+=1
+
     def acerca(self):
         root = Tk()
         root.geometry('300x100')
@@ -516,5 +653,35 @@ class EditorTexto:
             error = Entry(self.tab_errores, borderwidth=1, width=95, fg='black', font=('Arial',11))
             error.grid(row=fila, column=3) 
             error.insert(END, "")
+    
+    def cleanTS(self):
+        for fila in range(1,25):
+            identificador = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11)) 
+            identificador.grid(row=fila, column=0) 
+            identificador.insert(END, "")
+
+            tipo = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11))
+            tipo.grid(row=fila, column=1) 
+            tipo.insert(END, "")
+
+            dimension = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11))
+            dimension.grid(row=fila, column=2) 
+            dimension.insert(END, "")
+
+            valor = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11))
+            valor.grid(row=fila, column=3) 
+            valor.insert(END, "")
+
+            linea = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11))
+            linea.grid(row=fila, column=4) 
+            linea.insert(END, "")
+
+            columna = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11))
+            columna.grid(row=fila, column=5) 
+            columna.insert(END, "")
+
+            ambito = Entry(self.tab_ts, borderwidth=1, width=15, fg='black', font=('Arial',11))
+            ambito.grid(row=fila, column=6) 
+            ambito.insert(END, "")
             
 EditorTexto()
