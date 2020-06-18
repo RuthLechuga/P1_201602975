@@ -22,6 +22,16 @@ class Print(Instruccion) :
         mensajes.append(Mensaje(TIPO_MENSAJE.LOG,valor,self.linea,self.columna))
         
     def getAST_Ascendente(self) :
+        arbol = self.get_encabezado()
+        arbol += self.expresion.getAST_Ascendente()    
+        return arbol
+    
+    def getAST_Descendente(self) :
+        arbol = self.get_encabezado()
+        arbol += self.expresion.getAST_Descendente()
+        return arbol
+    
+    def get_encabezado(self):
         arbol = '\"'+str(self)+'\"' + '[label=\"print_inst\"] ;\n'
         
         arbol += '\"print_'+str(self)+'\"' + '[label=\"print\"] ;\n'
@@ -35,9 +45,4 @@ class Print(Instruccion) :
 
         arbol += '\"PDER_'+str(self)+'\"' + '[label=\")\"] ;\n'
         arbol += '\"'+str(self)+'\"'+' -> '+ '\"PDER_'+str(self)+'\"\n'
-
-        arbol += self.expresion.getAST_Ascendente()    
         return arbol
-    
-    def getAST_Descendente(self) :
-        print('ast')

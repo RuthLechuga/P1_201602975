@@ -113,4 +113,24 @@ class AsignacionArray(Instruccion) :
         return arbol
 
     def getAST_Descendente(self) :
-        print('ast')
+        arbol = '\"'+str(self)+'\"' + '[label=\"asig_array_inst\"] ;\n'
+        
+        arbol += '\"id_'+str(self)+'\"' + '[label=\"identificador\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"id_'+str(self)+'\"\n'
+
+        arbol += '\"accesos_'+str(self)+'\"' + '[label=\"accesos\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"accesos_'+str(self)+'\"\n'
+
+        for acceso in self.accesos:
+            arbol += '\"'+str(acceso)+'\"' + '[label=\"acceso\"] ;\n'
+            arbol += '\"accesos_'+str(self)+'\" -> \"'+str(acceso)+"\"\n"
+            arbol += acceso.getAST_Descendente()
+        
+        arbol += '\"asig_'+str(self)+'\"' + '[label=\"=\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"asig_'+str(self)+'\"\n'
+
+        arbol += '\"'+str(self.expresion)+'\"' + '[label=\"expresion\"] ;\n'
+        arbol += '\"'+str(self)+'\"'+' -> '+ '\"'+str(self.expresion)+'\"\n'
+        arbol += self.expresion.getAST_Descendente()
+
+        return arbol

@@ -44,6 +44,16 @@ class Asignacion(Instruccion) :
         ts.addSimbolo(Simbolo(self.identificador,tipo_dato,dimension,temporal,self.linea,self.columna,ts.getEtActual()))
     
     def getAST_Ascendente(self) :
+        arbol = self.getEncabezado()
+        arbol += self.expresion.getAST_Ascendente()
+        return arbol
+        
+    def getAST_Descendente(self) :
+        arbol = self.getEncabezado()
+        arbol += self.expresion.getAST_Descendente()
+        return arbol
+    
+    def getEncabezado(self):
         arbol = '\"'+str(self)+'\"' + '[label=\"asig_inst\"] ;\n'
         
         arbol += '\"id_'+str(self)+'\"' + '[label=\"identificador\"] ;\n'
@@ -54,9 +64,4 @@ class Asignacion(Instruccion) :
 
         arbol += '\"'+str(self.expresion)+'\"' + '[label=\"expresion\"] ;\n'
         arbol += '\"'+str(self)+'\"'+' -> '+ '\"'+str(self.expresion)+'\"\n'
-        arbol += self.expresion.getAST_Ascendente()
-
         return arbol
-        
-    def getAST_Descendente(self) :
-        print('ast')

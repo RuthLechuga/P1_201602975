@@ -71,4 +71,18 @@ class Relacional(Instruccion) :
         return arbol
 
     def getAST_Descendente(self) :
-        print('ast')
+        arbol = '\"'+str(self.izquierda)+'\"' + '[label=\"expresion\"] ;\n'
+        arbol +='\"'+str(self)+'\" -> \"'+str(self.izquierda)+'\"\n'
+        arbol += self.izquierda.getAST_Ascendente()
+        
+        arbol += '\"exp_der_'+str(self.izquierda)+'\"' + '[label=\"expresion\'\"] ;\n'
+        arbol +='\"'+str(self)+'\" -> \"exp_der_'+str(self.izquierda)+'\"\n'
+            
+        arbol += '\"sig_'+str(self)+'\"' + '[label=\"'+self.tipo.name+'\"] ;\n'
+        arbol += '\"exp_der_'+str(self.izquierda)+'\" -> \"sig_'+str(self)+'\"\n'
+            
+        arbol += '\"'+str(self.derecha)+'\"' + '[label=\"expresion\"] ;\n'
+        arbol += '\"exp_der_'+str(self.izquierda)+'\" -> \"'+str(self.derecha)+'\"\n'
+        arbol += self.derecha.getAST_Ascendente()
+
+        return arbol

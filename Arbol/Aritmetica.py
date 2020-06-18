@@ -110,4 +110,35 @@ class Aritmetica(Instruccion) :
         return arbol
     
     def getAST_Descendente(self) :
-        print('ast')
+        arbol = ""
+        if self.derecha is None:
+            arbol += '\"abs_'+str(self)+'\"' + '[label=\"abs\"] ;\n'
+            arbol +='\"'+str(self)+'\" -> \"abs_'+str(self)+'\"\n'
+
+            arbol += '\"PIZQ_'+str(self)+'\"' + '[label=\"(\"] ;\n'
+            arbol +='\"'+str(self)+'\" -> \"PIZQ_'+str(self)+'\"\n'
+
+            arbol += '\"'+str(self.izquierda)+'\"' + '[label=\"expresion\"] ;\n'
+            arbol +='\"'+str(self)+'\" -> \"'+str(self.izquierda)+'\"\n'
+            arbol += self.izquierda.getAST_Descendente()
+
+            arbol += '\"PDER_'+str(self)+'\"' + '[label=\")\"] ;\n'
+            arbol +='\"'+str(self)+'\" -> \"PDER_'+str(self)+'\"\n'
+                
+        else:
+            arbol += '\"'+str(self.izquierda)+'\"' + '[label=\"expresion\"] ;\n'
+            arbol +='\"'+str(self)+'\" -> \"'+str(self.izquierda)+'\"\n'
+            arbol += self.izquierda.getAST_Descendente()
+
+            arbol += '\"exp_der_'+str(self.izquierda)+'\"' + '[label=\"expresion\'\"] ;\n'
+            arbol +='\"'+str(self)+'\" -> \"exp_der_'+str(self.izquierda)+'\"\n'
+            
+            arbol += '\"sig_'+str(self)+'\"' + '[label=\"'+self.tipo.name+'\"] ;\n'
+            arbol += '\"exp_der_'+str(self.izquierda)+'\" -> \"sig_'+str(self)+'\"\n'
+            
+            arbol += '\"'+str(self.derecha)+'\"' + '[label=\"expresion\"] ;\n'
+            arbol += '\"exp_der_'+str(self.izquierda)+'\" -> \"'+str(self.derecha)+'\"\n'
+            arbol += self.derecha.getAST_Descendente()
+
+        return arbol
+    

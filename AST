@@ -1,28 +1,33 @@
 digraph ast_ascendente {
  init -> labels
  labels -> et_main
+labels -> labels_1
 et_main -> et_main_instrucciones
-et_main_instrucciones -> "<Arbol.Print.Print object at 0x0000018251AF9190>"
-"<Arbol.Print.Print object at 0x0000018251AF9190>"[label="print_inst"] ;
-"print_<Arbol.Print.Print object at 0x0000018251AF9190>"[label="print"] ;
-"<Arbol.Print.Print object at 0x0000018251AF9190>" -> "print_<Arbol.Print.Print object at 0x0000018251AF9190>"
-"PIZQ_<Arbol.Print.Print object at 0x0000018251AF9190>"[label="("] ;
-"<Arbol.Print.Print object at 0x0000018251AF9190>" -> "PIZQ_<Arbol.Print.Print object at 0x0000018251AF9190>"
-"<Arbol.Unaria.Unaria object at 0x0000018251AF9250>"[label="expresion"] ;
-"<Arbol.Print.Print object at 0x0000018251AF9190>" -> "<Arbol.Unaria.Unaria object at 0x0000018251AF9250>"
-"PDER_<Arbol.Print.Print object at 0x0000018251AF9190>"[label=")"] ;
-"<Arbol.Print.Print object at 0x0000018251AF9190>" -> "PDER_<Arbol.Print.Print object at 0x0000018251AF9190>"
-"exp_<Arbol.Unaria.Unaria object at 0x0000018251AF9250>"[label="CADENA"] ;
-"<Arbol.Unaria.Unaria object at 0x0000018251AF9250>" -> "exp_<Arbol.Unaria.Unaria object at 0x0000018251AF9250>"et_main_instrucciones -> "<Arbol.Print.Print object at 0x0000018251AF90A0>"
-"<Arbol.Print.Print object at 0x0000018251AF90A0>"[label="print_inst"] ;
-"print_<Arbol.Print.Print object at 0x0000018251AF90A0>"[label="print"] ;
-"<Arbol.Print.Print object at 0x0000018251AF90A0>" -> "print_<Arbol.Print.Print object at 0x0000018251AF90A0>"
-"PIZQ_<Arbol.Print.Print object at 0x0000018251AF90A0>"[label="("] ;
-"<Arbol.Print.Print object at 0x0000018251AF90A0>" -> "PIZQ_<Arbol.Print.Print object at 0x0000018251AF90A0>"
-"<Arbol.Unaria.Unaria object at 0x0000018251AF9460>"[label="expresion"] ;
-"<Arbol.Print.Print object at 0x0000018251AF90A0>" -> "<Arbol.Unaria.Unaria object at 0x0000018251AF9460>"
-"PDER_<Arbol.Print.Print object at 0x0000018251AF90A0>"[label=")"] ;
-"<Arbol.Print.Print object at 0x0000018251AF90A0>" -> "PDER_<Arbol.Print.Print object at 0x0000018251AF90A0>"
-"exp_<Arbol.Unaria.Unaria object at 0x0000018251AF9460>"[label="IDENTIFICADOR"] ;
-"<Arbol.Unaria.Unaria object at 0x0000018251AF9460>" -> "exp_<Arbol.Unaria.Unaria object at 0x0000018251AF9460>"
+et_main_instrucciones [label="instrucciones"] ;
+ et_main_instrucciones -> et_main_instruccion
+et_main_instruccion [label="instruccion"] ;
+et_main_instruccion -> "<Arbol.Asignacion.Asignacion object at 0x000002C05B4EA580>"
+et_main_instrucciones -> et_main_instrucciones_1
+et_main_instrucciones_1 [label="instrucciones'"] ;
+"<Arbol.Asignacion.Asignacion object at 0x000002C05B4EA580>"[label="asig_inst"] ;
+"id_<Arbol.Asignacion.Asignacion object at 0x000002C05B4EA580>"[label="identificador"] ;
+"<Arbol.Asignacion.Asignacion object at 0x000002C05B4EA580>" -> "id_<Arbol.Asignacion.Asignacion object at 0x000002C05B4EA580>"
+"asig_<Arbol.Asignacion.Asignacion object at 0x000002C05B4EA580>"[label="="] ;
+"<Arbol.Asignacion.Asignacion object at 0x000002C05B4EA580>" -> "asig_<Arbol.Asignacion.Asignacion object at 0x000002C05B4EA580>"
+"<Arbol.Acceso.Acceso object at 0x000002C05B4EA5E0>"[label="expresion"] ;
+"<Arbol.Asignacion.Asignacion object at 0x000002C05B4EA580>" -> "<Arbol.Acceso.Acceso object at 0x000002C05B4EA5E0>"
+"id_<Arbol.Acceso.Acceso object at 0x000002C05B4EA5E0>"[label="identificador"] ;
+"<Arbol.Acceso.Acceso object at 0x000002C05B4EA5E0>" -> "id_<Arbol.Acceso.Acceso object at 0x000002C05B4EA5E0>"
+"accesos_<Arbol.Acceso.Acceso object at 0x000002C05B4EA5E0>"[label="accesos"] ;
+"<Arbol.Acceso.Acceso object at 0x000002C05B4EA5E0>" -> "accesos_<Arbol.Acceso.Acceso object at 0x000002C05B4EA5E0>"
+"<Arbol.Unaria.Unaria object at 0x000002C05B4EA430>"[label="acceso"] ;
+"accesos_<Arbol.Acceso.Acceso object at 0x000002C05B4EA5E0>" -> "<Arbol.Unaria.Unaria object at 0x000002C05B4EA430>"
+"exp_<Arbol.Unaria.Unaria object at 0x000002C05B4EA430>"[label="ENTERO"] ;
+"<Arbol.Unaria.Unaria object at 0x000002C05B4EA430>" -> "exp_<Arbol.Unaria.Unaria object at 0x000002C05B4EA430>""<Arbol.Unaria.Unaria object at 0x000002C05B4EA490>"[label="acceso"] ;
+"accesos_<Arbol.Acceso.Acceso object at 0x000002C05B4EA5E0>" -> "<Arbol.Unaria.Unaria object at 0x000002C05B4EA490>"
+"exp_<Arbol.Unaria.Unaria object at 0x000002C05B4EA490>"[label="ENTERO"] ;
+"<Arbol.Unaria.Unaria object at 0x000002C05B4EA490>" -> "exp_<Arbol.Unaria.Unaria object at 0x000002C05B4EA490>""<Arbol.Unaria.Unaria object at 0x000002C05B4EA610>"[label="acceso"] ;
+"accesos_<Arbol.Acceso.Acceso object at 0x000002C05B4EA5E0>" -> "<Arbol.Unaria.Unaria object at 0x000002C05B4EA610>"
+"exp_<Arbol.Unaria.Unaria object at 0x000002C05B4EA610>"[label="ENTERO"] ;
+"<Arbol.Unaria.Unaria object at 0x000002C05B4EA610>" -> "exp_<Arbol.Unaria.Unaria object at 0x000002C05B4EA610>"
 }

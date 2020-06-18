@@ -409,13 +409,41 @@ class EditorTexto:
         
         else:
             temporal = ''
+            cont_label = 0
             for etiqueta in ts_global.etiquetas.values():
-                arbol+= 'labels -> et_'+etiqueta.identificador+'\n'
-                arbol += 'et_'+etiqueta.identificador+' -> et_'+etiqueta.identificador+'_instrucciones\n'
 
-                #for instruccion in etiqueta.instrucciones:
-                    #arbol += 'et_'+etiqueta.identificador+'_instrucciones -> '+'\"'+str(instruccion)+'\"'+'\n'
-                    #arbol += instruccion.getAST_Descendente()
+                if cont_label==0:
+                    arbol+= 'labels -> et_'+etiqueta.identificador+'\n'
+                    arbol+= 'labels -> labels_'+str(cont_label+1)+'\n'
+                else:
+                    arbol +=  'labels_'+str(cont_label)+ '[label=\"labels\'\"] ;\n'
+                    arbol+= 'labels_'+str(cont_label)+' -> et_'+etiqueta.identificador+'\n'
+                    arbol+= 'labels_'+str(cont_label)+' -> labels_'+str(cont_label+1)+'\n'
+
+                cont_instruccion = 0
+                for instruccion in etiqueta.instrucciones:
+                    if cont_instruccion==0:
+                        arbol += 'et_'+etiqueta.identificador+' -> et_'+etiqueta.identificador+'_instrucciones\n'
+                        arbol += 'et_'+etiqueta.identificador+'_instrucciones [label=\"instrucciones\"] ;\n'
+                        
+                        arbol += ' et_'+etiqueta.identificador+'_instrucciones -> et_'+etiqueta.identificador+'_instruccion\n'
+                        arbol += 'et_'+etiqueta.identificador+'_instruccion [label=\"instruccion\"] ;\n'
+                        arbol += 'et_'+etiqueta.identificador+'_instruccion -> '+'\"'+str(instruccion)+'\"'+'\n'
+                        
+                        arbol += 'et_'+etiqueta.identificador+'_instrucciones -> et_'+etiqueta.identificador+'_instrucciones_'+str(cont_instruccion+1)+'\n'
+                        arbol += 'et_'+etiqueta.identificador+'_instrucciones_'+str(cont_instruccion+1)+' [label=\"instrucciones\'\"] ;\n'
+                    else:
+                        arbol += 'et_'+etiqueta.identificador+'_instrucciones_'+str(cont_instruccion)+' -> ''et_'+etiqueta.identificador+'_instruccion_'+str(cont_instruccion)+'\n'
+                        arbol += 'et_'+etiqueta.identificador+'_instruccion_'+str(cont_instruccion)+' [label=\"instruccion\"] ;\n'
+                        arbol += 'et_'+etiqueta.identificador+'_instruccion_'+str(cont_instruccion)+' -> \"'+str(instruccion)+'\"'+'\n'
+                        
+                        arbol += 'et_'+etiqueta.identificador+'_instrucciones_'+str(cont_instruccion)+' -> et_'+etiqueta.identificador+'_instrucciones_'+str(cont_instruccion+1)+'\n'
+                        arbol += 'et_'+etiqueta.identificador+'_instrucciones_'+str(cont_instruccion+1)+' [label=\"instrucciones\'\"] ;\n'
+                                   
+                    cont_instruccion+=1
+                    arbol += instruccion.getAST_Descendente()
+                
+                cont_label+=1
 
         arbol += "\n}"
         #print(arbol)

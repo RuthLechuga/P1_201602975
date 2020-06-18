@@ -53,4 +53,4 @@ class Read(Instruccion) :
         return arbol
     
     def getAST_Descendente(self) :
-        print('ast')
+        return self.getAST_Ascendente()
