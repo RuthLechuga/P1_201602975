@@ -237,6 +237,7 @@ class EditorTexto:
     def imprimir_errores(self):
         fila = 1
         for mensaje in mensajes:
+            print(mensaje.mensaje)
             if mensaje.tipo_mensaje != TIPO_MENSAJE.LOG:
                 tipo = Entry(self.tab_errores, borderwidth=1, width=15, fg='black', font=('Arial',11)) 
                 tipo.grid(row=fila, column=0) 
@@ -260,7 +261,7 @@ class EditorTexto:
         self.cleanTable()
         self.cleanTS()
         is_ascendente = False
-        mensajes = []
+        del mensajes[:]
         etiquetas = g_desc.parse(self.text.get_text())
         mensajes = g_desc.mensajes
         reporte_gramatical = g_desc.reporte_gramatical
@@ -561,7 +562,7 @@ class EditorTexto:
                 if isinstance(res,Etiqueta) or isinstance(instruccion,Exit):
                     etiqueta = res
                     bandera = True
-                    debugueando = eg.ccbox(msg='Desea continuar debugueando',title='Debug',image='debug.svg')
+                    debugueando = eg.ccbox(msg='Desea continuar debugueando',title='Debug')
                     self.text.deleteResaltar()
                     break
                 
